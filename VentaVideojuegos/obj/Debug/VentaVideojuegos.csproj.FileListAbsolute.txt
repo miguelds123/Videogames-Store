@@ -1,0 +1,11 @@
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\VentaVideojuegos.exe.config
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\VentaVideojuegos.exe
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\VentaVideojuegos.pdb
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.csproj.AssemblyReference.cache
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.csproj.SuggestedBindingRedirects.cache
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.frmPrincipal.resources
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Properties.Resources.resources
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.csproj.GenerateResource.cache
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.csproj.CoreCompileInputs.cache
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.exe
+D:\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.pdb
