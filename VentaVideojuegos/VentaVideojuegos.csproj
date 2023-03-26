@@ -48,11 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumeraciones\Enumeraciones.cs" />
+    <Compile Include="Interfaces\IBLLCliente.cs" />
     <Compile Include="Interfaces\IDALCliente.cs" />
     <Compile Include="Interfaces\IDALFactura.cs" />
     <Compile Include="Interfaces\IDAListaDeseos.cs" />
     <Compile Include="Interfaces\IDALProducto.cs" />
     <Compile Include="Interfaces\IDALReservacion.cs" />
+    <Compile Include="Layers\BLL\BLLCliente.cs" />
     <Compile Include="Layers\DAL\DALCliente.cs" />
     <Compile Include="Layers\DAL\DALFactura.cs" />
     <Compile Include="Layers\DAL\DALListaDeseos.cs" />
@@ -109,7 +111,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Layers\BLL\" />
     <Folder Include="Layers\Servicio\" />
     <Folder Include="Resources\" />
   </ItemGroup>
