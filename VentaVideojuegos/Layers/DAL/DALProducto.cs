@@ -81,7 +81,8 @@ namespace VentaVideojuegos
                             Descuento = (double)dr["DESCUENTO"],
                             IdCategoria = (int)dr["ID_CATEGORIA"],
                             PrecioColones = (double)dr["PRECIO_COLONES"],
-                            PrecioDolares = (double)dr["PRECIO_DOLARES"]
+                            PrecioDolares = (double)dr["PRECIO_DOLARES"],
+                            Imagen= (byte[])dr["IMAGEN"]
                         };
                         lista.Add(producto);
                     }
@@ -132,7 +133,8 @@ namespace VentaVideojuegos
                             Descuento = (double)dr["DESCUENTO"],
                             IdCategoria = (int)dr["ID_CATEGORIA"],
                             PrecioColones = (double)dr["PRECIO_COLONES"],
-                            PrecioDolares = (double)dr["PRECIO_DOLARES"]
+                            PrecioDolares = (double)dr["PRECIO_DOLARES"],
+                            Imagen= (byte[])dr["IMAGEN"]
                         };
                         lista.Add(producto);
                     }
@@ -181,7 +183,8 @@ namespace VentaVideojuegos
                         Descuento = (double)dr["DESCUENTO"],
                         IdCategoria = (int)dr["ID_CATEGORIA"],
                         PrecioColones = (double)dr["PRECIO_COLONES"],
-                        PrecioDolares = (double)dr["PRECIO_DOLARES"]
+                        PrecioDolares = (double)dr["PRECIO_DOLARES"],
+                        Imagen = (byte[])dr["IMAGEN"]
                     };
                 }
                 return producto;
@@ -203,7 +206,7 @@ namespace VentaVideojuegos
         {
             Producto producto = null;
             string sql = @"Insert into PRODUCTO values (@ID, @DESCRIPCION, @CANTIDAD_INVENTARIO,
-            @DESCUENTO, @ID_CATEGORIA, @PRECIO_COLONES, @PRECIO_DOLARES)";
+            @DESCUENTO, @ID_CATEGORIA, @PRECIO_COLONES, @PRECIO_DOLARES, @IMAGEN)";
 
             SqlCommand command = new SqlCommand();
             double rows = 0;
@@ -217,6 +220,7 @@ namespace VentaVideojuegos
                 command.Parameters.AddWithValue(@"ID_CATEGORIA", pProducto.IdCategoria);
                 command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
                 command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
+                command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
                 command.CommandText = sql;
                 command.CommandType= CommandType.Text;
 
@@ -251,7 +255,7 @@ namespace VentaVideojuegos
             string sql = @"Update PRODUCTO SET ID = @ID, DESCRIPCION = @DESCRIPCION, 
             CANTIDAD_INVENTARIO = @CANTIDAD_INVENTARIO, DESCUENTO = @DESCUENTO, 
             ID_CATEGORIA = @ID_CATEGORIA, PRECIO_COLONES = @PRECIO_COLONES, 
-            PRECIO_DOLARES = @PRECIO_DOLARES where ID = @ID";
+            PRECIO_DOLARES = @PRECIO_DOLARES, IMAGEN = @IMAGEN where ID = @ID";
 
             SqlCommand command = new SqlCommand();
             double rows = 0;
@@ -265,6 +269,7 @@ namespace VentaVideojuegos
                 command.Parameters.AddWithValue(@"ID_CATEGORIA", pProducto.IdCategoria);
                 command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
                 command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
+                command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
                 command.CommandText = sql;
                 command.CommandType = CommandType.Text;
 

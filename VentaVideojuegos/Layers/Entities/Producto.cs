@@ -21,5 +21,8 @@ namespace VentaVideojuegos
         public double PrecioColones { get; set; }
 
         public double PrecioDolares { get; set; }
+
+        public byte[] Imagen { set; get; }
+
     }
 }
