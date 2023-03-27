@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VentaVideojuegos.Interfaces;
-using VentaVideojuegos.Layers.DAL;
 
 namespace VentaVideojuegos
 {
@@ -27,14 +26,14 @@ namespace VentaVideojuegos
         public OrdenCompraDTO SaveFactura(OrdenCompraDTO pOrdenCompra)
         {
             IDALFactura _DALFactura = new DALFactura();
-            IBLLProducto _BLLProducto= new IBLLProducto();
+            IBLLProducto _BLLProducto= new BLLProducto();
 
             foreach (DetalleOrden detalle in pOrdenCompra.listaDetalles)
             {
-                _IBLLProducto.AvabilityStock(oFacturaDetalle.IdElectronico, oFacturaDetalle.Cantidad);
+                _BLLProducto.AvabilityStock(detalle.IdProducto, detalle.Cantidad);
             }
 
-            return _DALFactura.SaveFactura(pFactura);
+            return _DALFactura.SaveFactura(pOrdenCompra);
         }
     }
 }
