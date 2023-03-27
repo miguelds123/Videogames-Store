@@ -25,6 +25,7 @@ namespace VentaVideojuegos.Layers.UI
         private void CargarDatos()
         {
             IBLLCliente _BLLCliente = new BLLCliente();
+
         }
 
         private void CambiarEstado(EstadoMantenimiento estado)
