@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using VentaVideojuegos.Interfaces;
 using VentaVideojuegos.Properties;
 
-namespace VentaVideojuegos.Layers.DAL
+namespace VentaVideojuegos
 {
     class DALFactura : IDALFactura
     {
