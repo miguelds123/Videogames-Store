@@ -50,6 +50,7 @@
     <Compile Include="Enumeraciones\Enumeraciones.cs" />
     <Compile Include="Interfaces\IBLLCliente.cs" />
     <Compile Include="Interfaces\IBLLFactura.cs" />
+    <Compile Include="Interfaces\IBLLListaDeseos.cs" />
     <Compile Include="Interfaces\IBLLProducto.cs" />
     <Compile Include="Interfaces\IDALCliente.cs" />
     <Compile Include="Interfaces\IDALFactura.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Interfaces\IDALReservacion.cs" />
     <Compile Include="Layers\BLL\BLLCliente.cs" />
     <Compile Include="Layers\BLL\BLLFactura.cs" />
+    <Compile Include="Layers\BLL\BLLListaDeseos.cs" />
     <Compile Include="Layers\BLL\BLLProducto.cs" />
     <Compile Include="Layers\DAL\DALCliente.cs" />
     <Compile Include="Layers\DAL\DALFactura.cs" />
