@@ -52,6 +52,7 @@
     <Compile Include="Interfaces\IBLLFactura.cs" />
     <Compile Include="Interfaces\IBLLListaDeseos.cs" />
     <Compile Include="Interfaces\IBLLProducto.cs" />
+    <Compile Include="Interfaces\IBLLReservacion.cs" />
     <Compile Include="Interfaces\IDALCliente.cs" />
     <Compile Include="Interfaces\IDALFactura.cs" />
     <Compile Include="Interfaces\IDAListaDeseos.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Layers\BLL\BLLFactura.cs" />
     <Compile Include="Layers\BLL\BLLListaDeseos.cs" />
     <Compile Include="Layers\BLL\BLLProducto.cs" />
+    <Compile Include="Layers\BLL\BLLReservacion.cs" />
     <Compile Include="Layers\DAL\DALCliente.cs" />
     <Compile Include="Layers\DAL\DALFactura.cs" />
     <Compile Include="Layers\DAL\DALListaDeseos.cs" />
