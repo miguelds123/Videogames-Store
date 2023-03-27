@@ -20,7 +20,7 @@ namespace VentaVideojuegos
             _Usuario.Login = Settings.Default.Login;
             _Usuario.Password = Settings.Default.Password;
         }
-        public List<Distrito> GetAllProvincia()
+        public List<Distrito> GetAllCanton()
         {
             IDataReader reader = null;
             List<Distrito> lista = new List<Distrito>();

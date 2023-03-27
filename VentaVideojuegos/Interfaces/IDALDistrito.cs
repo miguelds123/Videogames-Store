@@ -9,6 +9,6 @@ namespace VentaVideojuegos.Interfaces
 {
     interface IDALDistrito
     {
-        List<Distrito> GetAllProvincia();
+        List<Distrito> GetAllCanton();
     }
 }

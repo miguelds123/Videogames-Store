@@ -44,7 +44,7 @@ namespace VentaVideojuegos.Layers.UI
             this.btnCancelar.Enabled = false;
             this.cmbProvincia.Enabled = false;
 
-            if (cmbProvincia.Items.Count > 0 )
+            if (cmbProvincia.Items.Count > 0)
             {
                 this.cmbProvincia.SelectedIndex = 0;
             }
@@ -79,5 +79,6 @@ namespace VentaVideojuegos.Layers.UI
                 case EstadoMantenimiento.Ninguno:
                     break;
             }
+        }
     }
 }

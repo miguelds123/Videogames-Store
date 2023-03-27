@@ -19,7 +19,7 @@ namespace VentaVideojuegos.Layers.DAL
             _Usuario.Login = Settings.Default.Login;
             _Usuario.Password = Settings.Default.Password;
         }
-        public List<Canton> GetAllProvincia()
+        public List<Canton> GetAllCanton()
         {
             IDataReader reader = null;
             List<Canton> lista = new List<Canton>();

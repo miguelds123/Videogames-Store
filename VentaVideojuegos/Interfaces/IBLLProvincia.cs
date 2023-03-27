@@ -7,8 +7,8 @@ using VentaVideojuegos.Layers.Entities;
 
 namespace VentaVideojuegos
 {
-    interface IDALCanton
+    interface IBLLProvincia
     {
-        List<Canton> GetAllCanton();
+        List<Provincia> GetAllProvincia();
     }
 }
