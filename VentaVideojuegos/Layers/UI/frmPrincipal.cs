@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaVideojuegos.Layers.UI;
 
 namespace VentaVideojuegos
 {
@@ -39,6 +40,22 @@ namespace VentaVideojuegos
         private void facturarToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMantenimientoCliente frmMantenimientoCliente;
+
+            try
+            {
+                frmMantenimientoCliente= new frmMantenimientoCliente();
+                frmMantenimientoCliente.MdiParent = this;
+                frmMantenimientoCliente.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
         }
     }
 }
