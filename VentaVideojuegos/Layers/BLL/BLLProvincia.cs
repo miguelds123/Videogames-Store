@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VentaVideojuegos.Interfaces;
 
-namespace VentaVideojuegos.Layers.DAL
+namespace VentaVideojuegos
 {
     class BLLProvincia : IBLLProvincia
     {

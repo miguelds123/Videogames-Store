@@ -15,8 +15,11 @@ namespace VentaVideojuegos
         Usuario _Usuario = new Usuario();
         public DALCliente()
         {
-            _Usuario.Login = Settings.Default.Login;
-            _Usuario.Password = Settings.Default.Password;
+            //_Usuario.Login = Settings.Default.Login;
+            //_Usuario.Password = Settings.Default.Password;
+
+            _Usuario.Login = "sa";
+            _Usuario.Password = "123456";
         }
         public bool DeleteCliente(string pId)
         {
