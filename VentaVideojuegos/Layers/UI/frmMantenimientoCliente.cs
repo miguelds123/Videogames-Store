@@ -74,6 +74,9 @@ namespace VentaVideojuegos.Layers.UI
             // Colocar el primero como default
             this.cmbProvincia.SelectedIndex = -1;
             this.cmbCanton.SelectedIndex = -1;
+            this.btnNuevo.Enabled = true;
+            this.btnEditar.Enabled = true;
+            this.btnBorrar.Enabled = true;
         }
 
         private void CambiarEstado(EstadoMantenimiento estado)
@@ -126,14 +129,18 @@ namespace VentaVideojuegos.Layers.UI
                     break;
 
                 case EstadoMantenimiento.Editar:
-                    this.txtIdentificacion.Enabled = false;
                     this.txtNombre.Enabled = true;
                     this.txtApellido1.Enabled = true;
                     this.txtApellido2.Enabled = true;
+                    this.txtDireccion.Enabled = true;
+                    this.txtCodigoPostal.Enabled = true;
+                    this.txtComentario.Enabled = true;
                     this.cmbProvincia.Enabled = true;
+                    this.cmbCanton.Enabled = true;
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
-                    txtNombre.Focus();
+                    txtIdentificacion.Focus();
+                    estadoFrame = EstadoMantenimiento.Editar;
                     break;
 
                 case EstadoMantenimiento.Borrar:
@@ -209,11 +216,16 @@ namespace VentaVideojuegos.Layers.UI
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             this.CambiarEstado(EstadoMantenimiento.Nuevo);
+
+            this.btnEditar.Enabled = false;
+            this.btnBorrar.Enabled = false;
+            this.btnNuevo.Enabled = false;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             IBLLCliente _BLLCliente = new BLLCliente();
+            Cliente cliente;
 
             switch (estadoFrame)
             {
@@ -221,7 +233,7 @@ namespace VentaVideojuegos.Layers.UI
 
                     ValidarCampos();
 
-                    Cliente cliente= new Cliente();
+                    cliente= new Cliente();
 
                     cliente.ID = Convert.ToInt32((string)txtIdentificacion.Text);
                     cliente.Nombre = txtNombre.Text;
@@ -252,9 +264,92 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     
                     break;
+
+                case EstadoMantenimiento.Editar:
+
+                    if (this.dgvDatos.SelectedRows.Count > 0)
+                    {
+
+                        ValidarCampos();
+
+                        cliente = this.dgvDatos.SelectedRows[0].DataBoundItem as Cliente;
+
+                        txtIdentificacion.Text = cliente.ID.ToString();
+                        cliente.Nombre = txtNombre.Text;
+                        cliente.Apellido1 = txtApellido1.Text;
+                        cliente.Apellido2 = txtApellido2.Text;
+                        cliente.Direccion = txtDireccion.Text;
+                        cliente.IdProvincia = ((Provincia)cmbProvincia.SelectedItem).Id;
+                        cliente.IdCanton = ((Canton)cmbCanton.SelectedItem).Id;
+                        cliente.IdDistrito = 1;
+                        cliente.CodigoPostal = txtCodigoPostal.Text;
+                        cliente.Comentario = txtComentario.Text;
+
+                        try
+                        {
+                            _BLLCliente.UpdateCliente(cliente);
+
+                            this.CargarDatos();
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show("Ocurrio un error en la base de datos al editar el cliente");
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ocurrio un error en el programa al editar el cliente");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar el cliente que desea editar");
+                        return;
+                    }
+
+                    break;
             }
 
             this.CambiarEstado(EstadoMantenimiento.Ninguno);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.CargarDatos();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (this.dgvDatos.SelectedRows.Count > 0)
+            {
+                this.CambiarEstado(EstadoMantenimiento.Editar);
+
+                MessageBox.Show("Porfavor, no olvide seleccionar la provincia y canton del cliente");
+
+                Cliente cliente = this.dgvDatos.SelectedRows[0].DataBoundItem as Cliente;
+
+                txtIdentificacion.Text = cliente.ID.ToString();
+                txtNombre.Text= cliente.Nombre.ToString();
+                txtApellido1.Text= cliente.Apellido1.ToString();
+                txtApellido2.Text= cliente.Apellido2.ToString();
+                txtDireccion.Text= cliente.Direccion.ToString();
+                txtCodigoPostal.Text= cliente.CodigoPostal.ToString();
+                txtComentario.Text= cliente.Comentario.ToString();
+
+                this.btnEditar.Enabled = false;
+                this.btnBorrar.Enabled = false;
+                this.btnNuevo.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar el cliente que desea editar");
+            }
         }
     }
 }
