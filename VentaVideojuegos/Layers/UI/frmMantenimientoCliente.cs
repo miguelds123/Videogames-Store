@@ -24,6 +24,8 @@ namespace VentaVideojuegos.Layers.UI
 
         private void frmMantenimientoCliente_Load(object sender, EventArgs e)
         {
+            this.Text = "Mantenimiento Clientes";
+
             try
             {
                 CargarDatos();
@@ -144,6 +146,9 @@ namespace VentaVideojuegos.Layers.UI
                     break;
 
                 case EstadoMantenimiento.Borrar:
+                    estadoFrame = EstadoMantenimiento.Borrar;
+                    this.btnAceptar.Enabled = true;
+                    this.btnCancelar.Enabled = true;
                     break;
 
                 case EstadoMantenimiento.Ninguno:
@@ -309,6 +314,39 @@ namespace VentaVideojuegos.Layers.UI
                     }
 
                     break;
+
+                case EstadoMantenimiento.Borrar:
+
+                    string mensaje = "Esta seguro que desea eliminar este cliente, esta accion es irreversible";
+                    string caption = "Advertencia";
+
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                    DialogResult result;
+
+                    result = MessageBox.Show(mensaje, caption, buttons);
+
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        try
+                        {
+                            _BLLCliente.DeleteCliente(txtIdentificacion.Text);
+
+                            this.CargarDatos();
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show("Ocurrio un error en la base de datos al borrar el cliente");
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ocurrio un error en el programa al borrar el cliente");
+                            return;
+                        }
+                    }
+
+                    break;
             }
 
             this.CambiarEstado(EstadoMantenimiento.Ninguno);
@@ -349,6 +387,32 @@ namespace VentaVideojuegos.Layers.UI
             else
             {
                 MessageBox.Show("Debe seleccionar el cliente que desea editar");
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (this.dgvDatos.SelectedRows.Count > 0)
+            {
+                this.CambiarEstado(EstadoMantenimiento.Borrar);
+
+                Cliente cliente = this.dgvDatos.SelectedRows[0].DataBoundItem as Cliente;
+
+                txtIdentificacion.Text = cliente.ID.ToString();
+                txtNombre.Text = cliente.Nombre.ToString();
+                txtApellido1.Text = cliente.Apellido1.ToString();
+                txtApellido2.Text = cliente.Apellido2.ToString();
+                txtDireccion.Text = cliente.Direccion.ToString();
+                txtCodigoPostal.Text = cliente.CodigoPostal.ToString();
+                txtComentario.Text = cliente.Comentario.ToString();
+
+                this.btnEditar.Enabled = false;
+                this.btnBorrar.Enabled = false;
+                this.btnNuevo.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar el cliente que desea borrar");
             }
         }
     }
