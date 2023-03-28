@@ -16,8 +16,11 @@ namespace VentaVideojuegos.Layers.DAL
         Usuario _Usuario = new Usuario();
         public DALCanton()
         {
-            _Usuario.Login = Settings.Default.Login;
-            _Usuario.Password = Settings.Default.Password;
+            //_Usuario.Login = Settings.Default.Login;
+            //_Usuario.Password = Settings.Default.Password;
+
+            _Usuario.Login = "sa";
+            _Usuario.Password = "123456";
         }
         public List<Canton> GetAllCanton()
         {
