@@ -154,14 +154,14 @@
             // 
             this.txtNumeroTelefono.Location = new System.Drawing.Point(533, 58);
             this.txtNumeroTelefono.Name = "txtNumeroTelefono";
-            this.txtNumeroTelefono.Size = new System.Drawing.Size(138, 20);
+            this.txtNumeroTelefono.Size = new System.Drawing.Size(177, 20);
             this.txtNumeroTelefono.TabIndex = 26;
             // 
             // txtIdCliente
             // 
             this.txtIdCliente.Location = new System.Drawing.Point(533, 94);
             this.txtIdCliente.Name = "txtIdCliente";
-            this.txtIdCliente.Size = new System.Drawing.Size(138, 20);
+            this.txtIdCliente.Size = new System.Drawing.Size(177, 20);
             this.txtIdCliente.TabIndex = 27;
             // 
             // frmMantenimientoTelefono
