@@ -1,0 +1,39 @@
+
+
+-- Stored Procedures Telefono
+
+
+CREATE PROCEDURE PA_DELETE_TELEFONO
+(@TELEFONO varchar(50),@ID_CLIENTE int)
+AS 
+ 	Delete from TELEFONO
+	Where (TELEFONO =  @TELEFONO)  AND (ID_CLIENTE =  @ID_CLIENTE)
+
+
+CREATE PROCEDURE PA_SELECT_TELEFONO_All
+ AS 
+ 	Select TELEFONO ,ID_CLIENTE  from TELEFONO
+
+
+CREATE PROCEDURE PA_SELECT_TELEFONO_ByID 
+(@TELEFONO varchar(50),@ID_CLIENTE int)
+AS 
+ 	Select TELEFONO ,ID_CLIENTE  from TELEFONO
+	Where (TELEFONO =  @TELEFONO)  AND (ID_CLIENTE =  @ID_CLIENTE)
+
+
+CREATE PROCEDURE PA_INSERT_TELEFONO
+ (@TELEFONO varchar(50),@ID_CLIENTE int)
+AS 
+ insert into TELEFONO(TELEFONO ,ID_CLIENTE ) 
+ values(@TELEFONO ,@ID_CLIENTE  ) 
+
+
+CREATE PROCEDURE PA_UPDATE_TELEFONO
+(@TelefonoNuevo varchar(50), @IdClienteNuevo int, @TelefonoViejo varchar(50), @IdClienteViejo int)
+AS
+	Update TELEFONO Set TELEFONO = @TelefonoNuevo, ID_CLIENTE = @IdClienteNuevo
+            where TELEFONO = @TelefonoViejo and ID_CLIENTE = @IdClienteViejo
+
+
+
