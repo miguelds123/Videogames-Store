@@ -153,17 +153,133 @@ namespace VentaVideojuegos
 
         public List<Telefono> GetTelefonoByIdCliente(string pId)
         {
-            throw new NotImplementedException();
+            DataSet ds = null;
+            List<Telefono> lista = new List<Telefono>();
+            SqlCommand command = new SqlCommand();
+
+            try
+            {
+                string sql = @"Select * from TELEFONO where ID_CLIENTE = @IdCliente";
+                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pId));
+                command.CommandText = sql;
+                command.CommandType = CommandType.Text;
+
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    ds = db.ExecuteReader(command, "query");
+                }
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        Telefono telefono = new Telefono()
+                        {
+                            Numero = dr["TELEFONO"].ToString(),
+                            IdCliente = (int)dr["ID_CLIENTE"]
+                        };
+
+                        lista.Add(telefono);
+                    }
+                }
+                return lista;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return null;
+            }
         }
 
-        public Telefono SaveTelefono(Telefono pTelefono)
+        public List<Telefono> SaveTelefono(Telefono pTelefono)
         {
-            throw new NotImplementedException();
+            List<Telefono> lista = new List<Telefono>();
+            SqlCommand command = new SqlCommand();
+
+            string sql = @"Insert into TELEFONO values (@Telefono, @IdCliente)";
+
+            double rows = 0;
+
+            try
+            {
+                command.Parameters.AddWithValue(@"Telefono", pTelefono.Numero);
+                command.Parameters.AddWithValue(@"IdCliente", pTelefono.IdCliente);
+
+                command.CommandText = sql;
+
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                }
+
+                if (rows > 0)
+                {
+                    lista = this.GetTelefonoByIdCliente(pTelefono.IdCliente.ToString());
+                }
+
+                return lista;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return null;
+            }
         }
 
-        public Telefono UpdateTelefono(Telefono pTelefono)
+        public List<Telefono> UpdateTelefono(Telefono pTelefono, string pTelefonoViejo, string pIdClienteViejo)
         {
-            throw new NotImplementedException();
+            List<Telefono> lista = new List<Telefono>();
+            SqlCommand command = new SqlCommand();
+
+            string sql = @"Update TELEFONO Set TELEFONO = @TelefonoNuevo, ID_CLIENTE = @IdClienteNuevo
+            where TELEFONO = @TelefonoViejo and ID_CLIENTE = @IdClienteViejo";
+
+            double rows = 0;
+
+            try
+            {
+                command.Parameters.AddWithValue(@"TelefonoNuevo", pTelefono.Numero);
+                command.Parameters.AddWithValue(@"IdClienteNuevo", pTelefono.IdCliente);
+                command.Parameters.AddWithValue(@"TelefonoViejo", pTelefonoViejo);
+                command.Parameters.AddWithValue(@"IdClienteViejo", Convert.ToInt64(pIdClienteViejo));
+
+                command.CommandText = sql;
+
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                }
+
+                if (rows > 0)
+                {
+                    lista = this.GetTelefonoByIdCliente(pTelefono.IdCliente.ToString());
+                }
+
+                return lista;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return null;
+            }
         }
     }
 }

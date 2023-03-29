@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\IBLLProducto.cs" />
     <Compile Include="Interfaces\IBLLProvincia.cs" />
     <Compile Include="Interfaces\IBLLReservacion.cs" />
+    <Compile Include="Interfaces\IBLLTelefono.cs" />
     <Compile Include="Interfaces\IDALCanton.cs" />
     <Compile Include="Interfaces\IDALCliente.cs" />
     <Compile Include="Interfaces\IDALDistrito.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Layers\BLL\BLLProducto.cs" />
     <Compile Include="Layers\BLL\BLLReservacion.cs" />
     <Compile Include="Layers\BLL\BLLProvincia.cs" />
+    <Compile Include="Layers\BLL\BLLTelefono.cs" />
     <Compile Include="Layers\DAL\DALCanton.cs" />
     <Compile Include="Layers\DAL\DALCliente.cs" />
     <Compile Include="Layers\DAL\DALDistrito.cs" />

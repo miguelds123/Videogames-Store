@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
-    interface IDALTelefono
+    interface IBLLTelefono
     {
         List<Telefono> GetTelefonoByFilter(string pNumeroTelefono);
         List<Telefono> GetTelefonoByIdCliente(string pId);
