@@ -415,5 +415,10 @@ namespace VentaVideojuegos.Layers.UI
                 MessageBox.Show("Debe seleccionar el cliente que desea borrar");
             }
         }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

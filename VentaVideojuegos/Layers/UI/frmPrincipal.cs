@@ -57,5 +57,26 @@ namespace VentaVideojuegos
                 MessageBox.Show("Hubo un error al abrir el frame");
             }
         }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void telefonoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMantenimientoTelefono frmMantenimientoTelefono;
+
+            try
+            {
+                frmMantenimientoTelefono = new frmMantenimientoTelefono();
+                frmMantenimientoTelefono.MdiParent = this;
+                frmMantenimientoTelefono.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
+        }
     }
 }

@@ -109,6 +109,12 @@
     <Compile Include="Layers\UI\frmMantenimientoCliente.Designer.cs">
       <DependentUpon>frmMantenimientoCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\frmMantenimientoTelefono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\frmMantenimientoTelefono.Designer.cs">
+      <DependentUpon>frmMantenimientoTelefono.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     <Compile Include="Util\Utilitarios.cs" />
     <EmbeddedResource Include="Layers\UI\frmMantenimientoCliente.resx">
       <DependentUpon>frmMantenimientoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\frmMantenimientoTelefono.resx">
+      <DependentUpon>frmMantenimientoTelefono.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
