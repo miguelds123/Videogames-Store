@@ -10,11 +10,22 @@ namespace VentaVideojuegos
 {
     internal class DALLogin : IDALLogin
     {
+        Usuario _UsuarioBD = new Usuario();
+
+        public DALLogin()
+        {
+            //_Usuario.Login = Settings.Default.Login;
+            //_Usuario.Password = Settings.Default.Password;
+
+            _UsuarioBD.Login = "sa";
+            _UsuarioBD.Password = "123456";
+        }
+
         public bool Login(string pUsuario, string pContrasena)
         {
             try
             {
-                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(pUsuario, pContrasena)))
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
                     // Si esto da error es porque el usuario no existe! 
                 }
