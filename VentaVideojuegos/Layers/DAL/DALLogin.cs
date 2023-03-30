@@ -21,13 +21,20 @@ namespace VentaVideojuegos
             _UsuarioBD.Password = "123456";
         }
 
+        public List<Usuario> GetAllUsuario()
+        {
+            
+        }
+
         public bool Login(string pUsuario, string pContrasena)
         {
+            List<Usuario>
+
             try
             {
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
-                    // Si esto da error es porque el usuario no existe! 
+                    
                 }
 
                 return true;
