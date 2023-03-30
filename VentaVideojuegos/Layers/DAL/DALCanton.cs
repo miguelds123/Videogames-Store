@@ -28,9 +28,8 @@ namespace VentaVideojuegos.Layers.DAL
             List<Canton> lista = new List<Canton>();
             SqlCommand command = new SqlCommand();
 
-            string sql = @" select * from  CANTON ";
-            command.CommandText = sql;
-            command.CommandType = CommandType.Text;
+            command.CommandText = "PA_SELECT_CANTON_All";
+            command.CommandType = System.Data.CommandType.StoredProcedure;
 
             try
             {

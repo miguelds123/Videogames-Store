@@ -205,6 +205,8 @@ namespace VentaVideojuegos
             {
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_INSERT_CLIENTE";
                     command.Parameters.AddWithValue(@"ID", pCliente.ID);
                     command.Parameters.AddWithValue(@"APELLIDO2", pCliente.Apellido2);
                     command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);
@@ -240,6 +242,8 @@ namespace VentaVideojuegos
             {
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_UPDATE_CLIENTE";
                     command.Parameters.AddWithValue(@"ID", pCliente.ID);
                     command.Parameters.AddWithValue(@"APELLIDO2", pCliente.Apellido2);
                     command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);

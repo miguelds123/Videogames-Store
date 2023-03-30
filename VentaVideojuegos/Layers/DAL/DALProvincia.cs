@@ -28,9 +28,8 @@ namespace VentaVideojuegos
             List<Provincia> lista = new List<Provincia>();
             SqlCommand command = new SqlCommand();
 
-            string sql = @" select * from  PROVINCIA";
-            command.CommandText = sql;
-            command.CommandType = CommandType.Text;
+            command.CommandText = "PA_SELECT_PROVINCIA_All";
+            command.CommandType = System.Data.CommandType.StoredProcedure;
 
             try
             {
