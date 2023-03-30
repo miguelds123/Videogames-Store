@@ -21,42 +21,31 @@ namespace VentaVideojuegos
             _Usuario.Password = "123456";
         }
 
-        public bool DeleteTelefono(string pId, string pTelefono)
+        public void DeleteTelefono(string pId, string pTelefono)
         {
-            bool retorno = false;
-            double rows = 0d;
-            SqlCommand command = new SqlCommand();
-
             try
             {
-                string sql = @"Delete from TELEFONO 
-                where (ID_CLIENTE = @IdCliente and TELEFONO like @Telefono)";
-                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pId));
-                command.Parameters.AddWithValue(@"Telefono", pTelefono);
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_DELETE_TELEFONO";
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pId));
+                    command.Parameters.AddWithValue(@"TELEFONO", pTelefono);
 
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                    db.ExecuteNonQuery(command);
                 }
-
-                if (rows > 0)
-                    retorno = true;
-
-                return retorno;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return false;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return false;
+                return;
             }
         }
 
@@ -68,13 +57,12 @@ namespace VentaVideojuegos
 
             try
             {
-                string sql = @"Select * from TELEFONO";
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_TELEFONO_All";
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -113,14 +101,11 @@ namespace VentaVideojuegos
 
             try
             {
-                string sql = @"Select * from TELEFONO where TELEFONO.TELEFONO like @Telefono";
-                command.Parameters.AddWithValue(@"Telefono", pNumeroTelefono);
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(@"TELEFONO", pNumeroTelefono);
+                    command.CommandText = "PA_SELECT_TELEFONO_ByFilter";
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -159,14 +144,13 @@ namespace VentaVideojuegos
 
             try
             {
-                string sql = @"Select * from TELEFONO where ID_CLIENTE = @IdCliente";
-                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pId));
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_TELEFONO_ByID";
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pId));
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -197,88 +181,63 @@ namespace VentaVideojuegos
             }
         }
 
-        public List<Telefono> SaveTelefono(Telefono pTelefono)
+        public void SaveTelefono(Telefono pTelefono)
         {
-            List<Telefono> lista = new List<Telefono>();
             SqlCommand command = new SqlCommand();
-
-            string sql = @"Insert into TELEFONO values (@Telefono, @IdCliente)";
-
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"Telefono", pTelefono.Numero);
-                command.Parameters.AddWithValue(@"IdCliente", pTelefono.IdCliente);
-
-                command.CommandText = sql;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
-                }
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_INSERT_TELEFONO";
+                    command.Parameters.AddWithValue(@"TELEFONO", pTelefono.Numero);
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", pTelefono.IdCliente);
 
-                if (rows > 0)
-                {
-                    lista = this.GetTelefonoByIdCliente(pTelefono.IdCliente.ToString());
+                    db.ExecuteNonQuery(command);
                 }
-
-                return lista;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
 
-        public List<Telefono> UpdateTelefono(Telefono pTelefono, string pTelefonoViejo, string pIdClienteViejo)
+        public void UpdateTelefono(Telefono pTelefono, string pTelefonoViejo, string pIdClienteViejo)
         {
-            List<Telefono> lista = new List<Telefono>();
             SqlCommand command = new SqlCommand();
-
-            string sql = @"Update TELEFONO Set TELEFONO = @TelefonoNuevo, ID_CLIENTE = @IdClienteNuevo
-            where TELEFONO = @TelefonoViejo and ID_CLIENTE = @IdClienteViejo";
-
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"TelefonoNuevo", pTelefono.Numero);
-                command.Parameters.AddWithValue(@"IdClienteNuevo", pTelefono.IdCliente);
-                command.Parameters.AddWithValue(@"TelefonoViejo", pTelefonoViejo);
-                command.Parameters.AddWithValue(@"IdClienteViejo", Convert.ToInt64(pIdClienteViejo));
-
-                command.CommandText = sql;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
-                }
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_UPDATE_TELEFONO";
+                    command.Parameters.AddWithValue(@"TelefonoNuevo", pTelefono.Numero);
+                    command.Parameters.AddWithValue(@"IdClienteNuevo", pTelefono.IdCliente);
+                    command.Parameters.AddWithValue(@"TelefonoViejo", pTelefonoViejo);
+                    command.Parameters.AddWithValue(@"IdClienteViejo", Convert.ToInt64(pIdClienteViejo));
 
-                if (rows > 0)
-                {
-                    lista = this.GetTelefonoByIdCliente(pTelefono.IdCliente.ToString());
+                    db.ExecuteNonQuery(command);
                 }
-
-                return lista;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
     }

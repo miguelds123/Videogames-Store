@@ -8,11 +8,11 @@ namespace VentaVideojuegos
 {
     class BLLTelefono : IBLLTelefono
     {
-        public bool DeleteTelefono(string pId, string pTelefono)
+        public void DeleteTelefono(string pId, string pTelefono)
         {
             IDALTelefono _DALTelefono= new DALTelefono();
 
-            return _DALTelefono.DeleteTelefono(pId, pTelefono);
+            _DALTelefono.DeleteTelefono(pId, pTelefono);
         }
 
         public List<Telefono> GetAllTelefono()
@@ -36,18 +36,18 @@ namespace VentaVideojuegos
             return _DALTelefono.GetTelefonoByIdCliente(pId);
         }
 
-        public List<Telefono> SaveTelefono(Telefono pTelefono)
+        public void SaveTelefono(Telefono pTelefono)
         {
             IDALTelefono _DALTelefono = new DALTelefono();
 
-            return _DALTelefono.SaveTelefono(pTelefono);
+            _DALTelefono.SaveTelefono(pTelefono);
         }
 
-        public List<Telefono> UpdateTelefono(Telefono pTelefono, string pTelefonoViejo, string pIdClienteViejo)
+        public void UpdateTelefono(Telefono pTelefono, string pTelefonoViejo, string pIdClienteViejo)
         {
             IDALTelefono _DALTelefono = new DALTelefono();
 
-            return _DALTelefono.UpdateTelefono(pTelefono, pTelefonoViejo, pIdClienteViejo);
+            _DALTelefono.UpdateTelefono(pTelefono, pTelefonoViejo, pIdClienteViejo);
         }
     }
 }
