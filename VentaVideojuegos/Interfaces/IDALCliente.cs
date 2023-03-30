@@ -11,8 +11,8 @@ namespace VentaVideojuegos
         List<Cliente> GetClienteByFilter(string pDescripcion);
         Cliente GetClienteById(string pId);
         List<Cliente> GetAllCliente();
-        Cliente SaveCliente(Cliente pCliente);
-        Cliente UpdateCliente(Cliente pCliente);
-        bool DeleteCliente(string pId);
+        void SaveCliente(Cliente pCliente);
+        void UpdateCliente(Cliente pCliente);
+        void DeleteCliente(string pId);
     }
 }

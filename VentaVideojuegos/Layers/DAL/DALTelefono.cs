@@ -74,7 +74,7 @@ namespace VentaVideojuegos
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    ds = db.ExecuteReader(command, "query");
+                    //ds = db.ExecuteReader(command, "query");
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -120,7 +120,7 @@ namespace VentaVideojuegos
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    ds = db.ExecuteReader(command, "query");
+                    //ds = db.ExecuteReader(command, "query");
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -166,7 +166,7 @@ namespace VentaVideojuegos
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    ds = db.ExecuteReader(command, "query");
+                    //ds = db.ExecuteReader(command, "query");
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)

@@ -6,20 +6,20 @@ using System.Data;
 
 public class DataBase : IDataBase ,IDisposable
 {
-    public IDbConnection _Conexion { get; set; } = new SqlConnection();
+    public IDbConnection Conexion
+    {
+        get;
+        set;        
+    }
 
-    /// <summary>
-    /// Ejecuta un Command y devuelve un Reader
-    /// </summary>
-    /// <param name="pCommand"></param>
-    /// <returns></returns>
     public IDataReader ExecuteReader(IDbCommand pCommand)
     {
 
         IDataReader lector = null;
         try
         {
-            pCommand.Connection = _Conexion;
+
+            pCommand.Connection = Conexion;
             lector = pCommand.ExecuteReader(CommandBehavior.CloseConnection);
             return lector;
         }
@@ -32,13 +32,7 @@ public class DataBase : IDataBase ,IDisposable
 
     }
 
-    /// <summary>
-    ///  Devuelve un DataSet a partir de un Command que hace un Select
-    /// </summary>
-    /// <param name="pCommand">Command con el Select</param>
-    /// <param name="pTabla">Nombre de la Tabla</param>
-    /// <returns></returns>
-    public DataSet ExecuteReader(IDbCommand pCommand, String pTabla)
+    public DataSet ExecuteDataSet(IDbCommand pCommand)
     {
 
         DataSet dsTabla = new DataSet();
@@ -47,7 +41,36 @@ public class DataBase : IDataBase ,IDisposable
 
             using (SqlDataAdapter adaptador = new SqlDataAdapter(pCommand as SqlCommand))
             {
-                pCommand.Connection = _Conexion;
+                pCommand.Connection = Conexion;
+                dsTabla = new DataSet();
+                adaptador.Fill(dsTabla);
+            }
+            return dsTabla;
+        }
+        catch (Exception)
+        {
+
+            // lanzar excepción                     
+            throw;
+        }
+        finally
+        {
+
+            if (dsTabla != null)
+                dsTabla.Dispose();
+        }
+    }
+
+    public DataSet ExecuteDataSet(IDbCommand pCommand, String pTabla)
+    {
+
+        DataSet dsTabla = new DataSet();
+        try
+        {
+
+            using (SqlDataAdapter adaptador = new SqlDataAdapter(pCommand as SqlCommand))
+            {
+                pCommand.Connection = Conexion;
                 dsTabla = new DataSet();
                 adaptador.Fill(dsTabla, pTabla);
             }
@@ -55,33 +78,27 @@ public class DataBase : IDataBase ,IDisposable
         }
         catch (Exception)
         {
-                    
+
+            // lanzar excepción                     
             throw;
         }
         finally
         {
 
             if (dsTabla != null)
-                dsTabla.Dispose(); 
-        } 
-
+                dsTabla.Dispose();
+        }
     }
 
-    /// <summary>
-    /// Utilizado para Insert, Update y Delete
-    /// </summary>
-    /// <param name="pCommand">Command</param>
-    /// <param name="pIsolationLevel">Isolation Level ReadCommitted | ReadUncommitted | Serializable | Chaos </param>
-    /// <returns>Registros afectados</returns>
     public double ExecuteNonQuery(IDbCommand pCommand, IsolationLevel pIsolationLevel)
     {
-        using (IDbTransaction transaccion =  _Conexion.BeginTransaction(pIsolationLevel))
+        using (IDbTransaction transaccion =  Conexion.BeginTransaction(pIsolationLevel))
         {
             double registrosafectados = 0;
             try
             {
-              
-                pCommand.Connection = _Conexion;
+
+                pCommand.Connection = Conexion;
                 pCommand.Transaction = transaccion;
                 registrosafectados = pCommand.ExecuteNonQuery();
 
@@ -101,20 +118,19 @@ public class DataBase : IDataBase ,IDisposable
 
     }
 
-    /// <summary>
-    /// Ejecuta una Sentencia SQL pero sin transaccion, se utiliza para Alter, Create, Drop entre otros
-    /// </summary>
-    /// <param name="pCommand">Command</param>
-    /// <returns>Filas afectadas</returns>
-    public double ExecuteNonQuery(IDbCommand pCommand)
+    public int ExecuteNonQuery(IDbCommand pCommand)
     {
 
-        double registrosafectados = 0;
+        int registrosafectados = 0;
         try
-        { 
-            pCommand.Connection = _Conexion; 
-            registrosafectados = pCommand.ExecuteNonQuery(); 
-            return registrosafectados; 
+        {
+
+            pCommand.Connection = Conexion;
+
+            registrosafectados = pCommand.ExecuteNonQuery();
+
+            return registrosafectados;
+
         }
         catch (Exception)
         {
@@ -123,92 +139,73 @@ public class DataBase : IDataBase ,IDisposable
         }
     }
 
-    /// <summary>
-    /// Ejecuta un Escalar Count, AVG, MIN, Max
-    /// </summary>
-    /// <param name="pCommand">Command</param>
-    /// <returns>valor de resultado del escalar</returns>
-    public double ExecuteScalar(IDbCommand pCommand)
-    {
-        double registrosafectados = 0;
+    public object ExecuteScalar(IDbCommand pCommand)
+    {        
         object respuesta = null;
         try
         {
 
-            pCommand.Connection = _Conexion;
+            pCommand.Connection = Conexion;
 
             respuesta = pCommand.ExecuteScalar();
 
-            if (respuesta == null)
-                registrosafectados = 0d;
-            else
-                double.TryParse(respuesta.ToString(), out registrosafectados);
-
-
-            return registrosafectados;
-
+            return respuesta;
         }
         catch (Exception)
         {
 
             throw;
         }
+
+
     }
 
-
-    /// <summary>
-    /// Utilizado para Insert, Update y Delete, retorna el objeto Command Afectado que algunas vez se puede leer respuestas de los Stored Procedures
-    /// </summary>
-    /// <param name="pCommand">Command</param>
-    /// <param name="pIsolationLevel">Isolation Level ReadCommitted | ReadUncommitted | Serializable | Chaos </param>
-    /// <returns>Registros afectados</returns>
-    public int ExecuteNonQuery(ref IDbCommand pCommand, IsolationLevel pIsolationLevel)
+    public void ExecuteNonQuery(ref IDbCommand pCommand, IsolationLevel pIsolationLevel)
     {
-        int registrosafectados = 0;
+        using (IDbTransaction transaccion = Conexion.BeginTransaction(pIsolationLevel))
+        {
 
-        using (IDbTransaction transaccion = _Conexion.BeginTransaction(pIsolationLevel))
-        { 
             try
-            { 
-                pCommand.Connection = _Conexion;
+            {
+
+                pCommand.Connection = Conexion;
                 pCommand.Transaction = transaccion;
-                registrosafectados = pCommand.ExecuteNonQuery();
+                pCommand.ExecuteNonQuery();
 
                 // Commit a la transacción
-                transaccion.Commit(); 
-                return registrosafectados;
-            } 
+                transaccion.Commit();
+
+
+            }
+
             catch (Exception error)
             {
 
                 throw error;
-            } 
-        } 
+            }
+
+        }
+
     }
 
-    /// <summary>
-    /// Utilizado para Insert, Update y Delete
-    /// </summary>
-    /// <param name="pCommands">List<T> de Commands</param>
-    /// <param name="pIsolationLevel">Isolation Level ReadCommitted | ReadUncommitted | Serializable | Chaos </param>
-    /// <returns></returns>
-    public int  ExecuteNonQuery(List<IDbCommand> pCommands, IsolationLevel pIsolationLevel)
+    
+    public void ExecuteNonQuery(List<IDbCommand> pCommands, IsolationLevel pIsolationLevel)
     {
-        int registrosafectados = 0;
+        
         try
         {
-            using (IDbTransaction transaccion = _Conexion.BeginTransaction(pIsolationLevel))
+            using (IDbTransaction transaccion = Conexion.BeginTransaction(pIsolationLevel))
             {
                 foreach (IDbCommand command in pCommands)
                 {
-                    command.Connection = (_Conexion as SqlConnection);
-                    command.Transaction = transaccion;               
-                    registrosafectados = command.ExecuteNonQuery();
+                    command.Connection = (Conexion as SqlConnection);
+                    command.Transaction = transaccion;
+                    // command.CommandTimeout = int.Parse(System.Configuration.ConfigurationManager.AppSettings["ConnectionTimeOut"].ToString());
+                    command.ExecuteNonQuery();
                 }
                 // Commit a la transacción
                 transaccion.Commit();
             }
-            return registrosafectados;
         }
         catch (Exception)
         {
@@ -221,15 +218,12 @@ public class DataBase : IDataBase ,IDisposable
 
     }
          
-    /// <summary>
-    /// Destruye la conexion
-    /// </summary>
     public void Dispose()
     {
-        if (_Conexion != null)
-            _Conexion.Close();
+        if (Conexion != null)
+            Conexion.Close();
     }
 
-     
+    
 }
 

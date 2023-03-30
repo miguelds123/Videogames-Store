@@ -4,13 +4,14 @@ using System.Data;
 
 public interface IDataBase: IDisposable 
 {
-    IDbConnection _Conexion { get; set; }
-    double ExecuteNonQuery(IDbCommand pCommand);
-    int ExecuteNonQuery(ref IDbCommand pCommand, IsolationLevel pIsolationLevel);
-    int  ExecuteNonQuery(List<IDbCommand> pCommands, IsolationLevel pIsolationLevel);
+    IDbConnection Conexion { get; set; }
     double ExecuteNonQuery(IDbCommand pCommand, IsolationLevel pIsolationLevel);
-    IDataReader ExecuteReader(IDbCommand pCommand);
-    DataSet ExecuteReader(IDbCommand pCommand, string pTabla);
-    double ExecuteScalar(IDbCommand pCommand);
+    void ExecuteNonQuery(ref IDbCommand pCommand, IsolationLevel pIsolationLevel);
+    void ExecuteNonQuery(List<IDbCommand> pCommands, IsolationLevel pIsolationLevel);
+    int ExecuteNonQuery(IDbCommand pCommand);
+    IDataReader ExecuteReader(IDbCommand pSqlCommand);
+    DataSet ExecuteDataSet(IDbCommand pSqlCommand, string pTabla);
+    DataSet ExecuteDataSet(IDbCommand pCommand);
+    object ExecuteScalar(IDbCommand pSQLCommand);
 
 }

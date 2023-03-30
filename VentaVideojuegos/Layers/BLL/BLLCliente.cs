@@ -9,11 +9,11 @@ namespace VentaVideojuegos
 {
     class BLLCliente : IBLLCliente
     {
-        public bool DeleteCliente(string pId)
+        public void DeleteCliente(string pId)
         {
             IDALCliente _DALCliente= new DALCliente();
 
-            return _DALCliente.DeleteCliente(pId);
+            _DALCliente.DeleteCliente(pId);
         }
 
         public List<Cliente> GetAllCliente()
@@ -37,18 +37,18 @@ namespace VentaVideojuegos
             return _DALCliente.GetClienteById(pId);
         }
 
-        public Cliente SaveCliente(Cliente pCliente)
+        public void SaveCliente(Cliente pCliente)
         {
             IDALCliente _DALCliente = new DALCliente();
 
-            return _DALCliente.SaveCliente(pCliente);
+            _DALCliente.SaveCliente(pCliente);
         }
 
-        public Cliente UpdateCliente(Cliente pCliente)
+        public void UpdateCliente(Cliente pCliente)
         {
             IDALCliente _DALCliente = new DALCliente();
 
-            return _DALCliente.UpdateCliente(pCliente);
+            _DALCliente.UpdateCliente(pCliente);
         }
     }
 }

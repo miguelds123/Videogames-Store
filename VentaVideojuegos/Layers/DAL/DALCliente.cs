@@ -21,40 +21,30 @@ namespace VentaVideojuegos
             _Usuario.Login = "sa";
             _Usuario.Password = "123456";
         }
-        public bool DeleteCliente(string pId)
+        public void DeleteCliente(string pId)
         {
-            bool retorno = false;
-            double rows = 0d;
-            SqlCommand command = new SqlCommand();
-
             try
             {
-                string sql = @"Delete from CLIENTE where (ID = @IdCliente)";
-                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pId));
-                command.CommandText= sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_DELETE_CLIENTE";
+                    command.Parameters.AddWithValue("@ID", Convert.ToInt64(pId));
 
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                    db.ExecuteNonQuery(command);
                 }
-
-                if (rows > 0)
-                    retorno = true;
-
-                return retorno;
             }
             catch(SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return false;
+                return;
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return false;
+                return;
             }
         }
 
@@ -66,13 +56,12 @@ namespace VentaVideojuegos
 
             try
             {
-                string sql = @"Select * from CLIENTE";
-                command.CommandText= sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_CLIENTE_All";
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -117,14 +106,13 @@ namespace VentaVideojuegos
 
             try
             {
-                string sql = @"Select * from CLIENTE where NOMBRE + APELLIDO1 + APELLIDO2 like @filtro";
-                command.Parameters.AddWithValue(@"filtro", pDescripcion);
-                command.CommandText= sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(@"filtro", pDescripcion);
+                    command.CommandText = "PA_SELECT_CLIENTE_ByFilter";
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -169,14 +157,12 @@ namespace VentaVideojuegos
 
             try
             {
-                string sql = @"select * from CLIENTE where ID = @IdCliente";
-                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pId));
-                command.CommandText= sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_CLIENTE_ByID";
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -211,105 +197,73 @@ namespace VentaVideojuegos
             }
         }
 
-        public Cliente SaveCliente(Cliente pCliente)
+        public void SaveCliente(Cliente pCliente)
         {
-            Cliente cliente = new Cliente();
             SqlCommand command = new SqlCommand();
-
-            string sql = @"Insert into CLIENTE values (@ID, @APELLIDO2, @APELLIDO1, @NOMBRE,
-            @DIRECCION, @ID_DISTRITO, @ID_PROVINCIA, @ID_CANTON, @CODIGO_POSTAL, @COMENTARIO)";
-
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"ID", pCliente.ID);
-                command.Parameters.AddWithValue(@"APELLIDO2", pCliente.Apellido2);
-                command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);
-                command.Parameters.AddWithValue(@"NOMBRE", pCliente.Nombre);
-                command.Parameters.AddWithValue(@"DIRECCION", pCliente.Direccion);
-                command.Parameters.AddWithValue(@"ID_DISTRITO", pCliente.IdDistrito);
-                command.Parameters.AddWithValue(@"ID_PROVINCIA", pCliente.IdProvincia);
-                command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
-                command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);
-                command.Parameters.AddWithValue(@"COMENTARIO", pCliente.Comentario);
-
-                command.CommandText = sql;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
-                }
+                    command.Parameters.AddWithValue(@"ID", pCliente.ID);
+                    command.Parameters.AddWithValue(@"APELLIDO2", pCliente.Apellido2);
+                    command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);
+                    command.Parameters.AddWithValue(@"NOMBRE", pCliente.Nombre);
+                    command.Parameters.AddWithValue(@"DIRECCION", pCliente.Direccion);
+                    command.Parameters.AddWithValue(@"ID_DISTRITO", pCliente.IdDistrito);
+                    command.Parameters.AddWithValue(@"ID_PROVINCIA", pCliente.IdProvincia);
+                    command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
+                    command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);
+                    command.Parameters.AddWithValue(@"COMENTARIO", pCliente.Comentario);
 
-                if (rows > 0)
-                {
-                    cliente = this.GetClienteById(pCliente.ID.ToString());
+                    db.ExecuteNonQuery(command);
                 }
-
-                return cliente;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
 
-        public Cliente UpdateCliente(Cliente pCliente)
+        public void UpdateCliente(Cliente pCliente)
         {
-            Cliente cliente = new Cliente();
             SqlCommand command = new SqlCommand();
-
-            string sql = @"Update CLIENTE Set ID = @ID, APELLIDO2 = @APELLIDO2, 
-            APELLIDO1 = @APELLIDO1, NOMBRE = @NOMBRE, DIRECCION = @DIRECCION, 
-            ID_DISTRITO = @ID_DISTRITO, ID_PROVINCIA = @ID_PROVINCIA, ID_CANTON = @ID_CANTON, 
-            CODIGO_POSTAL = @CODIGO_POSTAL, COMENTARIO = @COMENTARIO where (ID = @ID)";
-
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"ID", pCliente.ID);
-                command.Parameters.AddWithValue(@"APELLIDO2", pCliente.Apellido2);
-                command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);
-                command.Parameters.AddWithValue(@"NOMBRE", pCliente.Nombre);
-                command.Parameters.AddWithValue(@"DIRECCION", pCliente.Direccion);
-                command.Parameters.AddWithValue(@"ID_DISTRITO", pCliente.IdDistrito);
-                command.Parameters.AddWithValue(@"ID_PROVINCIA", pCliente.IdProvincia);
-                command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
-                command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);
-                command.Parameters.AddWithValue(@"COMENTARIO", pCliente.Comentario);
-
-                command.CommandText = sql;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
-                }
+                    command.Parameters.AddWithValue(@"ID", pCliente.ID);
+                    command.Parameters.AddWithValue(@"APELLIDO2", pCliente.Apellido2);
+                    command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);
+                    command.Parameters.AddWithValue(@"NOMBRE", pCliente.Nombre);
+                    command.Parameters.AddWithValue(@"DIRECCION", pCliente.Direccion);
+                    command.Parameters.AddWithValue(@"ID_DISTRITO", pCliente.IdDistrito);
+                    command.Parameters.AddWithValue(@"ID_PROVINCIA", pCliente.IdProvincia);
+                    command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
+                    command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);
+                    command.Parameters.AddWithValue(@"COMENTARIO", pCliente.Comentario);
 
-                if (rows > 0)
-                {
-                    cliente = this.GetClienteById(pCliente.ID.ToString());
+                    db.ExecuteNonQuery(command);
                 }
-
-                return cliente;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
     }
