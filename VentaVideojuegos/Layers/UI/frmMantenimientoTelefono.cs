@@ -53,6 +53,7 @@ namespace VentaVideojuegos.Layers.UI
             this.btnNuevo.Enabled = true;
             this.btnEditar.Enabled = true;
             this.btnBorrar.Enabled = true;
+            this.dgvDatos.Enabled = true;
         }
 
         private void CambiarEstado(EstadoMantenimiento estado)
@@ -259,6 +260,7 @@ namespace VentaVideojuegos.Layers.UI
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
                 this.btnNuevo.Enabled = false;
+                this.dgvDatos.Enabled = false;
             }
             else
             {
@@ -280,6 +282,7 @@ namespace VentaVideojuegos.Layers.UI
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
                 this.btnNuevo.Enabled = false;
+                this.dgvDatos.Enabled = false;
             }
             else
             {
