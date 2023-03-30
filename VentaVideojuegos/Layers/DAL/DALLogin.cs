@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -95,31 +96,129 @@ namespace VentaVideojuegos
 
         public Usuario GetUsuarioByFilter(string pDescripcion)
         {
-            throw new NotImplementedException();
+            DataSet ds = null;
+            Usuario usuario = new Usuario();
+            SqlCommand command = new SqlCommand();
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(@"USUARIO", pDescripcion);
+                    command.CommandText = "PA_SELECT_USUARIO_ByUsuario";
+
+                    ds = db.ExecuteDataSet(command);
+                }
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        usuario.Login = dr["USUARIO"].ToString();
+                        usuario.Password = dr["PASSWORD"].ToString();
+                        usuario.IdCategoria = (int)dr["ID_CATEGORIA"];
+                        usuario.IMAGEN = (byte[])dr["IMAGEN"];
+                    }
+                }
+                return usuario;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return null;
+            }
         }
 
         public void SaveUsuario(Usuario pUsuario)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand();
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_INSERT_USUARIO";
+                    command.Parameters.AddWithValue(@"USUARIO", pUsuario.Login);
+                    command.Parameters.AddWithValue(@"PASSWORD", pUsuario.Password);
+                    command.Parameters.AddWithValue(@"ID_CATEGORIA", pUsuario.IdCategoria);
+                    command.Parameters.AddWithValue(@"IMAGEN", pUsuario.IMAGEN);
+
+                    db.ExecuteNonQuery(command);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return;
+            }
         }
 
         public void UpdateUsuario(Usuario pUsuario)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand();
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_UPDATE_USUARIO";
+                    command.Parameters.AddWithValue(@"USUARIO", pUsuario.Login);
+                    command.Parameters.AddWithValue(@"PASSWORD", pUsuario.Password);
+                    command.Parameters.AddWithValue(@"ID_CATEGORIA", pUsuario.IdCategoria);
+                    command.Parameters.AddWithValue(@"IMAGEN", pUsuario.IMAGEN);
+
+                    db.ExecuteNonQuery(command);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return;
+            }
         }
 
         public bool Login(string pUsuario, string pContrasena)
         {
-            List < Usuario >
+            List<Usuario> lista= new List<Usuario>();
+            bool resultado= false;
 
             try
             {
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
+                    lista = GetAllUsuario();
 
+                    foreach (Usuario usuario in lista)
+                    {
+                        if (usuario.Login.Equals(pUsuario) && usuario.Password.Equals(pContrasena))
+                        {
+                            resultado = true;
+                        }
+                    }
                 }
 
-                return true;
+                return resultado;
             }
             catch (SqlException ex)
             {

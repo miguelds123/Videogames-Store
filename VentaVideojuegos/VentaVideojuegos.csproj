@@ -53,6 +53,7 @@
     <Compile Include="Interfaces\IBLLDistrito.cs" />
     <Compile Include="Interfaces\IBLLFactura.cs" />
     <Compile Include="Interfaces\IBLLListaDeseos.cs" />
+    <Compile Include="Interfaces\IBLLLogin.cs" />
     <Compile Include="Interfaces\IBLLProducto.cs" />
     <Compile Include="Interfaces\IBLLProvincia.cs" />
     <Compile Include="Interfaces\IBLLReservacion.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Layers\BLL\BLLDistrito.cs" />
     <Compile Include="Layers\BLL\BLLFactura.cs" />
     <Compile Include="Layers\BLL\BLLListaDeseos.cs" />
+    <Compile Include="Layers\BLL\BLLLogin.cs" />
     <Compile Include="Layers\BLL\BLLProducto.cs" />
     <Compile Include="Layers\BLL\BLLReservacion.cs" />
     <Compile Include="Layers\BLL\BLLProvincia.cs" />
