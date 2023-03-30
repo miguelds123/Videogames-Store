@@ -10,9 +10,9 @@ namespace VentaVideojuegos
     {
         bool Login(string pUsuario, string pContrasena);
         Usuario GetUsuarioByFilter(string pDescripcion);
-        List<Cliente> GetAllCliente();
-        void SaveCliente(Cliente pCliente);
-        void UpdateCliente(Cliente pCliente);
-        void DeleteCliente(string pId);
+        List<Usuario> GetAllUsuario();
+        void SaveUsuario(Usuario pUsuario);
+        void UpdateUsuario(Usuario pUsuario);
+        void DeleteUsuario(string pId);
     }
 }
