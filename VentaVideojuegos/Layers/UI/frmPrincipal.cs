@@ -78,5 +78,21 @@ namespace VentaVideojuegos
                 MessageBox.Show("Hubo un error al abrir el frame");
             }
         }
+
+        private void usuariosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmMantenimientoUsuario frmMantenimientoUsuario= new frmMantenimientoUsuario();
+
+            try
+            {
+                frmMantenimientoUsuario = new frmMantenimientoUsuario();
+                frmMantenimientoUsuario.MdiParent = this;
+                frmMantenimientoUsuario.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
+        }
     }
 }

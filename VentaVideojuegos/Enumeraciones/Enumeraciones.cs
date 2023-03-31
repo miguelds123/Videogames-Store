@@ -12,3 +12,10 @@ public enum EstadoMantenimiento
     Borrar,
     Ninguno
 }
+
+public enum CategoriaUsuario
+{
+    Administrador,
+    Procesos,
+    Reportes
+}

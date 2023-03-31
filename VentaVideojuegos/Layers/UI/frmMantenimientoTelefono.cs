@@ -21,7 +21,7 @@ namespace VentaVideojuegos.Layers.UI
 
         private void frmMantenimientoTelefono_Load(object sender, EventArgs e)
         {
-            this.Text = "Mantenimiento Clientes";
+            this.Text = "Mantenimiento Telefono";
 
             try
             {

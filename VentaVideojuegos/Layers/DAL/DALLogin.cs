@@ -27,7 +27,7 @@ namespace VentaVideojuegos
         {
             try
             {
-                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
                     SqlCommand command = new SqlCommand();
                     command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -58,7 +58,7 @@ namespace VentaVideojuegos
 
             try
             {
-                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.CommandText = "PA_SELECT_USUARIO_All";
@@ -102,7 +102,7 @@ namespace VentaVideojuegos
 
             try
             {
-                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue(@"USUARIO", pDescripcion);
@@ -142,7 +142,7 @@ namespace VentaVideojuegos
 
             try
             {
-                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.CommandText = "PA_INSERT_USUARIO";
@@ -173,7 +173,7 @@ namespace VentaVideojuegos
 
             try
             {
-                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_UsuarioBD.Login, _UsuarioBD.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.CommandText = "PA_UPDATE_USUARIO";
