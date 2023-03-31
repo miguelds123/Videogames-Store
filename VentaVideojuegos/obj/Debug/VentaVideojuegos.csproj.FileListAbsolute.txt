@@ -23,3 +23,4 @@ C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra 
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.pdb
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.frmMantenimientoTelefono.resources
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.frmMantenimientoUsuario.resources
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.frmLogin.resources

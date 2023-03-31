@@ -27,6 +27,8 @@ namespace VentaVideojuegos
 
                 Utilitarios.CultureInfo();
 
+                abrirLogin();
+
                 if (!Directory.Exists(@"C:\temp"))
                     Directory.CreateDirectory(@"C:\temp");
             }
@@ -81,7 +83,63 @@ namespace VentaVideojuegos
 
         private void usuariosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmMantenimientoUsuario frmMantenimientoUsuario= new frmMantenimientoUsuario();
+            
+        }
+
+        private void abrirLogin()
+        {
+            frmLogin frmLogin= new frmLogin();
+
+            try
+            {
+                frmLogin = new frmLogin();
+                frmLogin.MdiParent = this;
+                frmLogin.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
+        }
+
+        private void validarDerechos()
+        {
+            Usuario usuario = new Usuario();
+
+            usuario = UsuarioIniciado.usuarioLogin[0];
+
+            if (usuario.IdCategoria == 1)
+            {
+                mantenimientosToolStripMenuItem.Enabled = true;
+                procesosToolStripMenuItem.Enabled = true;
+                reportesToolStripMenuItem.Enabled = true;
+                administracionToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                if (usuario.IdCategoria == 2)
+                {
+                    mantenimientosToolStripMenuItem.Enabled = false;
+                    reportesToolStripMenuItem.Enabled = false;
+                    administracionToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    if (usuario.IdCategoria == 3)
+                    {
+                        mantenimientosToolStripMenuItem.Enabled=false;
+                        procesosToolStripMenuItem.Enabled=false;
+                        administracionToolStripMenuItem.Enabled = false;
+                    }
+                }
+            }
+
+            UsuarioIniciado.usuarioLogin.Clear();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMantenimientoUsuario frmMantenimientoUsuario = new frmMantenimientoUsuario();
 
             try
             {
@@ -93,6 +151,11 @@ namespace VentaVideojuegos
             {
                 MessageBox.Show("Hubo un error al abrir el frame");
             }
+        }
+
+        private void frmPrincipal_Activated(object sender, EventArgs e)
+        {
+            validarDerechos();
         }
     }
 }
