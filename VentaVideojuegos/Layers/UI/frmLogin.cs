@@ -26,6 +26,8 @@ namespace VentaVideojuegos.Layers.UI
             {
                 Usuario usuario= _BLLLogin.GetUsuarioByFilter(txtUsuario.Text);
 
+                UsuarioIniciado.usuarioLogin.Clear();
+
                 UsuarioIniciado.usuarioLogin.Add(usuario);
 
                 MessageBox.Show("Su usuario y su coontraseña son correctos. Bienvenido");
