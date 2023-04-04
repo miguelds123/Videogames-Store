@@ -23,11 +23,11 @@ namespace VentaVideojuegos
             }
         }
 
-        public bool DeleteProducto(double pId)
+        public void DeleteProducto(double pId)
         {
             IDALProducto _DALProducto= new DALProducto();
 
-            return _DALProducto.DeleteProducto(pId);
+            _DALProducto.DeleteProducto(pId);
         }
 
         public List<Producto> GetAllProducto()
@@ -51,18 +51,18 @@ namespace VentaVideojuegos
             return _DALProducto.GetProductoById(pId);
         }
 
-        public Producto SaveProducto(Producto pProducto)
+        public void SaveProducto(Producto pProducto)
         {
             IDALProducto _DALProducto = new DALProducto();
 
-            return _DALProducto.SaveProducto(pProducto);
+            _DALProducto.SaveProducto(pProducto);
         }
 
-        public Producto UpdateProducto(Producto pProducto)
+        public void UpdateProducto(Producto pProducto)
         {
             IDALProducto _DALProducto = new DALProducto();
 
-            return _DALProducto.UpdateProducto(pProducto);
+            _DALProducto.UpdateProducto(pProducto);
         }
     }
 }
