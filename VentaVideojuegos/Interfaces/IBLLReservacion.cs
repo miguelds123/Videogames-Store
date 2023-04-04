@@ -11,8 +11,8 @@ namespace VentaVideojuegos
         Reservacion GetReservacionById(string pId);
         List<Reservacion> GetReservacionByIdCliente(string pId);
         List<Reservacion> GetAllReservacion();
-        Reservacion SaveReservacion(Reservacion pReservacion);
-        Reservacion UpdateReservacion(Reservacion pReservacion);
-        bool DeleteReservacion(string pId);
+        void SaveReservacion(Reservacion pReservacion);
+        void UpdateReservacion(Reservacion pReservacion);
+        void DeleteReservacion(string pId);
     }
 }

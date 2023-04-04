@@ -158,6 +158,7 @@ namespace VentaVideojuegos
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(@"ID", Convert.ToInt64(pId));
                     command.CommandText = "PA_SELECT_CLIENTE_ByID";
 
                     ds = db.ExecuteDataSet(command);

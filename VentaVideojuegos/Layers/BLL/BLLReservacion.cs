@@ -8,11 +8,11 @@ namespace VentaVideojuegos.Layers.BLL
 {
     class BLLReservacion : IBLLReservacion
     {
-        public bool DeleteReservacion(string pId)
+        public void DeleteReservacion(string pId)
         {
             IDALReservacion _DALReservacion = new DALReservacion();
 
-            return _DALReservacion.DeleteReservacion(pId);
+            _DALReservacion.DeleteReservacion(pId);
         }
 
         public List<Reservacion> GetAllReservacion()
@@ -36,18 +36,18 @@ namespace VentaVideojuegos.Layers.BLL
             return _DALReservacion.GetReservacionByIdCliente(pId);
         }
 
-        public Reservacion SaveReservacion(Reservacion pReservacion)
+        public void SaveReservacion(Reservacion pReservacion)
         {
             IDALReservacion _DALReservacion = new DALReservacion();
 
-            return _DALReservacion.SaveReservacion(pReservacion);
+            _DALReservacion.SaveReservacion(pReservacion);
         }
 
-        public Reservacion UpdateReservacion(Reservacion pReservacion)
+        public void UpdateReservacion(Reservacion pReservacion)
         {
             IDALReservacion _DALReservacion = new DALReservacion();
 
-            return _DALReservacion.UpdateReservacion(pReservacion);
+            _DALReservacion.UpdateReservacion(pReservacion);
         }
     }
 }
