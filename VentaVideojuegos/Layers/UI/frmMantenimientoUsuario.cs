@@ -25,6 +25,8 @@ namespace VentaVideojuegos.Layers.UI
         {
             this.CambiarEstado(EstadoMantenimiento.Nuevo);
 
+            MessageBox.Show("Por favor no olvide seleccionar la imagen que desea editar");
+
             this.btnEditar.Enabled = false;
             this.btnBorrar.Enabled = false;
             this.btnNuevo.Enabled = false;
@@ -101,7 +103,6 @@ namespace VentaVideojuegos.Layers.UI
 
                 case EstadoMantenimiento.Editar:
                     this.txtPassword.Enabled = true;
-                    this.txtUsuario.Enabled = true;
                     this.cmbCategoria.Enabled= true;
                     this.pbImagen.Enabled= true;
 
@@ -299,6 +300,9 @@ namespace VentaVideojuegos.Layers.UI
         {
             if (this.dgvDatos.SelectedRows.Count > 0)
             {
+
+                MessageBox.Show("Por favor no olvide seleccionar la imagen que desea editar");
+
                 this.CambiarEstado(EstadoMantenimiento.Editar);
 
                 Usuario usuario = this.dgvDatos.SelectedRows[0].DataBoundItem as Usuario;
