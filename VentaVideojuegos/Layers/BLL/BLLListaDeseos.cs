@@ -8,11 +8,11 @@ namespace VentaVideojuegos
 {
     class BLLListaDeseos : IBLLListaDeseos
     {
-        public bool DeleteListaDeseos(string pIdCliente, string pIdProducto)
+        public void DeleteListaDeseos(string pIdCliente, string pIdProducto)
         {
             IDAListaDeseos _DALListaDeseos = new DALListaDeseos();
 
-            return _DALListaDeseos.DeleteListaDeseos(pIdCliente, pIdProducto);
+            _DALListaDeseos.DeleteListaDeseos(pIdCliente, pIdProducto);
         }
 
         public List<ListaDeseos> GetAllListaDeseos()
@@ -43,18 +43,18 @@ namespace VentaVideojuegos
             return _DALListaDeseos.GetListaDeseosByIdProducto(pId);
         }
 
-        public ListaDeseos SaveListaDeseos(ListaDeseos pListaDeseos)
+        public void SaveListaDeseos(ListaDeseos pListaDeseos)
         {
             IDAListaDeseos _DALListaDeseos = new DALListaDeseos();
 
-            return _DALListaDeseos.SaveListaDeseos(pListaDeseos);
+            _DALListaDeseos.SaveListaDeseos(pListaDeseos);
         }
 
-        public ListaDeseos UpdateListaDeseos(ListaDeseos pListaDeseos)
+        public void UpdateListaDeseos(ListaDeseos pListaDeseos)
         {
             IDAListaDeseos _DALListaDeseos = new DALListaDeseos();
 
-            return _DALListaDeseos.UpdateListaDeseos(pListaDeseos);
+            _DALListaDeseos.UpdateListaDeseos(pListaDeseos);
         }
     }
 }

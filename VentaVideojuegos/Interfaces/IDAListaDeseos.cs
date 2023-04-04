@@ -12,8 +12,8 @@ namespace VentaVideojuegos
         List<ListaDeseos> GetListaDeseosByIdCliente(string pId);
         ListaDeseos GetListaDeseos(string pIdCliente, string pIdProducto);
         List<ListaDeseos> GetAllListaDeseos();
-        ListaDeseos SaveListaDeseos(ListaDeseos pListaDeseos);
-        ListaDeseos UpdateListaDeseos(ListaDeseos pListaDeseos);
-        bool DeleteListaDeseos(string pIdCliente, string pIdProducto);
+        void SaveListaDeseos(ListaDeseos pListaDeseos);
+        void UpdateListaDeseos(ListaDeseos pListaDeseos);
+        void DeleteListaDeseos(string pIdCliente, string pIdProducto);
     }
 }

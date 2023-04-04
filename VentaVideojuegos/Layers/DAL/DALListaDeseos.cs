@@ -20,37 +20,31 @@ namespace VentaVideojuegos
             _Usuario.Password = Settings.Default.Password;
         }
 
-        public bool DeleteListaDeseos(string pIdCliente, string pIdProducto)
+        public void DeleteListaDeseos(string pIdCliente, string pIdProducto)
         {
-            double rows = 0;
-
-            string sql = @"Delete from PRODUCTO where ID_CLIENTE = @IdCliente and ID_PRODUCTO = @IdProducto";
-            SqlCommand command = new SqlCommand();
-
             try
             {
-                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pIdCliente));
-                command.Parameters.AddWithValue(@"IdProducto", Convert.ToInt64(pIdProducto));
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
-                }
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_DELETE_LISTA_DESEOS_ByID";
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pIdCliente));
+                    command.Parameters.AddWithValue(@"ID_PRODUCTO", Convert.ToInt64(pIdProducto));
 
-                return rows > 0;
+                    db.ExecuteNonQuery(command);
+                }
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return false;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return false;
+                return;
             }
         }
 
@@ -60,16 +54,14 @@ namespace VentaVideojuegos
             List<ListaDeseos> lista = new List<ListaDeseos>();
             SqlCommand command = new SqlCommand();
 
-            string sql = @"Select * from LISTA_DESEOS";
-
             try
             {
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_LISTA_DESEOS_All";
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -103,20 +95,16 @@ namespace VentaVideojuegos
         {
             DataSet ds = null;
             ListaDeseos listaDeseos = null;
-            string sql = @"Select * from LISTA_DESEOS where ID_CLIENTE = @IdCliente and 
-            ID_PRODUCTO = @IdProducto ";
             SqlCommand command = new SqlCommand();
 
             try
             {
-                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pIdCliente));
-                command.Parameters.AddWithValue(@"IdProducto", Convert.ToInt64(pIdProducto));
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pIdCliente));
+                    command.Parameters.AddWithValue(@"ID_PRODUCTO", Convert.ToInt64(pIdProducto));
+                    command.CommandText = "PA_SELECT_LISTA_DESEOS";
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -148,18 +136,15 @@ namespace VentaVideojuegos
             DataSet ds = null;
             ListaDeseos listaDeseos = null;
             List<ListaDeseos> lista = new List<ListaDeseos>();
-            string sql = @"Select * from LISTA_DESEOS where ID_CLIENTE = @IdCliente";
             SqlCommand command = new SqlCommand();
 
             try
             {
-                command.Parameters.AddWithValue(@"IdCliente", Convert.ToInt64(pId));
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_LISTA_DESEOS_ByIdCliente";
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pId));
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -194,18 +179,15 @@ namespace VentaVideojuegos
             DataSet ds = null;
             ListaDeseos listaDeseos = null;
             List<ListaDeseos> lista = new List<ListaDeseos>();
-            string sql = @"Select * from LISTA_DESEOS where ID_PRODUCTO = @IdProducto";
             SqlCommand command = new SqlCommand();
 
             try
             {
-                command.Parameters.AddWithValue(@"IdProducto", Convert.ToInt64(pId));
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_LISTA_DESEOS_ByIdProducto";
+                    command.Parameters.AddWithValue(@"ID_PRODUCTO", Convert.ToInt64(pId));
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -235,86 +217,61 @@ namespace VentaVideojuegos
             }
         }
 
-        public ListaDeseos SaveListaDeseos(ListaDeseos pListaDeseos)
+        public void SaveListaDeseos(ListaDeseos pListaDeseos)
         {
-            ListaDeseos listaDeseos = null;
-            string sql = @"Insert into LISTA_DESEOS values (@ID_CLIENTE, @ID_PRODUCTO)";
-
             SqlCommand command = new SqlCommand();
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"ID_CLIENTE", pListaDeseos.IdCliente);
-                command.Parameters.AddWithValue(@"ID_PRODUCTO", pListaDeseos.IdProducto);
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_INSERT_LISTA_DESEOS";
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", pListaDeseos.IdCliente);
+                    command.Parameters.AddWithValue(@"ID_PRODUCTO", pListaDeseos.IdProducto);
 
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                    db.ExecuteNonQuery(command);
                 }
-
-                if (rows > 0)
-                {
-                    listaDeseos = GetListaDeseos(pListaDeseos.IdCliente.ToString(), 
-                        pListaDeseos.IdProducto.ToString());
-                }
-                return listaDeseos;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
 
-        public ListaDeseos UpdateListaDeseos(ListaDeseos pListaDeseos)
+        public void UpdateListaDeseos(ListaDeseos pListaDeseos)
         {
-            ListaDeseos listaDeseos = null;
-            string sql = @"Update LISTA_DESEOS SET ID_CLIENTE = @ID_CLIENTE, 
-            ID_PRODUCTO = @ID_PRODUCTO";
-
             SqlCommand command = new SqlCommand();
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"ID_CLIENTE", pListaDeseos.IdCliente);
-                command.Parameters.AddWithValue(@"ID_PRODUCTO", pListaDeseos.IdProducto);
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_UPDATE_LISTA_DESEOS";
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", pListaDeseos.IdCliente);
+                    command.Parameters.AddWithValue(@"ID_PRODUCTO", pListaDeseos.IdProducto);
 
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                    db.ExecuteNonQuery(command);
                 }
-
-                if (rows > 0)
-                {
-                    listaDeseos = GetListaDeseos(pListaDeseos.IdCliente.ToString(),
-                        pListaDeseos.IdProducto.ToString());
-                }
-                return listaDeseos;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
     }

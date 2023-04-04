@@ -70,7 +70,6 @@
     <Compile Include="Interfaces\IDALTelefono.cs" />
     <Compile Include="Layers\BLL\BLLCanton.cs" />
     <Compile Include="Layers\BLL\BLLCliente.cs" />
-    <Compile Include="Layers\BLL\BLLDistrito.cs" />
     <Compile Include="Layers\BLL\BLLFactura.cs" />
     <Compile Include="Layers\BLL\BLLListaDeseos.cs" />
     <Compile Include="Layers\BLL\BLLLogin.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="Layers\BLL\BLLTelefono.cs" />
     <Compile Include="Layers\DAL\DALCanton.cs" />
     <Compile Include="Layers\DAL\DALCliente.cs" />
-    <Compile Include="Layers\DAL\DALDistrito.cs" />
     <Compile Include="Layers\DAL\DALFactura.cs" />
     <Compile Include="Layers\DAL\DALListaDeseos.cs" />
     <Compile Include="Layers\DAL\DALLogin.cs" />
