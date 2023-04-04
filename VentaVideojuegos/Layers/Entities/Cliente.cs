@@ -18,8 +18,6 @@ namespace VentaVideojuegos
 
         public string Direccion { get; set; }
 
-        public int IdDistrito { get; set; }
-
         public int IdProvincia { get; set; }
 
         public int IdCanton { get; set; }

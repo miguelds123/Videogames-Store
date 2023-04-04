@@ -74,7 +74,6 @@ namespace VentaVideojuegos
                         cliente.Apellido1= dr["APELLIDO1"].ToString();
                         cliente.Apellido2 = dr["APELLIDO2"].ToString();
                         cliente.Direccion= dr["DIRECCION"].ToString();
-                        cliente.IdDistrito = (int)dr["ID_DISTRITO"];
                         cliente.IdProvincia = (int)dr["ID_PROVINCIA"];
                         cliente.IdCanton = (int)dr["ID_CANTON"];
                         cliente.CodigoPostal = dr["CODIGO_POSTAL"].ToString();
@@ -125,7 +124,6 @@ namespace VentaVideojuegos
                         cliente.Apellido1 = dr["APELLIDO1"].ToString();
                         cliente.Apellido2 = dr["APELLIDO2"].ToString();
                         cliente.Direccion = dr["DIRECCION"].ToString();
-                        cliente.IdDistrito = (int)dr["ID_DISTRITO"];
                         cliente.IdProvincia = (int)dr["ID_PROVINCIA"];
                         cliente.IdCanton = (int)dr["ID_CANTON"];
                         cliente.CodigoPostal = dr["CODIGO_POSTAL"].ToString();
@@ -175,7 +173,6 @@ namespace VentaVideojuegos
                         cliente.Apellido1 = dr["APELLIDO1"].ToString();
                         cliente.Apellido2 = dr["APELLIDO2"].ToString();
                         cliente.Direccion = dr["DIRECCION"].ToString();
-                        cliente.IdDistrito = (int)dr["ID_DISTRITO"];
                         cliente.IdProvincia = (int)dr["ID_PROVINCIA"];
                         cliente.IdCanton = (int)dr["ID_CANTON"];
                         cliente.CodigoPostal = dr["CODIGO_POSTAL"].ToString();
@@ -212,7 +209,6 @@ namespace VentaVideojuegos
                     command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);
                     command.Parameters.AddWithValue(@"NOMBRE", pCliente.Nombre);
                     command.Parameters.AddWithValue(@"DIRECCION", pCliente.Direccion);
-                    command.Parameters.AddWithValue(@"ID_DISTRITO", pCliente.IdDistrito);
                     command.Parameters.AddWithValue(@"ID_PROVINCIA", pCliente.IdProvincia);
                     command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
                     command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);
@@ -249,7 +245,6 @@ namespace VentaVideojuegos
                     command.Parameters.AddWithValue(@"APELLIDO1", pCliente.Apellido1);
                     command.Parameters.AddWithValue(@"NOMBRE", pCliente.Nombre);
                     command.Parameters.AddWithValue(@"DIRECCION", pCliente.Direccion);
-                    command.Parameters.AddWithValue(@"ID_DISTRITO", pCliente.IdDistrito);
                     command.Parameters.AddWithValue(@"ID_PROVINCIA", pCliente.IdProvincia);
                     command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
                     command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);

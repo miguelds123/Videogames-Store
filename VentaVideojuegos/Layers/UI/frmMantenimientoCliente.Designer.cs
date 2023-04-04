@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMantenimientoCliente));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.btnBorrar = new System.Windows.Forms.ToolStripButton();
+            this.btnSalir = new System.Windows.Forms.ToolStripButton();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.lblIdentificacion = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -38,7 +42,6 @@
             this.lblDireccion = new System.Windows.Forms.Label();
             this.lblIdProvincia = new System.Windows.Forms.Label();
             this.lblIdCanton = new System.Windows.Forms.Label();
-            this.lblIdDistrito = new System.Windows.Forms.Label();
             this.lblCodigoPostal = new System.Windows.Forms.Label();
             this.lblComentario = new System.Windows.Forms.Label();
             this.txtIdentificacion = new System.Windows.Forms.TextBox();
@@ -48,15 +51,10 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.cmbProvincia = new System.Windows.Forms.ComboBox();
             this.cmbCanton = new System.Windows.Forms.ComboBox();
-            this.cmbDistrito = new System.Windows.Forms.ComboBox();
             this.txtCodigoPostal = new System.Windows.Forms.TextBox();
             this.txtComentario = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.btnBorrar = new System.Windows.Forms.ToolStripButton();
-            this.btnSalir = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +72,46 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
+            this.btnNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(94, 52);
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
+            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(89, 52);
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
+            this.btnBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnBorrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(91, 52);
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(81, 52);
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // dgvDatos
             // 
@@ -146,19 +184,10 @@
             this.lblIdCanton.TabIndex = 8;
             this.lblIdCanton.Text = "Canton";
             // 
-            // lblIdDistrito
-            // 
-            this.lblIdDistrito.AutoSize = true;
-            this.lblIdDistrito.Location = new System.Drawing.Point(395, 276);
-            this.lblIdDistrito.Name = "lblIdDistrito";
-            this.lblIdDistrito.Size = new System.Drawing.Size(39, 13);
-            this.lblIdDistrito.TabIndex = 9;
-            this.lblIdDistrito.Text = "Distrito";
-            // 
             // lblCodigoPostal
             // 
             this.lblCodigoPostal.AutoSize = true;
-            this.lblCodigoPostal.Location = new System.Drawing.Point(395, 308);
+            this.lblCodigoPostal.Location = new System.Drawing.Point(395, 273);
             this.lblCodigoPostal.Name = "lblCodigoPostal";
             this.lblCodigoPostal.Size = new System.Drawing.Size(72, 13);
             this.lblCodigoPostal.TabIndex = 10;
@@ -167,7 +196,7 @@
             // lblComentario
             // 
             this.lblComentario.AutoSize = true;
-            this.lblComentario.Location = new System.Drawing.Point(395, 339);
+            this.lblComentario.Location = new System.Drawing.Point(395, 304);
             this.lblComentario.Name = "lblComentario";
             this.lblComentario.Size = new System.Drawing.Size(60, 13);
             this.lblComentario.TabIndex = 11;
@@ -224,24 +253,16 @@
             this.cmbCanton.Size = new System.Drawing.Size(162, 21);
             this.cmbCanton.TabIndex = 17;
             // 
-            // cmbDistrito
-            // 
-            this.cmbDistrito.FormattingEnabled = true;
-            this.cmbDistrito.Location = new System.Drawing.Point(525, 276);
-            this.cmbDistrito.Name = "cmbDistrito";
-            this.cmbDistrito.Size = new System.Drawing.Size(162, 21);
-            this.cmbDistrito.TabIndex = 18;
-            // 
             // txtCodigoPostal
             // 
-            this.txtCodigoPostal.Location = new System.Drawing.Point(525, 308);
+            this.txtCodigoPostal.Location = new System.Drawing.Point(525, 273);
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(162, 20);
             this.txtCodigoPostal.TabIndex = 19;
             // 
             // txtComentario
             // 
-            this.txtComentario.Location = new System.Drawing.Point(525, 340);
+            this.txtComentario.Location = new System.Drawing.Point(525, 305);
             this.txtComentario.Name = "txtComentario";
             this.txtComentario.Size = new System.Drawing.Size(162, 20);
             this.txtComentario.TabIndex = 20;
@@ -272,46 +293,6 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
-            this.btnNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(94, 52);
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(89, 52);
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
-            this.btnBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnBorrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(91, 52);
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(81, 52);
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
             // frmMantenimientoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,7 +303,6 @@
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtComentario);
             this.Controls.Add(this.txtCodigoPostal);
-            this.Controls.Add(this.cmbDistrito);
             this.Controls.Add(this.cmbCanton);
             this.Controls.Add(this.cmbProvincia);
             this.Controls.Add(this.txtDireccion);
@@ -332,7 +312,6 @@
             this.Controls.Add(this.txtIdentificacion);
             this.Controls.Add(this.lblComentario);
             this.Controls.Add(this.lblCodigoPostal);
-            this.Controls.Add(this.lblIdDistrito);
             this.Controls.Add(this.lblIdCanton);
             this.Controls.Add(this.lblIdProvincia);
             this.Controls.Add(this.lblDireccion);
@@ -369,7 +348,6 @@
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.Label lblIdProvincia;
         private System.Windows.Forms.Label lblIdCanton;
-        private System.Windows.Forms.Label lblIdDistrito;
         private System.Windows.Forms.Label lblCodigoPostal;
         private System.Windows.Forms.Label lblComentario;
         private System.Windows.Forms.TextBox txtIdentificacion;
@@ -379,7 +357,6 @@
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.ComboBox cmbProvincia;
         private System.Windows.Forms.ComboBox cmbCanton;
-        private System.Windows.Forms.ComboBox cmbDistrito;
         private System.Windows.Forms.TextBox txtCodigoPostal;
         private System.Windows.Forms.TextBox txtComentario;
         private System.Windows.Forms.Button btnAceptar;

@@ -106,7 +106,6 @@ namespace VentaVideojuegos.Layers.UI
             this.btnCancelar.Enabled = false;
             this.cmbProvincia.Enabled = false;
             this.cmbCanton.Enabled = false;
-            this.cmbDistrito.Enabled = false;
 
             if (cmbProvincia.Items.Count > 0)
             {
@@ -248,7 +247,6 @@ namespace VentaVideojuegos.Layers.UI
                     cliente.Direccion = txtDireccion.Text;
                     cliente.IdProvincia = ((Provincia)cmbProvincia.SelectedItem).Id;
                     cliente.IdCanton = ((Canton)cmbCanton.SelectedItem).Id;
-                    cliente.IdDistrito = 1;
                     cliente.CodigoPostal = txtCodigoPostal.Text;
                     cliente.Comentario = txtComentario.Text;
 
@@ -287,7 +285,6 @@ namespace VentaVideojuegos.Layers.UI
                         cliente.Direccion = txtDireccion.Text;
                         cliente.IdProvincia = ((Provincia)cmbProvincia.SelectedItem).Id;
                         cliente.IdCanton = ((Canton)cmbCanton.SelectedItem).Id;
-                        cliente.IdDistrito = 1;
                         cliente.CodigoPostal = txtCodigoPostal.Text;
                         cliente.Comentario = txtComentario.Text;
 
