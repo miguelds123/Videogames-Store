@@ -18,36 +18,30 @@ namespace VentaVideojuegos
             _Usuario.Login = Settings.Default.Login;
             _Usuario.Password = Settings.Default.Password;
         }
-        public bool DeleteProducto(double pId)
+        public void DeleteProducto(double pId)
         {
-            double rows = 0;
-
-            string sql = @"Delete from PRODUCTO where ID = @IdProducto";
-            SqlCommand command = new SqlCommand();
-
             try
             {
-                command.Parameters.AddWithValue(@"IdProducto", Convert.ToInt64(pId));
-                command.CommandText= sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
-                }
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_DELETE_PRODUCTO_ByID";
+                    command.Parameters.AddWithValue("@ID", Convert.ToInt64(pId));
 
-                return rows > 0;
+                    db.ExecuteNonQuery(command);
+                }
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return false;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return false;
+                return;
             }
         }
 
@@ -57,16 +51,14 @@ namespace VentaVideojuegos
             List<Producto> lista = new List<Producto>();
             SqlCommand command = new SqlCommand();
 
-            string sql = @"Select * from PRODUCTO";
-
             try
             {
-                command.CommandText = sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_SELECT_CLIENTE_All";
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -108,17 +100,13 @@ namespace VentaVideojuegos
             SqlCommand command = new SqlCommand();
             List<Producto> lista = new List<Producto>();
 
-            string sql = @"Select from PRODUCTO where DESCRIPCION like @DescripcionProducto";
-
             try
             {
-                command.Parameters.AddWithValue(@"DescripcionProducto", pDescripcion);
-                command.CommandText= sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(@"filtro", pDescripcion);
+                    command.CommandText = "PA_SELECT_PRODUCTO_ByDescripcion";
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -158,18 +146,15 @@ namespace VentaVideojuegos
         {
             DataSet ds = null;
             Producto producto = null;
-            string sql = @"Select * from PRODUCTO where ID = @IdProducto";
             SqlCommand command = new SqlCommand();
 
             try
             {
-                command.Parameters.AddWithValue(@"IdProducto", Convert.ToInt64(pId));
-                command.CommandText= sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(@"ID", Convert.ToInt64(pId));
+                    command.CommandText = "PA_SELECT_PRODUCTO_ByID";
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -202,99 +187,73 @@ namespace VentaVideojuegos
             }
         }
 
-        public Producto SaveProducto(Producto pProducto)
+        public void SaveProducto(Producto pProducto)
         {
-            Producto producto = null;
-            string sql = @"Insert into PRODUCTO values (@ID, @DESCRIPCION, @CANTIDAD_INVENTARIO,
-            @DESCUENTO, @ID_CATEGORIA, @PRECIO_COLONES, @PRECIO_DOLARES, @IMAGEN)";
-
             SqlCommand command = new SqlCommand();
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"ID", pProducto.ID);
-                command.Parameters.AddWithValue(@"DESCRIPCION", pProducto.Descripcion);
-                command.Parameters.AddWithValue(@"CANTIDAD_INVENTARIO", pProducto.CantidadInventario);
-                command.Parameters.AddWithValue(@"DESCUENTO", pProducto.Descuento);
-                command.Parameters.AddWithValue(@"ID_CATEGORIA", pProducto.IdCategoria);
-                command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
-                command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
-                command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
-                command.CommandText = sql;
-                command.CommandType= CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_INSERT_PRODUCTO";
+                    command.Parameters.AddWithValue(@"ID", pProducto.ID);
+                    command.Parameters.AddWithValue(@"DESCRIPCION", pProducto.Descripcion);
+                    command.Parameters.AddWithValue(@"CANTIDAD_INVENTARIO", pProducto.CantidadInventario);
+                    command.Parameters.AddWithValue(@"DESCUENTO", pProducto.Descuento);
+                    command.Parameters.AddWithValue(@"ID_CATEGORIA", pProducto.IdCategoria);
+                    command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
+                    command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
+                    command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
 
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                    db.ExecuteNonQuery(command);
                 }
-
-                if (rows > 0)
-                {
-                    producto= GetProductoById(pProducto.ID);
-                }
-                return producto;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
 
-        public Producto UpdateProducto(Producto pProducto)
+        public void UpdateProducto(Producto pProducto)
         {
-            Producto producto = null;
-            string sql = @"Update PRODUCTO SET ID = @ID, DESCRIPCION = @DESCRIPCION, 
-            CANTIDAD_INVENTARIO = @CANTIDAD_INVENTARIO, DESCUENTO = @DESCUENTO, 
-            ID_CATEGORIA = @ID_CATEGORIA, PRECIO_COLONES = @PRECIO_COLONES, 
-            PRECIO_DOLARES = @PRECIO_DOLARES, IMAGEN = @IMAGEN where ID = @ID";
-
             SqlCommand command = new SqlCommand();
-            double rows = 0;
 
             try
             {
-                command.Parameters.AddWithValue(@"ID", pProducto.ID);
-                command.Parameters.AddWithValue(@"DESCRIPCION", pProducto.Descripcion);
-                command.Parameters.AddWithValue(@"CANTIDAD_INVENTARIO", pProducto.CantidadInventario);
-                command.Parameters.AddWithValue(@"DESCUENTO", pProducto.Descuento);
-                command.Parameters.AddWithValue(@"ID_CATEGORIA", pProducto.IdCategoria);
-                command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
-                command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
-                command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_UPDATE_PRODUCTO";
+                    command.Parameters.AddWithValue(@"ID", pProducto.ID);
+                    command.Parameters.AddWithValue(@"DESCRIPCION", pProducto.Descripcion);
+                    command.Parameters.AddWithValue(@"CANTIDAD_INVENTARIO", pProducto.CantidadInventario);
+                    command.Parameters.AddWithValue(@"DESCUENTO", pProducto.Descuento);
+                    command.Parameters.AddWithValue(@"ID_CATEGORIA", pProducto.IdCategoria);
+                    command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
+                    command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
+                    command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
 
-                    rows = db.ExecuteNonQuery(command, IsolationLevel.ReadCommitted);
+                    db.ExecuteNonQuery(command);
                 }
-
-                if (rows > 0)
-                {
-                    producto = GetProductoById(pProducto.ID);
-                }
-                return producto;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
     }
