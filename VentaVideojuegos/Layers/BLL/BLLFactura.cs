@@ -23,7 +23,7 @@ namespace VentaVideojuegos
             return _DALFactura.GetNextNumeroFactura();
         }
 
-        public OrdenCompraDTO SaveFactura(OrdenCompraDTO pOrdenCompra)
+        public void SaveFactura(OrdenCompraDTO pOrdenCompra)
         {
             IDALFactura _DALFactura = new DALFactura();
             IBLLProducto _BLLProducto= new BLLProducto();
@@ -33,7 +33,7 @@ namespace VentaVideojuegos
                 _BLLProducto.AvabilityStock(detalle.IdProducto, detalle.Cantidad);
             }
 
-            return _DALFactura.SaveFactura(pOrdenCompra);
+            _DALFactura.SaveFactura(pOrdenCompra);
         }
     }
 }
