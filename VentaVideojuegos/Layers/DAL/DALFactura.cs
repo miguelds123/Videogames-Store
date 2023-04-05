@@ -23,22 +23,19 @@ namespace VentaVideojuegos
         public int GetCurrentNumeroFactura()
         {
             DataSet ds = null;
-            IDbCommand command = new SqlCommand();
+            SqlCommand command= new SqlCommand();
             int numeroFactura = 0;
-
-            string sql = @"Select current_value from sys.sequences where name = 'SequenceNoFactura'";
 
             DataTable dt = null;
 
             try
             {
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "GetCurrentNumeroFactura";
 
-                    //ds = db.ExecuteReader(command, "query");
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 dt = ds.Tables[0];
@@ -62,22 +59,20 @@ namespace VentaVideojuegos
         public int GetNextNumeroFactura()
         {
             DataSet ds = null;
-            IDbCommand command = new SqlCommand();
-            int numeroFactura = 0;
+            SqlCommand command = new SqlCommand();
 
-            string sql = @"SELECT NEXT VALUE FOR SequenceNoFactura";
+            int numeroFactura = 0;
 
             DataTable dt = null;
 
             try
             {
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "GetNextNumeroFactura";
 
-                    //ds = db.ExecuteReader(command, "query");
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 dt = ds.Tables[0];
@@ -98,94 +93,68 @@ namespace VentaVideojuegos
             }
         }
 
-        public OrdenCompraDTO SaveFactura(OrdenCompraDTO pOrdenCompraDTO)
+        public void SaveFactura(OrdenCompraDTO pOrdenCompraDTO)
         {
             OrdenCompraDTO ordenCompraDTO = null;
-            string sqlEncabezado = "";
-            string sqlDetalle = "";
-            string sqlProducto = "";
 
             SqlCommand cmdFacturaEncabezado = new SqlCommand();
             SqlCommand cmdFacturaDetalle = new SqlCommand();
             SqlCommand cmdProducto = new SqlCommand();
-            List<IDbCommand> listaCommands = new List<IDbCommand>();
             double rows = 0;
 
             //agrega a la base de datos la orden de compra
 
-            sqlEncabezado = @"Insert into ORDEN_COMPRA values (@ID, @FECHA_ORDEN, @ID_CLIENTE, 
-            @TOTAL, @SUBTOTAL)";
-
             try
             {
-                cmdFacturaEncabezado.Parameters.AddWithValue(@"ID", pOrdenCompraDTO.ID);
-                cmdFacturaEncabezado.Parameters.AddWithValue(@"FECHA_ORDEN", pOrdenCompraDTO.FechaOrden);
-                cmdFacturaEncabezado.Parameters.AddWithValue(@"ID_CLIENTE", pOrdenCompraDTO.IdCliente);
-                cmdFacturaEncabezado.Parameters.AddWithValue(@"TOTAL", pOrdenCompraDTO.Total);
-                cmdFacturaEncabezado.Parameters.AddWithValue(@"SUBTOTAL", pOrdenCompraDTO.SubTotal);
-                cmdFacturaEncabezado.CommandText= sqlEncabezado;
-                cmdFacturaEncabezado.CommandType= CommandType.Text;
-
-                listaCommands.Add(cmdFacturaEncabezado);
-
-                //recorre la lista de DetalleOrden en OrdenCompraDTO para agregarlos uno por uno
-                // a la base de datos
-
-                sqlDetalle = @"Insert into DETALLE values (@ID_ORDEN, @ID_DETALLE, @ID_PRODUCTO, 
-                @CANTIDAD, @TOTAL_DETALLE )";
-
-                foreach(DetalleOrden detalleOrden in pOrdenCompraDTO.listaDetalles)
-                {
-                    cmdFacturaDetalle.Parameters.AddWithValue(@"ID_ORDEN", detalleOrden.IdOrden);
-                    cmdFacturaDetalle.Parameters.AddWithValue(@"ID_DETALLE", detalleOrden.IdDetalle);
-                    cmdFacturaDetalle.Parameters.AddWithValue(@"ID_PRODUCTO", detalleOrden.IdProducto);
-                    cmdFacturaDetalle.Parameters.AddWithValue(@"CANTIDAD", detalleOrden.Cantidad);
-                    cmdFacturaDetalle.Parameters.AddWithValue(@"TOTAL_DETALLE", detalleOrden.Total);
-
-                    cmdFacturaDetalle.CommandText= sqlDetalle;
-                    cmdFacturaDetalle.CommandType= CommandType.Text;
-                    listaCommands.Add(cmdFacturaDetalle);
-
-                    //rebaja la cantidad de inventario en base a la cantidad de producto que se
-                    //compraron
-
-                    cmdProducto.Parameters.AddWithValue(@"ID", detalleOrden.IdProducto);
-                    cmdProducto.Parameters.AddWithValue(@"CANTIDAD", detalleOrden.Cantidad);
-
-                    sqlProducto = @"Update PRODUCTO 
-                    SET CANTIDAD_INVENTARIO = CANTIDAD_INVENTARIO - @CANTIDAD
-                    where ID = @ID";
-
-                    cmdProducto.CommandText= sqlProducto;
-                    cmdProducto.CommandType= CommandType.Text;
-                    listaCommands.Add(cmdProducto);
-                }
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //rows = db.ExecuteNonQuery(listaCommands, IsolationLevel.ReadCommitted);
-                }
+                    cmdFacturaEncabezado.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmdFacturaEncabezado.CommandText = "InsertarEncabezado";
+                    cmdFacturaEncabezado.Parameters.AddWithValue(@"ID", pOrdenCompraDTO.ID);
+                    cmdFacturaEncabezado.Parameters.AddWithValue(@"FECHA_ORDEN", pOrdenCompraDTO.FechaOrden);
+                    cmdFacturaEncabezado.Parameters.AddWithValue(@"ID_CLIENTE", pOrdenCompraDTO.IdCliente);
+                    cmdFacturaEncabezado.Parameters.AddWithValue(@"TOTAL", pOrdenCompraDTO.Total);
+                    cmdFacturaEncabezado.Parameters.AddWithValue(@"SUBTOTAL", pOrdenCompraDTO.SubTotal);
 
-                if (rows == 0)
-                {
-                    throw new Exception("No se pudo salvar correctamente la factura");
-                }
-                else
-                {
-                    ordenCompraDTO = GetFactura(pOrdenCompraDTO.ID);
-                }
+                    db.ExecuteNonQuery(cmdFacturaEncabezado);
 
-                return ordenCompraDTO;
+                    //recorre la lista de DetalleOrden en OrdenCompraDTO para agregarlos uno por uno
+                    // a la base de datos
+
+                    foreach (DetalleOrden detalleOrden in pOrdenCompraDTO.listaDetalles)
+                    {
+                        cmdFacturaDetalle.Parameters.AddWithValue(@"ID_ORDEN", detalleOrden.IdOrden);
+                        cmdFacturaDetalle.Parameters.AddWithValue(@"ID_DETALLE", detalleOrden.IdDetalle);
+                        cmdFacturaDetalle.Parameters.AddWithValue(@"ID_PRODUCTO", detalleOrden.IdProducto);
+                        cmdFacturaDetalle.Parameters.AddWithValue(@"CANTIDAD", detalleOrden.Cantidad);
+                        cmdFacturaDetalle.Parameters.AddWithValue(@"TOTAL_DETALLE", detalleOrden.Total);
+
+                        cmdFacturaDetalle.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmdFacturaDetalle.CommandText = "InsertarDetalle";
+                        db.ExecuteNonQuery(cmdFacturaDetalle);
+
+                        //rebaja la cantidad de inventario en base a la cantidad de producto que se
+                        //compraron
+
+                        cmdProducto.Parameters.AddWithValue(@"ID", detalleOrden.IdProducto);
+                        cmdProducto.Parameters.AddWithValue(@"CANTIDAD", detalleOrden.Cantidad);
+
+                        cmdProducto.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmdProducto.CommandText = "RestarCantidadProductos";
+                        db.ExecuteNonQuery(cmdProducto);
+                    }
+                }
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
                     " de datos");
-                return null;
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrio un error en el programa");
-                return null;
+                return;
             }
         }
 
@@ -196,21 +165,13 @@ namespace VentaVideojuegos
             IDALCliente _DALCliente = new DALCliente();
             SqlCommand command = new SqlCommand();
 
-            string sql = @"Select ORDEN_COMPRA.ID, ORDEN_COMPRA.FECHA_ORDEN, ORDEN_COMPRA.ID_CLIENTE, ORDEN_COMPRA.TOTAL, ORDEN_COMPRA.SUBTOTAL,
-            DETALLE.ID_ORDEN, DETALLE.ID_DETALLE, DETALLE.ID_PRODUCTO, DETALLE.CANTIDAD, 
-            DETALLE.TOTAL_DETALLE
-            from ORDEN_COMPRA INNER JOIN DETALLE ON ORDEN_COMPRA.ID = DETALLE.ID_ORDEN
-            where ORDEN_COMPRA.ID = @IdOrdenCompra";
-
             try
             {
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-                command.Parameters.AddWithValue(@"IdOrdenCompra", pNumeroFactura);
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
-                    //ds = db.ExecuteReader(command, "query");
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "GetFactura";
+                    command.Parameters.AddWithValue(@"IdOrdenCompra", pNumeroFactura);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)

@@ -1,0 +1,49 @@
+
+
+-- Stored Procedures Factura
+
+
+CREATE PROCEDURE GetCurrentNumeroFactura
+AS
+	Select current_value from sys.sequences where name = 'SequenceNoFactura'
+
+
+
+CREATE PROCEDURE GetNextNumeroFactura
+AS
+	SELECT NEXT VALUE FOR SequenceNoFactura
+
+
+
+CREATE PROCEDURE InsertarEncabezado
+(@ID int, @FECHA_ORDEN date, @ID_CLIENTE int, @TOTAL money, @SUBTOTAL money)
+AS
+	insert into ORDEN_COMPRA values (@ID, @FECHA_ORDEN, @ID_CLIENTE, @TOTAL, @SUBTOTAL)
+
+
+CREATE PROCEDURE InsertarDetalle
+(@ID_ORDEN int, @ID_DETALLE int, @ID_PRODUCTO int, @CANTIDAD int, @TOTAL_DETALLE money)
+AS
+	Insert into DETALLE values (@ID_ORDEN, @ID_DETALLE, @ID_PRODUCTO, @CANTIDAD, @TOTAL_DETALLE )
+	
+
+CREATE PROCEDURE RestarCantidadProductos
+(@ID int, @CANTIDAD int)
+AS
+	Update PRODUCTO 
+    SET CANTIDAD_INVENTARIO = CANTIDAD_INVENTARIO - @CANTIDAD
+    where ID = @ID
+
+
+CREATE PROCEDURE GetFactura
+(@IdOrdenCompra int)
+AS
+	Select ORDEN_COMPRA.ID, ORDEN_COMPRA.FECHA_ORDEN, ORDEN_COMPRA.ID_CLIENTE, ORDEN_COMPRA.TOTAL,
+	ORDEN_COMPRA.SUBTOTAL, DETALLE.ID_ORDEN, DETALLE.ID_DETALLE, DETALLE.ID_PRODUCTO, DETALLE.CANTIDAD, 
+	DETALLE.TOTAL_DETALLE
+    from ORDEN_COMPRA INNER JOIN DETALLE ON ORDEN_COMPRA.ID = DETALLE.ID_ORDEN
+    where ORDEN_COMPRA.ID = @IdOrdenCompra
+
+
+
+	

@@ -8,7 +8,7 @@ namespace VentaVideojuegos.Interfaces
 {
     interface IDALFactura
     {
-        OrdenCompraDTO SaveFactura(OrdenCompraDTO pOrdenCompra);
+        void SaveFactura(OrdenCompraDTO pOrdenCompra);
         int GetNextNumeroFactura();
 
         int GetCurrentNumeroFactura();
