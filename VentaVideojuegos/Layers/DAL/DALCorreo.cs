@@ -6,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaVideojuegos.Interfaces;
 
 namespace VentaVideojuegos
 {
-    class DALTelefono : IDALTelefono
+    class DALCorreo : IDALCorreo
     {
         Usuario _Usuario = new Usuario();
-        public DALTelefono()
+        public DALCorreo()
         {
             //_Usuario.Login = Settings.Default.Login;
             //_Usuario.Password = Settings.Default.Password;
@@ -21,7 +22,7 @@ namespace VentaVideojuegos
             _Usuario.Password = "123456";
         }
 
-        public void DeleteTelefono(string pId, string pTelefono)
+        public void DeleteCorreo(string pId, string pCorreo)
         {
             try
             {
@@ -29,8 +30,9 @@ namespace VentaVideojuegos
                 {
                     SqlCommand command = new SqlCommand();
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "PA_DELETE_TELEFONO";
-                    command.Parameters.AddWithValue(@"TELEFONO", pTelefono);
+                    command.CommandText = "PA_DELETE_CORREO_ByID";
+                    command.Parameters.AddWithValue(@"CORREO", pCorreo);
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pId));
 
                     db.ExecuteNonQuery(command);
                 }
@@ -48,10 +50,10 @@ namespace VentaVideojuegos
             }
         }
 
-        public List<Telefono> GetAllTelefono()
+        public List<Correo> GetAllCorreo()
         {
             DataSet ds = null;
-            List<Telefono> lista = new List<Telefono>();
+            List<Correo> lista = new List<Correo>();
             SqlCommand command = new SqlCommand();
 
             try
@@ -59,7 +61,7 @@ namespace VentaVideojuegos
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "PA_SELECT_TELEFONO_All";
+                    command.CommandText = "PA_SELECT_CORREO_All";
 
                     ds = db.ExecuteDataSet(command);
                 }
@@ -68,13 +70,13 @@ namespace VentaVideojuegos
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Telefono telefono = new Telefono()
+                        Correo correo = new Correo()
                         {
-                            Numero = dr["TELEFONO"].ToString(),
-                            IdCliente= (int)dr["ID_CLIENTE"]
+                            CorreoElectronico = dr["CORREO"].ToString(),
+                            IdCliente = (int)dr["ID_CLIENTE"]
                         };
 
-                        lista.Add(telefono);
+                        lista.Add(correo);
                     }
                 }
                 return lista;
@@ -92,10 +94,10 @@ namespace VentaVideojuegos
             }
         }
 
-        public List<Telefono> GetTelefonoByFilter(string pNumeroTelefono)
+        public List<Correo> GetCorreoByFilter(string pCorreo)
         {
             DataSet ds = null;
-            List<Telefono> lista = new List<Telefono>();
+            List<Correo> lista = new List<Correo>();
             SqlCommand command = new SqlCommand();
 
             try
@@ -103,21 +105,21 @@ namespace VentaVideojuegos
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue(@"TELEFONO", pNumeroTelefono);
-                    command.CommandText = "PA_SELECT_TELEFONO_ByFilter";
+                    command.Parameters.AddWithValue(@"CORREO", pCorreo);
+                    command.CommandText = "PA_SELECT_CORREO_Filter";
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Telefono telefono = new Telefono()
+                        Correo correo = new Correo()
                         {
-                            Numero = dr["TELEFONO"].ToString(),
+                            CorreoElectronico = dr["CORREO"].ToString(),
                             IdCliente = (int)dr["ID_CLIENTE"]
                         };
 
-                        lista.Add(telefono);
+                        lista.Add(correo);
                     }
                 }
                 return lista;
@@ -135,10 +137,10 @@ namespace VentaVideojuegos
             }
         }
 
-        public List<Telefono> GetTelefonoByIdCliente(string pId)
+        public List<Correo> GetCorreoByIdCliente(string pId)
         {
             DataSet ds = null;
-            List<Telefono> lista = new List<Telefono>();
+            List<Correo> lista = new List<Correo>();
             SqlCommand command = new SqlCommand();
 
             try
@@ -146,7 +148,7 @@ namespace VentaVideojuegos
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "PA_SELECT_TELEFONO_ByID";
+                    command.CommandText = "PA_SELECT_CORREO_ByID";
                     command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pId));
 
                     ds = db.ExecuteDataSet(command);
@@ -156,13 +158,13 @@ namespace VentaVideojuegos
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Telefono telefono = new Telefono()
+                        Correo correo = new Correo()
                         {
-                            Numero = dr["TELEFONO"].ToString(),
+                            CorreoElectronico = dr["CORREO"].ToString(),
                             IdCliente = (int)dr["ID_CLIENTE"]
                         };
 
-                        lista.Add(telefono);
+                        lista.Add(correo);
                     }
                 }
                 return lista;
@@ -180,7 +182,7 @@ namespace VentaVideojuegos
             }
         }
 
-        public void SaveTelefono(Telefono pTelefono)
+        public void SaveCorreo(Correo correo)
         {
             SqlCommand command = new SqlCommand();
 
@@ -189,9 +191,9 @@ namespace VentaVideojuegos
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "PA_INSERT_TELEFONO";
-                    command.Parameters.AddWithValue(@"TELEFONO", pTelefono.Numero);
-                    command.Parameters.AddWithValue(@"ID_CLIENTE", pTelefono.IdCliente);
+                    command.CommandText = "PA_INSERT_CORREO";
+                    command.Parameters.AddWithValue(@"CORREO", correo.CorreoElectronico);
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", correo.IdCliente);
 
                     db.ExecuteNonQuery(command);
                 }
@@ -209,7 +211,7 @@ namespace VentaVideojuegos
             }
         }
 
-        public void UpdateTelefono(Telefono pTelefono, string pTelefonoViejo, string pIdClienteViejo)
+        public void UpdateCorreo(Correo correo, string pCorreoViejo, string pIdClienteViejo)
         {
             SqlCommand command = new SqlCommand();
 
@@ -218,11 +220,11 @@ namespace VentaVideojuegos
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "PA_UPDATE_TELEFONO";
-                    command.Parameters.AddWithValue(@"TelefonoNuevo", pTelefono.Numero);
-                    command.Parameters.AddWithValue(@"IdClienteNuevo", pTelefono.IdCliente);
-                    command.Parameters.AddWithValue(@"TelefonoViejo", pTelefonoViejo);
-                    command.Parameters.AddWithValue(@"IdClienteViejo", Convert.ToInt64(pIdClienteViejo));
+                    command.CommandText = "PA_UPDATE_CORREO";
+                    command.Parameters.AddWithValue(@"CORREO_VIEJO", pCorreoViejo);
+                    command.Parameters.AddWithValue(@"ID_CLIENTE_VIEJO", Convert.ToInt64(pIdClienteViejo));
+                    command.Parameters.AddWithValue(@"CORREO_NUEVO", correo.CorreoElectronico);
+                    command.Parameters.AddWithValue(@"ID_CLIENTE_NUEVO", correo.IdCliente);
 
                     db.ExecuteNonQuery(command);
                 }
