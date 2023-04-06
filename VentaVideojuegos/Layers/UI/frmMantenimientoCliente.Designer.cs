@@ -56,6 +56,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
@@ -305,12 +307,31 @@
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Location = new System.Drawing.Point(395, 332);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(40, 13);
+            this.lblEstado.TabIndex = 24;
+            this.lblEstado.Text = "Estado";
+            // 
+            // cmbEstado
+            // 
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(525, 332);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(162, 21);
+            this.cmbEstado.TabIndex = 25;
+            // 
             // frmMantenimientoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.cmbEstado);
+            this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -375,5 +396,7 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.ComboBox cmbEstado;
     }
 }

@@ -19,3 +19,9 @@ public enum CategoriaUsuario
     Procesos,
     Reportes
 }
+
+public enum Estado
+{
+    Activo,
+    Inactivo
+}

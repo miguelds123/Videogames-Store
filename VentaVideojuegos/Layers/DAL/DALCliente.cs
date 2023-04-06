@@ -78,6 +78,7 @@ namespace VentaVideojuegos
                         cliente.IdCanton = (int)dr["ID_CANTON"];
                         cliente.CodigoPostal = dr["CODIGO_POSTAL"].ToString();
                         cliente.Comentario= dr["COMENTARIO"].ToString();
+                        cliente.Estado = (int)dr["ESTADO"];
 
                         lista.Add(cliente);
                     }
@@ -128,6 +129,7 @@ namespace VentaVideojuegos
                         cliente.IdCanton = (int)dr["ID_CANTON"];
                         cliente.CodigoPostal = dr["CODIGO_POSTAL"].ToString();
                         cliente.Comentario = dr["COMENTARIO"].ToString();
+                        cliente.Estado = (int)dr["ESTADO"];
 
                         lista.Add(cliente);
                     }
@@ -178,6 +180,7 @@ namespace VentaVideojuegos
                         cliente.IdCanton = (int)dr["ID_CANTON"];
                         cliente.CodigoPostal = dr["CODIGO_POSTAL"].ToString();
                         cliente.Comentario = dr["COMENTARIO"].ToString();
+                        cliente.Estado = (int)dr["ESTADO"];
                     }
                 }
                 return cliente;
@@ -214,6 +217,7 @@ namespace VentaVideojuegos
                     command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
                     command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);
                     command.Parameters.AddWithValue(@"COMENTARIO", pCliente.Comentario);
+                    command.Parameters.AddWithValue(@"ESTADO", pCliente.Estado);
 
                     db.ExecuteNonQuery(command);
                 }
@@ -250,6 +254,35 @@ namespace VentaVideojuegos
                     command.Parameters.AddWithValue(@"ID_CANTON", pCliente.IdCanton);
                     command.Parameters.AddWithValue(@"CODIGO_POSTAL", pCliente.CodigoPostal);
                     command.Parameters.AddWithValue(@"COMENTARIO", pCliente.Comentario);
+                    command.Parameters.AddWithValue(@"ESTADO", pCliente.Estado);
+
+                    db.ExecuteNonQuery(command);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return;
+            }
+        }
+
+        public void BorradoLogico(string pId)
+        {
+            SqlCommand command = new SqlCommand();
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_BORRADO_LOGICO";
+                    command.Parameters.AddWithValue(@"ID", Convert.ToInt64(pId));
 
                     db.ExecuteNonQuery(command);
                 }

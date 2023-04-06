@@ -14,5 +14,6 @@ namespace VentaVideojuegos
         void SaveCliente(Cliente pCliente);
         void UpdateCliente(Cliente pCliente);
         void DeleteCliente(string pId);
+        void BorradoLogico(string pId);
     }
 }

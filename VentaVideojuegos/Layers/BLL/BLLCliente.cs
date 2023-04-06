@@ -9,6 +9,13 @@ namespace VentaVideojuegos
 {
     class BLLCliente : IBLLCliente
     {
+        public void BorradoLogico(string pId)
+        {
+            IDALCliente _DALCliente = new DALCliente();
+
+            _DALCliente.BorradoLogico(pId);
+        }
+
         public void DeleteCliente(string pId)
         {
             IDALCliente _DALCliente= new DALCliente();

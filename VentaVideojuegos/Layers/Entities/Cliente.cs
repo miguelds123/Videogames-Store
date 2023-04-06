@@ -26,6 +26,8 @@ namespace VentaVideojuegos
 
         public string Comentario { get; set; }
 
+        public int Estado { get; set; }
+
 
     }
 }

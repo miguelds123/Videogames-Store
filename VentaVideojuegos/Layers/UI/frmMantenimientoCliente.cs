@@ -73,6 +73,11 @@ namespace VentaVideojuegos.Layers.UI
                 this.cmbCanton.Items.Add((canton));
             }
 
+            this.cmbEstado.Items.Clear();
+
+            this.cmbEstado.Items.Add(Estado.Activo);
+            this.cmbEstado.Items.Add(Estado.Inactivo);
+
             // Colocar el primero como default
             this.cmbProvincia.SelectedIndex = -1;
             this.cmbCanton.SelectedIndex = -1;
@@ -93,6 +98,7 @@ namespace VentaVideojuegos.Layers.UI
             this.txtComentario.Clear();
             this.cmbProvincia.SelectedIndex = -1;
             this.cmbCanton.SelectedIndex = -1;
+            this.cmbEstado.SelectedIndex = -1;
 
             this.txtIdentificacion.Enabled = false;
             this.txtNombre.Enabled = false;
@@ -107,6 +113,7 @@ namespace VentaVideojuegos.Layers.UI
             this.btnConfirmar.Enabled = false;
             this.cmbProvincia.Enabled = false;
             this.cmbCanton.Enabled = false;
+            this.cmbEstado.Enabled = false;
 
             if (cmbProvincia.Items.Count > 0)
             {
@@ -127,6 +134,7 @@ namespace VentaVideojuegos.Layers.UI
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
                     this.btnConfirmar.Enabled = true;
+                    this.cmbEstado.Enabled=true;
                     txtIdentificacion.Focus();
                     estadoFrame = EstadoMantenimiento.Nuevo;
                     break;
@@ -142,6 +150,7 @@ namespace VentaVideojuegos.Layers.UI
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
                     this.btnConfirmar.Enabled = true;
+                    this.cmbEstado.Enabled=true;
                     txtIdentificacion.Focus();
                     estadoFrame = EstadoMantenimiento.Editar;
                     break;
@@ -251,6 +260,18 @@ namespace VentaVideojuegos.Layers.UI
                     cliente.CodigoPostal = txtCodigoPostal.Text;
                     cliente.Comentario = txtComentario.Text;
 
+                    if (cmbEstado.SelectedItem.Equals(Estado.Activo))
+                    {
+                        cliente.Estado = 1;
+                    }
+                    else
+                    {
+                        if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
+                        {
+                            cliente.Estado = 0;
+                        }
+                    }
+
                     try
                     {
                         _BLLCliente.SaveCliente(cliente);
@@ -288,6 +309,18 @@ namespace VentaVideojuegos.Layers.UI
                         cliente.IdCanton = ((Canton)cmbCanton.SelectedItem).Id;
                         cliente.CodigoPostal = txtCodigoPostal.Text;
                         cliente.Comentario = txtComentario.Text;
+
+                        if (cmbEstado.SelectedItem.Equals(Estado.Activo))
+                        {
+                            cliente.Estado = 1;
+                        }
+                        else
+                        {
+                            if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
+                            {
+                                cliente.Estado = 0;
+                            }
+                        }
 
                         try
                         {
@@ -329,7 +362,11 @@ namespace VentaVideojuegos.Layers.UI
                     {
                         try
                         {
-                            _BLLCliente.DeleteCliente(txtIdentificacion.Text);
+                            //_BLLCliente.DeleteCliente(txtIdentificacion.Text);
+
+                            //this.CargarDatos();
+
+                            _BLLCliente.BorradoLogico(txtIdentificacion.Text);
 
                             this.CargarDatos();
                         }
