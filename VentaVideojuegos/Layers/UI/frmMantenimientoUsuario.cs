@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaVideojuegos.Layers.Entities;
 
 namespace VentaVideojuegos.Layers.UI
 {
@@ -148,7 +149,7 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            IBLLLogin _BLLLogin = new BLLLogin();
+            BLLLogin _BLLLogin = new BLLLogin();
             Usuario usuario;
 
             switch (estadoFrame)
@@ -160,7 +161,7 @@ namespace VentaVideojuegos.Layers.UI
                     usuario= new Usuario();
 
                     usuario.Login = txtUsuario.Text;
-                    usuario.Password= txtPassword.Text;
+                    usuario.Password= Encriptado.GetSHA256(txtPassword.Text);
                     usuario.IMAGEN= (byte[])this.pbImagen.Tag;
 
                     if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Administrador))
@@ -212,7 +213,7 @@ namespace VentaVideojuegos.Layers.UI
                         usuario= new Usuario();
 
                         usuario.Login = txtUsuario.Text;
-                        usuario.Password = txtPassword.Text;
+                        usuario.Password = Encriptado.GetSHA256(txtPassword.Text);
                         usuario.IMAGEN = (byte[])this.pbImagen.Tag;
 
                         if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Administrador))

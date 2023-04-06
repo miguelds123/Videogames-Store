@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaVideojuegos.Layers;
+using VentaVideojuegos.Layers.Entities;
 
 namespace VentaVideojuegos.Layers.UI
 {
@@ -22,7 +23,7 @@ namespace VentaVideojuegos.Layers.UI
         {
             IBLLLogin _BLLLogin= new BLLLogin();
 
-            if (_BLLLogin.Login(txtUsuario.Text, txtPassword.Text))
+            if (_BLLLogin.Login(txtUsuario.Text, Encriptado.GetSHA256(txtPassword.Text)))
             {
                 Usuario usuario= _BLLLogin.GetUsuarioByFilter(txtUsuario.Text);
 

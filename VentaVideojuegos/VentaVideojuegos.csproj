@@ -98,6 +98,7 @@
     <Compile Include="Layers\Entities\DTO\OrdenCompraDTO.cs" />
     <Compile Include="Layers\Entities\DTO\ProductoDTO.cs" />
     <Compile Include="Layers\Entities\DTO\ReservacionDTO.cs" />
+    <Compile Include="Layers\Entities\Encriptado.cs" />
     <Compile Include="Layers\Entities\ListaDeseos.cs" />
     <Compile Include="Layers\Entities\OrdenCompra.cs" />
     <Compile Include="Layers\Entities\Producto.cs" />
