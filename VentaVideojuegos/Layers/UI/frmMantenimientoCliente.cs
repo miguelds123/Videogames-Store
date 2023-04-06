@@ -104,6 +104,7 @@ namespace VentaVideojuegos.Layers.UI
 
             this.btnAceptar.Enabled = false;
             this.btnCancelar.Enabled = false;
+            this.btnConfirmar.Enabled = false;
             this.cmbProvincia.Enabled = false;
             this.cmbCanton.Enabled = false;
 
@@ -123,9 +124,9 @@ namespace VentaVideojuegos.Layers.UI
                     this.txtCodigoPostal.Enabled = true;
                     this.txtComentario.Enabled = true;
                     this.cmbProvincia.Enabled = true;
-                    this.cmbCanton.Enabled=true;
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
+                    this.btnConfirmar.Enabled = true;
                     txtIdentificacion.Focus();
                     estadoFrame = EstadoMantenimiento.Nuevo;
                     break;
@@ -138,9 +139,9 @@ namespace VentaVideojuegos.Layers.UI
                     this.txtCodigoPostal.Enabled = true;
                     this.txtComentario.Enabled = true;
                     this.cmbProvincia.Enabled = true;
-                    this.cmbCanton.Enabled = true;
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
+                    this.btnConfirmar.Enabled = true;
                     txtIdentificacion.Focus();
                     estadoFrame = EstadoMantenimiento.Editar;
                     break;
@@ -419,6 +420,35 @@ namespace VentaVideojuegos.Layers.UI
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            cmbCanton.Enabled = true;
+
+            cmbCanton.Items.Clear();
+
+            List<Canton> listaTodosCantones = new List<Canton>();
+
+            BLLCanton _BLLCanton= new BLLCanton();
+
+            listaTodosCantones = _BLLCanton.GetAllCanton();
+
+            Provincia provincia= cmbProvincia.SelectedItem as Provincia;
+
+            foreach(Canton canton in listaTodosCantones)
+            {
+                if (canton.IdProvincia == provincia.Id)
+                {
+                    cmbCanton.Items.Add(canton);
+                }
+            }
+        }
+
+        private void cmbProvincia_MouseClick(object sender, MouseEventArgs e)
+        {
+            cmbCanton.Enabled = false;
+            cmbCanton.SelectedIndex = -1;
         }
     }
 }
