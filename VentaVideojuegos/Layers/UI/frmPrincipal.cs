@@ -171,5 +171,21 @@ namespace VentaVideojuegos
                 MessageBox.Show("Hubo un error al abrir el frame");
             }
         }
+
+        private void correoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMantenimientoCorreo frmMantenimientoCorreo= new frmMantenimientoCorreo();
+
+            try
+            {
+                frmMantenimientoCorreo = new frmMantenimientoCorreo();
+                frmMantenimientoCorreo.MdiParent = this;
+                frmMantenimientoCorreo.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
+        }
     }
 }

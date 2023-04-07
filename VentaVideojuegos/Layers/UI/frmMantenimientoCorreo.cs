@@ -11,15 +11,24 @@ using System.Windows.Forms;
 
 namespace VentaVideojuegos.Layers.UI
 {
-    public partial class frmMantenimientoTelefono : Form
+    public partial class frmMantenimientoCorreo : Form
     {
         EstadoMantenimiento estadoFrame;
-        public frmMantenimientoTelefono()
+        public frmMantenimientoCorreo()
         {
             InitializeComponent();
         }
 
-        private void frmMantenimientoTelefono_Load(object sender, EventArgs e)
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            this.CambiarEstado(EstadoMantenimiento.Nuevo);
+
+            this.btnEditar.Enabled = false;
+            this.btnBorrar.Enabled = false;
+            this.btnNuevo.Enabled = false;
+        }
+
+        private void frmMantenimientoCorreo_Load(object sender, EventArgs e)
         {
             this.Text = "Mantenimiento Telefono";
 
@@ -39,7 +48,7 @@ namespace VentaVideojuegos.Layers.UI
 
         private void CargarDatos()
         {
-            IBLLTelefono _BLLTelefono= new BLLTelefono();
+            IBLLCorreo _BLLCorreo = new BLLCorreo();
 
             // Cambiar el estado
             this.CambiarEstado(EstadoMantenimiento.Ninguno);
@@ -48,7 +57,7 @@ namespace VentaVideojuegos.Layers.UI
             dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             // Cargar el DataGridView
-            this.dgvDatos.DataSource = _BLLTelefono.GetAllTelefono();
+            this.dgvDatos.DataSource = _BLLCorreo.GetAllCorreo();
 
             this.btnNuevo.Enabled = true;
             this.btnEditar.Enabled = true;
@@ -59,10 +68,10 @@ namespace VentaVideojuegos.Layers.UI
         private void CambiarEstado(EstadoMantenimiento estado)
         {
             this.txtIdCliente.Clear();
-            this.txtNumeroTelefono.Clear();
+            this.txtCorreo.Clear();
 
             this.txtIdCliente.Enabled = false;
-            this.txtNumeroTelefono.Enabled = false;
+            this.txtCorreo.Enabled = false;
 
             this.btnAceptar.Enabled = false;
             this.btnCancelar.Enabled = false;
@@ -71,19 +80,19 @@ namespace VentaVideojuegos.Layers.UI
             {
                 case EstadoMantenimiento.Nuevo:
                     this.txtIdCliente.Enabled = true;
-                    this.txtNumeroTelefono.Enabled = true;
+                    this.txtCorreo.Enabled = true;
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
-                    txtNumeroTelefono.Focus();
+                    txtCorreo.Focus();
                     estadoFrame = EstadoMantenimiento.Nuevo;
                     break;
 
                 case EstadoMantenimiento.Editar:
-                    this.txtNumeroTelefono.Enabled = true;
+                    this.txtCorreo.Enabled = true;
                     this.txtIdCliente.Enabled = true;
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
-                    txtNumeroTelefono.Focus();
+                    txtCorreo.Focus();
                     estadoFrame = EstadoMantenimiento.Editar;
                     break;
 
@@ -108,27 +117,18 @@ namespace VentaVideojuegos.Layers.UI
                 return;
             }
 
-            if (String.IsNullOrEmpty(txtNumeroTelefono.Text))
+            if (String.IsNullOrEmpty(txtCorreo.Text))
             {
                 MessageBox.Show("Debe digitar el numero de telefono del cliente");
-                txtNumeroTelefono.Focus();
+                txtCorreo.Focus();
                 return;
             }
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-            this.CambiarEstado(EstadoMantenimiento.Nuevo);
-
-            this.btnEditar.Enabled = false;
-            this.btnBorrar.Enabled = false;
-            this.btnNuevo.Enabled = false;
-        }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            IBLLTelefono _BLLTelefono= new BLLTelefono();
-            Telefono telefono;
+            IBLLCorreo _BLLCorreo= new BLLCorreo();
+            Correo correo;
 
             switch (estadoFrame)
             {
@@ -136,25 +136,25 @@ namespace VentaVideojuegos.Layers.UI
 
                     ValidarCampos();
 
-                    telefono=new Telefono();
+                    correo= new Correo();
 
-                    telefono.IdCliente= Convert.ToInt32(txtIdCliente.Text);
-                    telefono.Numero = txtNumeroTelefono.Text;
+                    correo.IdCliente = Convert.ToInt32(txtIdCliente.Text);
+                    correo.CorreoElectronico = txtCorreo.Text;
 
                     try
                     {
-                        _BLLTelefono.SaveTelefono(telefono);
+                        _BLLCorreo.SaveCorreo(correo);
 
                         this.CargarDatos();
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo telefono");
+                        MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
                         return;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo telefono");
+                        MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
                         return;
                     }
 
@@ -168,32 +168,32 @@ namespace VentaVideojuegos.Layers.UI
                         ValidarCampos();
 
                         //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
-                        telefono = new Telefono();
-                        Telefono telefonoViejo= this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
+                        correo= new Correo();
+                        Correo correoViejo = this.dgvDatos.SelectedRows[0].DataBoundItem as Correo;
 
-                        telefono.IdCliente = Convert.ToInt32(txtIdCliente.Text);
-                        telefono.Numero= txtNumeroTelefono.Text;
+                        correo.IdCliente = Convert.ToInt32(txtIdCliente.Text);
+                        correo.CorreoElectronico = txtCorreo.Text;
 
                         try
                         {
-                            _BLLTelefono.UpdateTelefono(telefono, telefonoViejo.Numero, telefonoViejo.IdCliente.ToString());
+                            _BLLCorreo.UpdateCorreo(correo, correoViejo.CorreoElectronico, correoViejo.IdCliente.ToString());
 
                             this.CargarDatos();
                         }
                         catch (SqlException ex)
                         {
-                            MessageBox.Show("Ocurrio un error en la base de datos al editar el telefono");
+                            MessageBox.Show("Ocurrio un error en la base de datos al editar el correo");
                             return;
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ocurrio un error en el programa al editar el telefono");
+                            MessageBox.Show("Ocurrio un error en el programa al editar el correo");
                             return;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar el telefono que desea editar");
+                        MessageBox.Show("Debe seleccionar el correo que desea editar");
                         return;
                     }
 
@@ -201,7 +201,7 @@ namespace VentaVideojuegos.Layers.UI
 
                 case EstadoMantenimiento.Borrar:
 
-                    string mensaje = "Esta seguro que desea eliminar este numero de telefono, esta accion es irreversible";
+                    string mensaje = "Esta seguro que desea eliminar este correo electronico, esta accion es irreversible";
                     string caption = "Advertencia";
 
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -214,18 +214,18 @@ namespace VentaVideojuegos.Layers.UI
                     {
                         try
                         {
-                            _BLLTelefono.DeleteTelefono(txtIdCliente.Text, txtNumeroTelefono.Text);
+                            _BLLCorreo.DeleteCorreo(txtIdCliente.Text, txtCorreo.Text);
 
                             this.CargarDatos();
                         }
                         catch (SqlException ex)
                         {
-                            MessageBox.Show("Ocurrio un error en la base de datos al borrar el telefono");
+                            MessageBox.Show("Ocurrio un error en la base de datos al borrar el cliente");
                             return;
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ocurrio un error en el programa al borrar el telefono");
+                            MessageBox.Show("Ocurrio un error en el programa al borrar el cliente");
                             return;
                         }
                     }
@@ -252,10 +252,10 @@ namespace VentaVideojuegos.Layers.UI
             {
                 this.CambiarEstado(EstadoMantenimiento.Editar);
 
-                Telefono telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
+                Correo correo = this.dgvDatos.SelectedRows[0].DataBoundItem as Correo;
 
-                txtNumeroTelefono.Text = telefono.Numero;
-                txtIdCliente.Text = telefono.IdCliente.ToString();
+                txtCorreo.Text = correo.CorreoElectronico;
+                txtIdCliente.Text = correo.IdCliente.ToString();
 
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
@@ -264,7 +264,7 @@ namespace VentaVideojuegos.Layers.UI
             }
             else
             {
-                MessageBox.Show("Debe seleccionar el numero de telefono que desea editar");
+                MessageBox.Show("Debe seleccionar el correo que desea editar");
             }
         }
 
@@ -274,10 +274,10 @@ namespace VentaVideojuegos.Layers.UI
             {
                 this.CambiarEstado(EstadoMantenimiento.Borrar);
 
-                Telefono telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
+                Correo correo = this.dgvDatos.SelectedRows[0].DataBoundItem as Correo;
 
-                txtNumeroTelefono.Text = telefono.Numero;
-                txtIdCliente.Text = telefono.IdCliente.ToString();
+                txtCorreo.Text = correo.CorreoElectronico;
+                txtIdCliente.Text = correo.IdCliente.ToString();
 
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
@@ -286,7 +286,7 @@ namespace VentaVideojuegos.Layers.UI
             }
             else
             {
-                MessageBox.Show("Debe seleccionar el numeor de telefono que desea borrar");
+                MessageBox.Show("Debe seleccionar el correo que desea borrar");
             }
         }
     }
