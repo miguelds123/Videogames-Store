@@ -36,6 +36,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\BCCR\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Enumeraciones\Enumeraciones.cs" />
     <Compile Include="Interfaces\IBLLCanton.cs" />
     <Compile Include="Interfaces\IBLLCliente.cs" />
@@ -95,6 +102,7 @@
     <Compile Include="Layers\Entities\Correo.cs" />
     <Compile Include="Layers\Entities\DetalleOrden.cs" />
     <Compile Include="Layers\Entities\Distrito.cs" />
+    <Compile Include="Layers\Entities\Dolar.cs" />
     <Compile Include="Layers\Entities\DTO\OrdenCompraDTO.cs" />
     <Compile Include="Layers\Entities\DTO\ProductoDTO.cs" />
     <Compile Include="Layers\Entities\DTO\ReservacionDTO.cs" />
@@ -111,6 +119,7 @@
     <Compile Include="Layers\Persistencia\FactoryDataBase.cs" />
     <Compile Include="Layers\Persistencia\IDataBase.cs" />
     <Compile Include="Layers\Persistencia\UsuarioIniciado.cs" />
+    <Compile Include="Layers\Servicios\ServiceBCCR.cs" />
     <Compile Include="Layers\UI\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +187,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Connected Services\BCCR\wsindicadoreseconomicos.wsdl" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -191,9 +202,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Layers\Servicio\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\accept_icon-icons.com_74428.png" />
   </ItemGroup>
@@ -211,6 +220,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\camara %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\BCCR\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BCCR\wsindicadoreseconomicos.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BCCR\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BCCR\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BCCR\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
