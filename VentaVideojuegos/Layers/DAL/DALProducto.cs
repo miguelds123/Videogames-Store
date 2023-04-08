@@ -15,8 +15,11 @@ namespace VentaVideojuegos
         private Usuario _Usuario = new Usuario();
         public DALProducto()
         {
-            _Usuario.Login = Settings.Default.Login;
-            _Usuario.Password = Settings.Default.Password;
+            //_Usuario.Login = Settings.Default.Login;
+            //_Usuario.Password = Settings.Default.Password;
+
+            _Usuario.Login = "sa";
+            _Usuario.Password = "123456";
         }
         public void DeleteProducto(double pId)
         {
@@ -56,7 +59,7 @@ namespace VentaVideojuegos
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "PA_SELECT_CLIENTE_All";
+                    command.CommandText = "PA_SELECT_PRODUCTO_All";
 
                     ds = db.ExecuteDataSet(command);
                 }
@@ -65,17 +68,15 @@ namespace VentaVideojuegos
                 {
                     foreach(DataRow dr in ds.Tables[0].Rows)
                     {
-                        Producto producto = new Producto()
-                        {
-                            ID = (int)dr["ID"],
-                            Descripcion = dr["DESCRIPCION"].ToString(),
-                            CantidadInventario = (int)dr["CANTIDAD_INVENTARIO"],
-                            Descuento = (double)dr["DESCUENTO"],
-                            IdCategoria = (int)dr["ID_CATEGORIA"],
-                            PrecioColones = (double)dr["PRECIO_COLONES"],
-                            PrecioDolares = (double)dr["PRECIO_DOLARES"],
-                            Imagen= (byte[])dr["IMAGEN"]
-                        };
+                        Producto producto = new Producto();
+                        producto.ID = (int)dr["ID"];
+                        producto.Descripcion = dr["DESCRIPCION"].ToString();
+                        producto.CantidadInventario = (int)dr["CANTIDAD_INVENTARIO"];
+                        producto.Descuento = Convert.ToDouble(dr["DESCUENTO"].ToString());
+                        producto.IdCategoria = (int)dr["ID_CATEGORIA"];
+                        producto.PrecioColones = Convert.ToDouble(dr["PRECIO_COLONES"].ToString());
+                        producto.PrecioDolares = Convert.ToDouble(dr["PRECIO_DOLARES"].ToString());
+                        producto.Imagen = (byte[])dr["IMAGEN"];
                         lista.Add(producto);
                     }
                 }
@@ -118,11 +119,11 @@ namespace VentaVideojuegos
                             ID = (int)dr["ID"],
                             Descripcion = dr["DESCRIPCION"].ToString(),
                             CantidadInventario = (int)dr["CANTIDAD_INVENTARIO"],
-                            Descuento = (double)dr["DESCUENTO"],
+                            Descuento = Convert.ToDouble(dr["DESCUENTO"].ToString()),
                             IdCategoria = (int)dr["ID_CATEGORIA"],
-                            PrecioColones = (double)dr["PRECIO_COLONES"],
-                            PrecioDolares = (double)dr["PRECIO_DOLARES"],
-                            Imagen= (byte[])dr["IMAGEN"]
+                            PrecioColones = Convert.ToDouble(dr["PRECIO_COLONES"].ToString()),
+                            PrecioDolares = Convert.ToDouble(dr["PRECIO_DOLARES"].ToString()),
+                            Imagen = (byte[])dr["IMAGEN"]
                         };
                         lista.Add(producto);
                     }
@@ -165,10 +166,10 @@ namespace VentaVideojuegos
                         ID = (int)dr["ID"],
                         Descripcion = dr["DESCRIPCION"].ToString(),
                         CantidadInventario = (int)dr["CANTIDAD_INVENTARIO"],
-                        Descuento = (double)dr["DESCUENTO"],
+                        Descuento = Convert.ToDouble(dr["DESCUENTO"].ToString()),
                         IdCategoria = (int)dr["ID_CATEGORIA"],
-                        PrecioColones = (double)dr["PRECIO_COLONES"],
-                        PrecioDolares = (double)dr["PRECIO_DOLARES"],
+                        PrecioColones = Convert.ToDouble(dr["PRECIO_COLONES"].ToString()),
+                        PrecioDolares = Convert.ToDouble(dr["PRECIO_DOLARES"].ToString()),
                         Imagen = (byte[])dr["IMAGEN"]
                     };
                 }

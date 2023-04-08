@@ -62,7 +62,18 @@ namespace VentaVideojuegos
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmMantenimientoProductos frmMantenimientoProductos;
 
+            try
+            {
+                frmMantenimientoProductos = new frmMantenimientoProductos();
+                frmMantenimientoProductos.MdiParent = this;
+                frmMantenimientoProductos.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
         }
 
         private void telefonoToolStripMenuItem_Click(object sender, EventArgs e)

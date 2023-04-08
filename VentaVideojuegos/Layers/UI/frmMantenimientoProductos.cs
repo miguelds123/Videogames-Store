@@ -13,11 +13,12 @@ using VentaVideojuegos.Layers.Entities;
 
 namespace VentaVideojuegos.Layers.UI
 {
-    public partial class frmMantenimientoUsuario : Form
+    public partial class frmMantenimientoProductos : Form
     {
+
         EstadoMantenimiento estadoFrame;
 
-        public frmMantenimientoUsuario()
+        public frmMantenimientoProductos()
         {
             InitializeComponent();
         }
@@ -26,20 +27,21 @@ namespace VentaVideojuegos.Layers.UI
         {
             this.CambiarEstado(EstadoMantenimiento.Nuevo);
 
-            MessageBox.Show("Por favor no olvide seleccionar la imagen que desea editar");
+            MessageBox.Show("Por favor no olvide seleccionar la imagen que desea añadir");
 
             this.btnEditar.Enabled = false;
             this.btnBorrar.Enabled = false;
             this.btnNuevo.Enabled = false;
         }
 
-        private void frmMantenimientoUsuario_Load(object sender, EventArgs e)
+        private void frmMantenimientoProductos_Load(object sender, EventArgs e)
         {
             this.Text = "Mantenimiento Usuario";
 
-            CategoriaUsuario[] categoria = (CategoriaUsuario[])Enum.GetValues(typeof(CategoriaUsuario));
+            cmbCategoria.Items.Clear();
 
-            cmbCategoria.DataSource = categoria;
+            cmbCategoria.Items.Add(CategoriaProducto.Consola);
+            cmbCategoria.Items.Add(CategoriaProducto.Perifericos);
 
             try
             {
@@ -57,7 +59,7 @@ namespace VentaVideojuegos.Layers.UI
 
         private void CargarDatos()
         {
-            IBLLLogin _BLLLogin= new BLLLogin();
+            BLLProducto _BLLProducto = new BLLProducto();
 
             // Cambiar el estado
             this.CambiarEstado(EstadoMantenimiento.Ninguno);
@@ -68,7 +70,7 @@ namespace VentaVideojuegos.Layers.UI
             dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             // Cargar el DataGridView
-            this.dgvDatos.DataSource = _BLLLogin.GetAllUsuario();
+            this.dgvDatos.DataSource = _BLLProducto.GetAllProducto();
 
             this.btnNuevo.Enabled = true;
             this.btnEditar.Enabled = true;
@@ -78,12 +80,20 @@ namespace VentaVideojuegos.Layers.UI
 
         private void CambiarEstado(EstadoMantenimiento estado)
         {
-            this.txtUsuario.Clear();
-            this.txtPassword.Clear();
-            this.cmbCategoria.SelectedIndex= -1;
+            this.txtID.Clear();
+            this.txtDescripcion.Clear();
+            this.txtCantidadInventario.Clear();
+            this.txtDescuento.Clear();
+            this.txtPrecioColones.Clear();
+            this.txtPrecioDolares.Clear();
+            this.cmbCategoria.SelectedIndex = -1;
 
-            this.txtUsuario.Enabled = false;
-            this.txtPassword.Enabled = false;
+            this.txtID.Enabled = false;
+            this.txtDescripcion.Enabled = false;
+            this.txtCantidadInventario.Enabled = false;
+            this.txtDescuento.Enabled = false;
+            this.txtPrecioColones.Enabled = false;
+            this.txtPrecioDolares.Enabled = false;
             this.cmbCategoria.Enabled = false;
             this.pbImagen.Enabled = false;
 
@@ -93,25 +103,31 @@ namespace VentaVideojuegos.Layers.UI
             switch (estado)
             {
                 case EstadoMantenimiento.Nuevo:
-                    this.txtUsuario.Enabled = true;
-                    this.txtPassword.Enabled = true;
+                    this.txtID.Enabled = true;
+                    this.txtDescripcion.Enabled = true;
+                    this.txtCantidadInventario.Enabled = true;
+                    this.txtDescuento.Enabled = true;
+                    this.txtPrecioColones.Enabled = true;
                     this.cmbCategoria.Enabled = true;
                     this.pbImagen.Enabled = true;
 
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
-                    txtUsuario.Focus();
+                    txtID.Focus();
                     estadoFrame = EstadoMantenimiento.Nuevo;
                     break;
 
                 case EstadoMantenimiento.Editar:
-                    this.txtPassword.Enabled = true;
-                    this.cmbCategoria.Enabled= true;
-                    this.pbImagen.Enabled= true;
+                    this.txtDescripcion.Enabled = true;
+                    this.txtCantidadInventario.Enabled = true;
+                    this.txtDescuento.Enabled = true;
+                    this.txtPrecioColones.Enabled = true;
+                    this.cmbCategoria.Enabled = true;
+                    this.pbImagen.Enabled = true;
 
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
-                    txtUsuario.Focus();
+                    txtID.Focus();
                     estadoFrame = EstadoMantenimiento.Editar;
                     break;
 
@@ -129,17 +145,38 @@ namespace VentaVideojuegos.Layers.UI
 
         private void ValidarCampos()
         {
-            if (String.IsNullOrEmpty(txtUsuario.Text))
+            if (String.IsNullOrEmpty(txtID.Text))
             {
-                MessageBox.Show("Debe digitar el nombre de usuario");
-                txtUsuario.Focus();
+                MessageBox.Show("Debe digitar el ID del producto");
+                txtID.Focus();
                 return;
             }
 
-            if (String.IsNullOrEmpty(txtPassword.Text))
+            if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBox.Show("Debe digitar la contraseña del usuario");
-                txtPassword.Focus();
+                MessageBox.Show("Debe digitar la descripcion del producto");
+                txtDescripcion.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtCantidadInventario.Text))
+            {
+                MessageBox.Show("Debe digitar la cantidad de inventario del producto");
+                txtCantidadInventario.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtDescuento.Text))
+            {
+                MessageBox.Show("Debe digitar el descuento del producto");
+                txtDescuento.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtPrecioColones.Text))
+            {
+                MessageBox.Show("Debe digitar el precio en colones del producto");
+                txtPrecioColones.Focus();
                 return;
             }
         }
@@ -151,8 +188,8 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            BLLLogin _BLLLogin = new BLLLogin();
-            Usuario usuario;
+            BLLProducto _BLLProducto = new BLLProducto();
+            Producto producto = new Producto();
 
             switch (estadoFrame)
             {
@@ -160,45 +197,42 @@ namespace VentaVideojuegos.Layers.UI
 
                     ValidarCampos();
 
-                    usuario= new Usuario();
+                    producto = new Producto();
 
-                    usuario.Login = txtUsuario.Text;
-                    usuario.Password= Encriptado.GetSHA256(txtPassword.Text);
-                    usuario.IMAGEN= (byte[])this.pbImagen.Tag;
+                    producto.ID = Convert.ToInt32(txtID.Text);
+                    producto.Descripcion = txtDescripcion.Text;
+                    producto.CantidadInventario = Convert.ToInt32(txtCantidadInventario.Text);
+                    producto.Descuento = Convert.ToDouble(txtDescuento.Text);
+                    producto.PrecioColones = Convert.ToDouble(txtPrecioColones.Text);
+                    producto.PrecioDolares = Convert.ToDouble(txtPrecioDolares.Text);
+                    producto.Imagen = (byte[])this.pbImagen.Tag;
 
-                    if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Administrador))
+                    if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Consola))
                     {
-                        usuario.IdCategoria = 1;
+                        producto.IdCategoria = 2;
                     }
                     else
                     {
-                        if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Procesos))
+                        if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Perifericos))
                         {
-                            usuario.IdCategoria = 2;
-                        }
-                        else
-                        {
-                            if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Reportes))
-                            {
-                                usuario.IdCategoria = 3;
-                            }
+                            producto.IdCategoria = 3;
                         }
                     }
 
                     try
                     {
-                        _BLLLogin.SaveUsuario(usuario);
+                        _BLLProducto.SaveProducto(producto);
 
                         this.CargarDatos();
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo cliente");
+                        MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo producto");
                         return;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo cliente");
+                        MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo ");
                         return;
                     }
 
@@ -212,51 +246,48 @@ namespace VentaVideojuegos.Layers.UI
                         ValidarCampos();
 
                         //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
-                        usuario= new Usuario();
+                        producto = new Producto();
 
-                        usuario.Login = txtUsuario.Text;
-                        usuario.Password = Encriptado.GetSHA256(txtPassword.Text);
-                        usuario.IMAGEN = (byte[])this.pbImagen.Tag;
+                        producto.ID = Convert.ToInt32(txtID.Text);
+                        producto.Descripcion = txtDescripcion.Text;
+                        producto.CantidadInventario = Convert.ToInt32(txtCantidadInventario.Text);
+                        producto.Descuento = Convert.ToDouble(txtDescuento.Text);
+                        producto.PrecioColones = Convert.ToDouble(txtPrecioColones.Text);
+                        producto.PrecioDolares = Convert.ToDouble(txtPrecioDolares.Text);
+                        producto.Imagen = (byte[])this.pbImagen.Tag;
 
-                        if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Administrador))
+                        if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Consola))
                         {
-                            usuario.IdCategoria = 1;
+                            producto.IdCategoria = 2;
                         }
                         else
                         {
-                            if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Procesos))
+                            if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Perifericos))
                             {
-                                usuario.IdCategoria = 2;
-                            }
-                            else
-                            {
-                                if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Reportes))
-                                {
-                                    usuario.IdCategoria = 3;
-                                }
+                                producto.IdCategoria = 3;
                             }
                         }
 
                         try
                         {
-                            _BLLLogin.UpdateUsuario(usuario);
+                            _BLLProducto.UpdateProducto(producto);
 
                             this.CargarDatos();
                         }
                         catch (SqlException ex)
                         {
-                            MessageBox.Show("Ocurrio un error en la base de datos al editar el cliente");
+                            MessageBox.Show("Ocurrio un error en la base de datos al editar el producto");
                             return;
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ocurrio un error en el programa al editar el cliente");
+                            MessageBox.Show("Ocurrio un error en el programa al editar el producto");
                             return;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar el usuario que desea editar");
+                        MessageBox.Show("Debe seleccionar el producto que desea editar");
                         return;
                     }
 
@@ -277,18 +308,18 @@ namespace VentaVideojuegos.Layers.UI
                     {
                         try
                         {
-                            _BLLLogin.DeleteUsuario(txtUsuario.Text);
+                            _BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
 
                             this.CargarDatos();
                         }
                         catch (SqlException ex)
                         {
-                            MessageBox.Show("Ocurrio un error en la base de datos al borrar el cliente");
+                            MessageBox.Show("Ocurrio un error en la base de datos al borrar el producto");
                             return;
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ocurrio un error en el programa al borrar el cliente");
+                            MessageBox.Show("Ocurrio un error en el programa al borrar el producto");
                             return;
                         }
                     }
@@ -299,7 +330,21 @@ namespace VentaVideojuegos.Layers.UI
             this.CambiarEstado(EstadoMantenimiento.Ninguno);
         }
 
-        private void btnEditar_Click_1(object sender, EventArgs e)
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            ServiceBCCR serviceBCCR = new ServiceBCCR();
+
+            List<Dolar> lista = new List<Dolar>();
+
+            lista = serviceBCCR.GetDolar(DateTime.UtcNow, DateTime.UtcNow, "318") as List<Dolar>;
+
+            foreach (Dolar d in lista)
+            {
+                txtPrecioDolares.Text = (Convert.ToDouble(txtPrecioColones.Text) / d.Monto).ToString();
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
         {
             if (this.dgvDatos.SelectedRows.Count > 0)
             {
@@ -308,10 +353,14 @@ namespace VentaVideojuegos.Layers.UI
 
                 this.CambiarEstado(EstadoMantenimiento.Editar);
 
-                Usuario usuario = this.dgvDatos.SelectedRows[0].DataBoundItem as Usuario;
+                Producto producto = this.dgvDatos.SelectedRows[0].DataBoundItem as Producto;
 
-                txtPassword.Text = usuario.Password;
-                txtUsuario.Text = usuario.Login;
+                txtID.Text = producto.ID.ToString();
+                txtDescripcion.Text = producto.Descripcion.ToString();
+                txtCantidadInventario.Text = producto.CantidadInventario.ToString();
+                txtDescuento.Text = producto.Descuento.ToString();
+                txtPrecioColones.Text = producto.PrecioColones.ToString();
+                txtPrecioDolares.Text = producto.PrecioDolares.ToString();
 
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
@@ -324,16 +373,20 @@ namespace VentaVideojuegos.Layers.UI
             }
         }
 
-        private void btnBorrar_Click_1(object sender, EventArgs e)
+        private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (this.dgvDatos.SelectedRows.Count > 0)
             {
                 this.CambiarEstado(EstadoMantenimiento.Borrar);
 
-                Usuario usuario = this.dgvDatos.SelectedRows[0].DataBoundItem as Usuario;
+                Producto producto = this.dgvDatos.SelectedRows[0].DataBoundItem as Producto;
 
-                txtPassword.Text = usuario.Password;
-                txtUsuario.Text = usuario.Login;
+                txtID.Text = producto.ID.ToString();
+                txtDescripcion.Text = producto.Descripcion.ToString();
+                txtCantidadInventario.Text = producto.CantidadInventario.ToString();
+                txtDescuento.Text = producto.Descuento.ToString();
+                txtPrecioColones.Text = producto.PrecioColones.ToString();
+                txtPrecioDolares.Text = producto.PrecioDolares.ToString();
 
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
@@ -346,12 +399,12 @@ namespace VentaVideojuegos.Layers.UI
             }
         }
 
-        private void btnSalir_Click_1(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pbImagen_Click(object sender, EventArgs e)
         {
             try
             {

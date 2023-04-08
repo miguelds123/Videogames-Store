@@ -30,7 +30,7 @@ namespace VentaVideojuegos.Layers.UI
 
         private void frmMantenimientoCorreo_Load(object sender, EventArgs e)
         {
-            this.Text = "Mantenimiento Telefono";
+            this.Text = "Mantenimiento Correo";
 
             try
             {
