@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,34 @@ namespace VentaVideojuegos
             _Usuario.Login = "sa";
             _Usuario.Password = "123456";
         }
+
+        public void BorradoLogico(int pID)
+        {
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "PA_BORRADO_LOGICO_PRODUCTO";
+                    command.Parameters.AddWithValue("@ID", pID);
+
+                    db.ExecuteNonQuery(command);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return;
+            }
+        }
+
         public void DeleteProducto(double pId)
         {
             try
@@ -77,6 +106,7 @@ namespace VentaVideojuegos
                         producto.PrecioColones = Convert.ToDouble(dr["PRECIO_COLONES"].ToString());
                         producto.PrecioDolares = Convert.ToDouble(dr["PRECIO_DOLARES"].ToString());
                         producto.Imagen = (byte[])dr["IMAGEN"];
+                        producto.Estado = (int)dr["ESTADO"];
                         lista.Add(producto);
                     }
                 }
@@ -123,7 +153,8 @@ namespace VentaVideojuegos
                             IdCategoria = (int)dr["ID_CATEGORIA"],
                             PrecioColones = Convert.ToDouble(dr["PRECIO_COLONES"].ToString()),
                             PrecioDolares = Convert.ToDouble(dr["PRECIO_DOLARES"].ToString()),
-                            Imagen = (byte[])dr["IMAGEN"]
+                            Imagen = (byte[])dr["IMAGEN"],
+                            Estado = (int)dr["ESTADO"]
                         };
                         lista.Add(producto);
                     }
@@ -170,7 +201,8 @@ namespace VentaVideojuegos
                         IdCategoria = (int)dr["ID_CATEGORIA"],
                         PrecioColones = Convert.ToDouble(dr["PRECIO_COLONES"].ToString()),
                         PrecioDolares = Convert.ToDouble(dr["PRECIO_DOLARES"].ToString()),
-                        Imagen = (byte[])dr["IMAGEN"]
+                        Imagen = (byte[])dr["IMAGEN"],
+                        Estado = (int)dr["ESTADO"]
                     };
                 }
                 return producto;
@@ -206,6 +238,7 @@ namespace VentaVideojuegos
                     command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
                     command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
                     command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
+                    command.Parameters.AddWithValue(@"ESTADO", pProducto.Estado);
 
                     db.ExecuteNonQuery(command);
                 }
@@ -241,6 +274,7 @@ namespace VentaVideojuegos
                     command.Parameters.AddWithValue(@"PRECIO_COLONES", pProducto.PrecioColones);
                     command.Parameters.AddWithValue(@"PRECIO_DOLARES", pProducto.PrecioDolares);
                     command.Parameters.AddWithValue(@"IMAGEN", pProducto.Imagen);
+                    command.Parameters.AddWithValue(@"ESTADO", pProducto.Estado);
 
                     db.ExecuteNonQuery(command);
                 }

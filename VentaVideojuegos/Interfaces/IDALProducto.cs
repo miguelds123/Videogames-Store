@@ -14,5 +14,6 @@ namespace VentaVideojuegos
         void SaveProducto(Producto pProducto);
         void UpdateProducto(Producto pProducto);
         void DeleteProducto(double pId);
+        void BorradoLogico(int pID);
     }
 }

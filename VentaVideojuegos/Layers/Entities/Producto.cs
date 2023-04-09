@@ -24,5 +24,7 @@ namespace VentaVideojuegos
 
         public byte[] Imagen { set; get; }
 
+        public int Estado { get; set; }
+
     }
 }

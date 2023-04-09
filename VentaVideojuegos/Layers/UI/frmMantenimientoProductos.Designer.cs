@@ -54,6 +54,8 @@
             this.txtPrecioDolares = new System.Windows.Forms.TextBox();
             this.lblImagen = new System.Windows.Forms.Label();
             this.pbImagen = new System.Windows.Forms.PictureBox();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
@@ -117,13 +119,13 @@
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Location = new System.Drawing.Point(0, 58);
             this.dgvDatos.Name = "dgvDatos";
-            this.dgvDatos.Size = new System.Drawing.Size(375, 451);
+            this.dgvDatos.Size = new System.Drawing.Size(375, 486);
             this.dgvDatos.TabIndex = 2;
             // 
             // btnAceptar
             // 
             this.btnAceptar.Image = global::VentaVideojuegos.Properties.Resources.accept_icon_icons_com_74428;
-            this.btnAceptar.Location = new System.Drawing.Point(421, 431);
+            this.btnAceptar.Location = new System.Drawing.Point(421, 466);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(130, 78);
             this.btnAceptar.TabIndex = 22;
@@ -136,7 +138,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Image = global::VentaVideojuegos.Properties.Resources.cancel_icon_icons_com_52401;
-            this.btnCancelar.Location = new System.Drawing.Point(562, 431);
+            this.btnCancelar.Location = new System.Drawing.Point(562, 466);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(130, 78);
             this.btnCancelar.TabIndex = 23;
@@ -272,7 +274,7 @@
             // lblImagen
             // 
             this.lblImagen.AutoSize = true;
-            this.lblImagen.Location = new System.Drawing.Point(418, 284);
+            this.lblImagen.Location = new System.Drawing.Point(418, 318);
             this.lblImagen.Name = "lblImagen";
             this.lblImagen.Size = new System.Drawing.Size(42, 13);
             this.lblImagen.TabIndex = 39;
@@ -281,7 +283,7 @@
             // pbImagen
             // 
             this.pbImagen.Image = global::VentaVideojuegos.Properties.Resources.camara__2_;
-            this.pbImagen.Location = new System.Drawing.Point(530, 284);
+            this.pbImagen.Location = new System.Drawing.Point(530, 318);
             this.pbImagen.Name = "pbImagen";
             this.pbImagen.Size = new System.Drawing.Size(128, 128);
             this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -289,11 +291,30 @@
             this.pbImagen.TabStop = false;
             this.pbImagen.Click += new System.EventHandler(this.pbImagen_Click);
             // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Location = new System.Drawing.Point(418, 285);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(40, 13);
+            this.lblEstado.TabIndex = 41;
+            this.lblEstado.Text = "Estado";
+            // 
+            // cmbEstado
+            // 
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(530, 285);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(162, 21);
+            this.cmbEstado.TabIndex = 42;
+            // 
             // frmMantenimientoProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 521);
+            this.ClientSize = new System.Drawing.Size(800, 555);
+            this.Controls.Add(this.cmbEstado);
+            this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.pbImagen);
             this.Controls.Add(this.lblImagen);
             this.Controls.Add(this.txtPrecioDolares);
@@ -355,5 +376,7 @@
         private System.Windows.Forms.TextBox txtPrecioDolares;
         private System.Windows.Forms.Label lblImagen;
         private System.Windows.Forms.PictureBox pbImagen;
+        private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.ComboBox cmbEstado;
     }
 }

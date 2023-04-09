@@ -39,9 +39,13 @@ namespace VentaVideojuegos.Layers.UI
             this.Text = "Mantenimiento Usuario";
 
             cmbCategoria.Items.Clear();
+            cmbEstado.Items.Clear();
 
             cmbCategoria.Items.Add(CategoriaProducto.Consola);
             cmbCategoria.Items.Add(CategoriaProducto.Perifericos);
+
+            cmbEstado.Items.Add(Estado.Activo);
+            cmbEstado.Items.Add(Estado.Inactivo);
 
             try
             {
@@ -95,6 +99,7 @@ namespace VentaVideojuegos.Layers.UI
             this.txtPrecioColones.Enabled = false;
             this.txtPrecioDolares.Enabled = false;
             this.cmbCategoria.Enabled = false;
+            this.cmbEstado.Enabled = false;
             this.pbImagen.Enabled = false;
 
             this.btnAceptar.Enabled = false;
@@ -109,6 +114,7 @@ namespace VentaVideojuegos.Layers.UI
                     this.txtDescuento.Enabled = true;
                     this.txtPrecioColones.Enabled = true;
                     this.cmbCategoria.Enabled = true;
+                    this.cmbEstado.Enabled = true;
                     this.pbImagen.Enabled = true;
 
                     this.btnAceptar.Enabled = true;
@@ -123,6 +129,7 @@ namespace VentaVideojuegos.Layers.UI
                     this.txtDescuento.Enabled = true;
                     this.txtPrecioColones.Enabled = true;
                     this.cmbCategoria.Enabled = true;
+                    this.cmbEstado.Enabled = true;
                     this.pbImagen.Enabled = true;
 
                     this.btnAceptar.Enabled = true;
@@ -219,6 +226,18 @@ namespace VentaVideojuegos.Layers.UI
                         }
                     }
 
+                    if (cmbEstado.SelectedItem.Equals(Estado.Activo))
+                    {
+                        producto.Estado = 1;
+                    }
+                    else
+                    {
+                        if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
+                        {
+                            producto.Estado = 0;
+                        }
+                    }
+
                     try
                     {
                         _BLLProducto.SaveProducto(producto);
@@ -268,6 +287,18 @@ namespace VentaVideojuegos.Layers.UI
                             }
                         }
 
+                        if (cmbEstado.SelectedItem.Equals(Estado.Activo))
+                        {
+                            producto.Estado = 1;
+                        }
+                        else
+                        {
+                            if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
+                            {
+                                producto.Estado = 0;
+                            }
+                        }
+
                         try
                         {
                             _BLLProducto.UpdateProducto(producto);
@@ -308,7 +339,9 @@ namespace VentaVideojuegos.Layers.UI
                     {
                         try
                         {
-                            _BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
+                            //_BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
+
+                            _BLLProducto.BorradoLogico(Convert.ToInt32(txtID.Text));
 
                             this.CargarDatos();
                         }

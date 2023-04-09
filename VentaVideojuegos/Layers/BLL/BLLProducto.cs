@@ -23,6 +23,13 @@ namespace VentaVideojuegos
             }
         }
 
+        public void BorradoLogico(int pID)
+        {
+            IDALProducto _DALProducto = new DALProducto();
+
+            _DALProducto.BorradoLogico(pID);
+        }
+
         public void DeleteProducto(double pId)
         {
             IDALProducto _DALProducto= new DALProducto();

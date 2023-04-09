@@ -13,7 +13,7 @@ Insert into PROVINCIA values (7, 'Limon')
 -- Inserts Cantones San Jose
 
 Select * from CANTON
-where CANTON.ID_PROVINCIA = 7
+where CANTON.ID_PROVINCIA = 1
 
 Insert into CANTON values (1, 1, 'San José')
 Insert into CANTON values (2, 1, 'Escazú')
