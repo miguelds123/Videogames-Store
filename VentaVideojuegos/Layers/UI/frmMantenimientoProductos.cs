@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaVideojuegos.Layers.Entities;
+using VentaVideojuegos;
 
 namespace VentaVideojuegos.Layers.UI
 {
@@ -59,6 +60,17 @@ namespace VentaVideojuegos.Layers.UI
             {
                 MessageBox.Show("Dio error el programa");
             }
+
+            //try
+            //{
+            //    ClienteRAWG clienteRAWG= new ClienteRAWG();
+
+            //    MessageBox.Show(((RAWGJuego)clienteRAWG.ObtenerJuego("Hogwarts Legacy", "c2440053b87e41b88030c0bd0099a493")).Name);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("F");
+            //}
         }
 
         private void CargarDatos()
