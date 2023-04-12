@@ -41,7 +41,17 @@ namespace VentaVideojuegos
 
         private void facturarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmComprar frmComprar= new frmComprar();
 
+            try
+            {
+                frmComprar.MdiParent= this;
+                frmComprar.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)

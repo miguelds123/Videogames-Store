@@ -187,6 +187,8 @@ namespace VentaVideojuegos
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue(@"ID", Convert.ToInt64(pId));
                     command.CommandText = "PA_SELECT_PRODUCTO_ByID";
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
