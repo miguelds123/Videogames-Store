@@ -162,8 +162,10 @@ namespace VentaVideojuegos.Layers.UI
 
                     usuario= new Usuario();
 
+                    string truncatedString = Encriptado.GetSHA256(txtPassword.Text).Substring(0, Math.Min(Encriptado.GetSHA256(txtPassword.Text).Length, 32));
+
                     usuario.Login = txtUsuario.Text;
-                    usuario.Password= Encriptado.GetSHA256(txtPassword.Text);
+                    usuario.Password = truncatedString;
                     usuario.IMAGEN= (byte[])this.pbImagen.Tag;
 
                     if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Administrador))

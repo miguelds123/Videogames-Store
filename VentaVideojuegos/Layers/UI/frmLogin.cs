@@ -23,7 +23,9 @@ namespace VentaVideojuegos.Layers.UI
         {
             IBLLLogin _BLLLogin= new BLLLogin();
 
-            if (_BLLLogin.Login(txtUsuario.Text, Encriptado.GetSHA256(txtPassword.Text)))
+            string truncatedString = Encriptado.GetSHA256(txtPassword.Text).Substring(0, Math.Min(Encriptado.GetSHA256(txtPassword.Text).Length, 32));
+
+            if (_BLLLogin.Login(txtUsuario.Text, truncatedString))
             {
                 Usuario usuario= _BLLLogin.GetUsuarioByFilter(txtUsuario.Text);
 

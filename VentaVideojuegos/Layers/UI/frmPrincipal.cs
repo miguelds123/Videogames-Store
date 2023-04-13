@@ -123,38 +123,38 @@ namespace VentaVideojuegos
             }
         }
 
-        //private void validarDerechos()
-        //{
-        //    Usuario usuario = new Usuario();
+        private void validarDerechos()
+        {
+            Usuario usuario = new Usuario();
 
-        //    usuario = UsuarioIniciado.usuarioLogin[0];
+            usuario = UsuarioIniciado.usuarioLogin[0];
 
-        //    if (usuario.IdCategoria == 1)
-        //    {
-        //        mantenimientosToolStripMenuItem.Visible = true;
-        //        procesosToolStripMenuItem.Visible = true;
-        //        reportesToolStripMenuItem.Visible = true;
-        //        administracionToolStripMenuItem.Visible = true;
-        //    }
-        //    else
-        //    {
-        //        if (usuario.IdCategoria == 2)
-        //        {
-        //            mantenimientosToolStripMenuItem.Visible = false;
-        //            reportesToolStripMenuItem.Visible = false;
-        //            procesosToolStripMenuItem.Visible = true;
-        //        }
-        //        else
-        //        {
-        //            if (usuario.IdCategoria == 3)
-        //            {
-        //                mantenimientosToolStripMenuItem.Visible =false;
-        //                procesosToolStripMenuItem.Visible =false;
-        //                reportesToolStripMenuItem.Visible = true;
-        //            }
-        //        }
-        //    }
-        //}
+            if (usuario.IdCategoria == 1)
+            {
+                mantenimientosToolStripMenuItem.Visible = true;
+                procesosToolStripMenuItem.Visible = true;
+                reportesToolStripMenuItem.Visible = true;
+                administracionToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                if (usuario.IdCategoria == 2)
+                {
+                    mantenimientosToolStripMenuItem.Visible = false;
+                    reportesToolStripMenuItem.Visible = false;
+                    procesosToolStripMenuItem.Visible = true;
+                }
+                else
+                {
+                    if (usuario.IdCategoria == 3)
+                    {
+                        mantenimientosToolStripMenuItem.Visible = false;
+                        procesosToolStripMenuItem.Visible = false;
+                        reportesToolStripMenuItem.Visible = true;
+                    }
+                }
+            }
+        }
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -174,7 +174,7 @@ namespace VentaVideojuegos
 
         private void menuStrip1_Click(object sender, EventArgs e)
         {
-            //validarDerechos();
+            validarDerechos();
         }
 
         private void usuariosToolStripMenuItem1_Click_1(object sender, EventArgs e)
