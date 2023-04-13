@@ -31,6 +31,11 @@ namespace VentaVideojuegos
 
                 if (!Directory.Exists(@"C:\temp"))
                     Directory.CreateDirectory(@"C:\temp");
+
+                mantenimientosToolStripMenuItem.Enabled = false;
+                procesosToolStripMenuItem.Enabled = false;
+                reportesToolStripMenuItem.Enabled = false;
+                administracionToolStripMenuItem.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -127,10 +132,22 @@ namespace VentaVideojuegos
         {
             Usuario usuario = new Usuario();
 
-            usuario = UsuarioIniciado.usuarioLogin[0];
+            try
+            {
+                usuario = UsuarioIniciado.usuarioLogin[0];
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Porfavor inicie sesion");
+            }
 
             if (usuario.IdCategoria == 1)
             {
+                mantenimientosToolStripMenuItem.Enabled = true;
+                procesosToolStripMenuItem.Enabled = true;
+                reportesToolStripMenuItem.Enabled = true;
+                administracionToolStripMenuItem.Enabled = true;
+
                 mantenimientosToolStripMenuItem.Visible = true;
                 procesosToolStripMenuItem.Visible = true;
                 reportesToolStripMenuItem.Visible = true;
@@ -140,6 +157,11 @@ namespace VentaVideojuegos
             {
                 if (usuario.IdCategoria == 2)
                 {
+                    mantenimientosToolStripMenuItem.Enabled = true;
+                    procesosToolStripMenuItem.Enabled = true;
+                    reportesToolStripMenuItem.Enabled = true;
+                    administracionToolStripMenuItem.Enabled = true;
+
                     mantenimientosToolStripMenuItem.Visible = false;
                     reportesToolStripMenuItem.Visible = false;
                     procesosToolStripMenuItem.Visible = true;
@@ -148,6 +170,11 @@ namespace VentaVideojuegos
                 {
                     if (usuario.IdCategoria == 3)
                     {
+                        mantenimientosToolStripMenuItem.Enabled = true;
+                        procesosToolStripMenuItem.Enabled = true;
+                        reportesToolStripMenuItem.Enabled = true;
+                        administracionToolStripMenuItem.Enabled = true;
+
                         mantenimientosToolStripMenuItem.Visible = false;
                         procesosToolStripMenuItem.Visible = false;
                         reportesToolStripMenuItem.Visible = true;

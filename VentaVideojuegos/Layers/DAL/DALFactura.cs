@@ -126,6 +126,8 @@ namespace VentaVideojuegos
 
                     foreach (DetalleOrden detalleOrden in pOrdenCompraDTO.listaDetalles)
                     {
+                        cmdFacturaDetalle = new SqlCommand();
+
                         cmdFacturaDetalle.Parameters.AddWithValue(@"ID_ORDEN", detalleOrden.IdOrden);
                         cmdFacturaDetalle.Parameters.AddWithValue(@"ID_DETALLE", detalleOrden.IdDetalle);
                         cmdFacturaDetalle.Parameters.AddWithValue(@"ID_PRODUCTO", detalleOrden.IdProducto);
@@ -139,6 +141,8 @@ namespace VentaVideojuegos
                         //rebaja la cantidad de inventario en base a la cantidad de producto que se
                         //compraron
 
+                        cmdProducto = new SqlCommand();
+                        
                         cmdProducto.Parameters.AddWithValue(@"ID", detalleOrden.IdProducto);
                         cmdProducto.Parameters.AddWithValue(@"CANTIDAD", detalleOrden.Cantidad);
 

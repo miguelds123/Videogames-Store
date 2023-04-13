@@ -15,6 +15,8 @@ namespace VentaVideojuegos.Layers.UI
         static int numeroDetalle = 1;
         double varSubTotal = 0;
         double varTotal = 0;
+        double varDescuento = 0;
+        double varDescuentoTotal = 0;
         OrdenCompraDTO ordenCompraDTO = new OrdenCompraDTO();
 
         public frmComprar()
@@ -154,7 +156,31 @@ namespace VentaVideojuegos.Layers.UI
             {
                 if (Convert.ToUInt32(txtIDProducto.Text) == producto.ID)
                 {
-                    detalleOrden.Total = producto.PrecioColones * detalleOrden.Cantidad;
+                    if (producto.Estado == 1)
+                    {
+                        if (producto.CantidadInventario >= Convert.ToInt32(txtCantidad.Text))
+                        {
+                            detalleOrden.Total = (producto.PrecioColones - producto.Descuento) * detalleOrden.Cantidad;
+
+                            varDescuento += producto.Descuento * detalleOrden.Cantidad;
+                        }
+                        else
+                        {
+                            MessageBox.Show("En este momento no tenemos suficientes existencias de este producto, el numero maximo que puede comprar es: " + producto.CantidadInventario);
+                            txtCantidad.Enabled= true;
+                            txtIDProducto.Enabled= true;
+                            btnConfirmarProducto.Enabled= true;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto que desea agregar no esta disponible en este momento");
+                        txtCantidad.Enabled = true;
+                        txtIDProducto.Enabled = true;
+                        btnConfirmarProducto.Enabled = true;
+                        return;
+                    }
                 }
             }
 
@@ -163,7 +189,8 @@ namespace VentaVideojuegos.Layers.UI
                 detalleOrden.IdDetalle.ToString(),
                 detalleOrden.IdProducto.ToString(),
                 detalleOrden.Cantidad.ToString(),
-                detalleOrden.Total.ToString()
+                varDescuento.ToString(),
+                detalleOrden.Total.ToString(),
             };
 
             ordenCompraDTO.listaDetalles.Add(detalleOrden);
@@ -174,10 +201,18 @@ namespace VentaVideojuegos.Layers.UI
             btnComprar.Enabled = true;
 
             varSubTotal += detalleOrden.Total;
-            txtSubtotal.Text= varSubTotal.ToString();
+            txtSubtotal.Text= (varSubTotal + varDescuento).ToString();
 
             varTotal += detalleOrden.Total;
             txtTotal.Text= varTotal.ToString();
+
+            varDescuentoTotal += varDescuento;
+            varDescuento = 0;
+
+            txtIDProducto.Enabled = true;
+            txtCantidad.Enabled = true;
+            btnConfirmarProducto.Enabled = true;
+            btnAgregar.Enabled = false;
         }
 
         private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -188,12 +223,36 @@ namespace VentaVideojuegos.Layers.UI
         private void btnComprar_Click(object sender, EventArgs e)
         {
             BLLFactura _BLLFactura= new BLLFactura();
+            BLLProducto _BLLProducto= new BLLProducto();
+
+            List<Producto> lista = _BLLProducto.GetAllProducto();
+
+            int cantidad = 0;
+
+            foreach (Producto producto in lista)
+            {
+                foreach (DetalleOrden detalleOrden in ordenCompraDTO.listaDetalles)
+                {
+                    if (detalleOrden.IdProducto == producto.ID)
+                    {
+                        cantidad += detalleOrden.Cantidad;
+
+                        if (producto.CantidadInventario < cantidad)
+                        {
+                            MessageBox.Show("En este momento no poseemos la cantidad de inventario necesario para realizar su compra, su compra sera cancerlada para que pueda intentar realizarla de nuevo");
+                            btnCancelar_Click(sender, e);
+                            return;
+                        }
+                    }
+                }
+                cantidad = 0;
+            }
 
             ordenCompraDTO.ID= Convert.ToInt32(txtIDFactura.Text);
             ordenCompraDTO.FechaOrden = DateTime.Now;
             ordenCompraDTO.IdCliente = Convert.ToInt32(txtIDCliente.Text);
-            ordenCompraDTO.Total= Convert.ToInt32(txtTotal.Text);
-            ordenCompraDTO.SubTotal = Convert.ToInt32(txtSubtotal.Text);
+            ordenCompraDTO.Total = Convert.ToInt32(txtTotal.Text);
+            ordenCompraDTO.SubTotal = Convert.ToInt32(txtTotal.Text) + varDescuentoTotal;
 
             try
             {

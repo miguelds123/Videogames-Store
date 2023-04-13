@@ -54,6 +54,7 @@
             this.IdDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
@@ -67,7 +68,7 @@
             this.btnSalir});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(849, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(912, 55);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -103,7 +104,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Image = global::VentaVideojuegos.Properties.Resources.accept_icon_icons_com_74428;
-            this.btnAgregar.Location = new System.Drawing.Point(477, 336);
+            this.btnAgregar.Location = new System.Drawing.Point(540, 332);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(130, 78);
             this.btnAgregar.TabIndex = 22;
@@ -116,7 +117,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Image = global::VentaVideojuegos.Properties.Resources.cancel_icon_icons_com_52401;
-            this.btnCancelar.Location = new System.Drawing.Point(625, 336);
+            this.btnCancelar.Location = new System.Drawing.Point(688, 332);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(130, 78);
             this.btnCancelar.TabIndex = 23;
@@ -129,7 +130,7 @@
             // lblIdentificacion
             // 
             this.lblIdentificacion.AutoSize = true;
-            this.lblIdentificacion.Location = new System.Drawing.Point(474, 100);
+            this.lblIdentificacion.Location = new System.Drawing.Point(537, 96);
             this.lblIdentificacion.Name = "lblIdentificacion";
             this.lblIdentificacion.Size = new System.Drawing.Size(57, 13);
             this.lblIdentificacion.TabIndex = 24;
@@ -137,7 +138,7 @@
             // 
             // txtIDFactura
             // 
-            this.txtIDFactura.Location = new System.Drawing.Point(593, 100);
+            this.txtIDFactura.Location = new System.Drawing.Point(656, 96);
             this.txtIDFactura.Name = "txtIDFactura";
             this.txtIDFactura.Size = new System.Drawing.Size(162, 20);
             this.txtIDFactura.TabIndex = 25;
@@ -145,7 +146,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(474, 62);
+            this.label1.Location = new System.Drawing.Point(537, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 26;
@@ -153,7 +154,7 @@
             // 
             // txtIDCliente
             // 
-            this.txtIDCliente.Location = new System.Drawing.Point(593, 62);
+            this.txtIDCliente.Location = new System.Drawing.Point(656, 58);
             this.txtIDCliente.Name = "txtIDCliente";
             this.txtIDCliente.Size = new System.Drawing.Size(162, 20);
             this.txtIDCliente.TabIndex = 27;
@@ -161,7 +162,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(474, 136);
+            this.label2.Location = new System.Drawing.Point(537, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 28;
@@ -169,7 +170,7 @@
             // 
             // txtSubtotal
             // 
-            this.txtSubtotal.Location = new System.Drawing.Point(593, 136);
+            this.txtSubtotal.Location = new System.Drawing.Point(656, 132);
             this.txtSubtotal.Name = "txtSubtotal";
             this.txtSubtotal.Size = new System.Drawing.Size(162, 20);
             this.txtSubtotal.TabIndex = 29;
@@ -177,7 +178,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(474, 168);
+            this.label3.Location = new System.Drawing.Point(537, 164);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 30;
@@ -185,7 +186,7 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(593, 168);
+            this.txtTotal.Location = new System.Drawing.Point(656, 164);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(162, 20);
             this.txtTotal.TabIndex = 31;
@@ -193,7 +194,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(474, 226);
+            this.label4.Location = new System.Drawing.Point(537, 222);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(223, 13);
             this.label4.TabIndex = 32;
@@ -202,7 +203,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(474, 260);
+            this.label5.Location = new System.Drawing.Point(537, 256);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 13);
             this.label5.TabIndex = 33;
@@ -210,14 +211,14 @@
             // 
             // txtIDProducto
             // 
-            this.txtIDProducto.Location = new System.Drawing.Point(544, 257);
+            this.txtIDProducto.Location = new System.Drawing.Point(607, 253);
             this.txtIDProducto.Name = "txtIDProducto";
             this.txtIDProducto.Size = new System.Drawing.Size(186, 20);
             this.txtIDProducto.TabIndex = 34;
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(762, 62);
+            this.btnConfirmar.Location = new System.Drawing.Point(825, 58);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmar.TabIndex = 35;
@@ -227,7 +228,7 @@
             // 
             // btnConfirmarProducto
             // 
-            this.btnConfirmarProducto.Location = new System.Drawing.Point(736, 257);
+            this.btnConfirmarProducto.Location = new System.Drawing.Point(799, 253);
             this.btnConfirmarProducto.Name = "btnConfirmarProducto";
             this.btnConfirmarProducto.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmarProducto.TabIndex = 36;
@@ -238,7 +239,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(474, 292);
+            this.label6.Location = new System.Drawing.Point(537, 288);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 37;
@@ -246,7 +247,7 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(544, 292);
+            this.txtCantidad.Location = new System.Drawing.Point(607, 288);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(186, 20);
             this.txtCantidad.TabIndex = 38;
@@ -258,10 +259,11 @@
             this.IdDetalle,
             this.IdProducto,
             this.Cantidad,
+            this.Descuento,
             this.Total});
             this.dgvDatos.Location = new System.Drawing.Point(0, 58);
             this.dgvDatos.Name = "dgvDatos";
-            this.dgvDatos.Size = new System.Drawing.Size(444, 403);
+            this.dgvDatos.Size = new System.Drawing.Size(531, 403);
             this.dgvDatos.TabIndex = 2;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
@@ -280,6 +282,11 @@
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             // 
+            // Descuento
+            // 
+            this.Descuento.HeaderText = "Descuento";
+            this.Descuento.Name = "Descuento";
+            // 
             // Total
             // 
             this.Total.HeaderText = "Total";
@@ -289,7 +296,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 437);
+            this.ClientSize = new System.Drawing.Size(912, 437);
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.label6);
@@ -348,6 +355,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }
