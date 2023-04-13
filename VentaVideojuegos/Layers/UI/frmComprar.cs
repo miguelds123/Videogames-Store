@@ -71,17 +71,38 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            txtIDCliente.Enabled=false;
-            txtIDProducto.Enabled=true;
-            txtCantidad.Enabled=true;
-            btnConfirmarProducto.Enabled = true;
-            btnConfirmar.Enabled=false;
-
             if (String.IsNullOrEmpty(txtIDCliente.Text))
             {
                 MessageBox.Show("Debe digitar la identificacion del cliente");
                 txtIDCliente.Focus();
                 return;
+            }
+
+            BLLCliente _BLLCliente = new BLLCliente();
+
+            List<Cliente> lista = _BLLCliente.GetAllCliente();
+
+            bool estado= false;
+
+            foreach (Cliente cliente in lista)
+            {
+                if (cliente.ID == Convert.ToInt32(txtIDCliente.Text))
+                {
+                    estado = true; 
+                }
+            }
+
+            if (estado)
+            {
+                txtIDCliente.Enabled = false;
+                txtIDProducto.Enabled = true;
+                txtCantidad.Enabled = true;
+                btnConfirmarProducto.Enabled = true;
+                btnConfirmar.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("El cliente que selecciono no es valido");
             }
         }
 
@@ -101,10 +122,31 @@ namespace VentaVideojuegos.Layers.UI
                 return;
             }
 
-            btnAgregar.Enabled=true;
-            txtIDProducto.Enabled=false;
-            txtCantidad.Enabled=false;
-            btnConfirmarProducto.Enabled=false;
+            BLLProducto _BLLProducto = new BLLProducto();
+
+            List<Producto> lista = _BLLProducto.GetAllProducto();
+
+            bool estado = false;
+
+            foreach (Producto p in lista)
+            {
+                if (p.ID == Convert.ToInt32(txtIDProducto.Text))
+                {
+                    estado = true;
+                }
+            }
+
+            if (estado)
+            {
+                btnAgregar.Enabled = true;
+                txtIDProducto.Enabled = false;
+                txtCantidad.Enabled = false;
+                btnConfirmarProducto.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("El producto que selecciono no es valido");
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -268,6 +310,11 @@ namespace VentaVideojuegos.Layers.UI
 
                 btnCancelar_Click(sender, e);
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

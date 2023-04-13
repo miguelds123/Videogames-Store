@@ -45,7 +45,15 @@ AS
 	ADELANTO =  @ADELANTO  
 	Where (ID =  @ID)  
 
+CREATE PROCEDURE GetCurrentNumeroReservacion
+AS
+	Select current_value from sys.sequences where name = 'SequenceNoReservacion'
 
+
+
+CREATE PROCEDURE GetNextNumeroReservacion
+AS
+	SELECT NEXT VALUE FOR SequenceNoReservacion
 
 
 

@@ -49,5 +49,19 @@ namespace VentaVideojuegos.Layers.BLL
 
             _DALReservacion.UpdateReservacion(pReservacion);
         }
+
+        public int GetCurrentNumeroReservacion()
+        {
+            DALReservacion _DALReservacion = new DALReservacion();
+
+            return _DALReservacion.GetCurrentNumeroReservacion();
+        }
+
+        public int GetNextNumeroReservacion()
+        {
+            DALReservacion _DALReservacion = new DALReservacion();
+
+            return _DALReservacion.GetNextNumeroReservacion();
+        }
     }
 }

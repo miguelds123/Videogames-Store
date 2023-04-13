@@ -37,7 +37,7 @@ namespace VentaVideojuegos.Layers.UI
 
         private void frmMantenimientoProductos_Load(object sender, EventArgs e)
         {
-            this.Text = "Mantenimiento Usuario";
+            this.Text = "Mantenimiento Producto";
 
             cmbCategoria.Items.Clear();
             cmbEstado.Items.Clear();

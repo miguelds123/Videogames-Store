@@ -16,8 +16,11 @@ namespace VentaVideojuegos
         Usuario _Usuario = new Usuario();
         public DALReservacion()
         {
-            _Usuario.Login = Settings.Default.Login;
-            _Usuario.Password = Settings.Default.Password;
+            //_Usuario.Login = Settings.Default.Login;
+            //_Usuario.Password = Settings.Default.Password;
+
+            _Usuario.Login = "sa";
+            _Usuario.Password = "123456";
         }
         public void DeleteReservacion(string pId)
         {
@@ -273,6 +276,79 @@ namespace VentaVideojuegos
             {
                 MessageBox.Show("Ocurrio un error en el programa");
                 return;
+            }
+        }
+
+        public int GetCurrentNumeroReservacion()
+        {
+            DataSet ds = null;
+            SqlCommand command = new SqlCommand();
+            int numeroFactura = 0;
+
+            DataTable dt = null;
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "GetCurrentNumeroReservacion";
+
+                    ds = db.ExecuteDataSet(command);
+                }
+
+                dt = ds.Tables[0];
+
+                numeroFactura = int.Parse(dt.Rows[0][0].ToString());
+                return numeroFactura;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return 0;
+            }
+        }
+
+        public int GetNextNumeroReservacion()
+        {
+            DataSet ds = null;
+            SqlCommand command = new SqlCommand();
+
+            int numeroFactura = 0;
+
+            DataTable dt = null;
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection(_Usuario.Login, _Usuario.Password)))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "GetNextNumeroReservacion";
+
+                    ds = db.ExecuteDataSet(command);
+                }
+
+                dt = ds.Tables[0];
+
+                numeroFactura = int.Parse(dt.Rows[0][0].ToString());
+                return numeroFactura;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos");
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error en el programa");
+                return 0;
             }
         }
     }

@@ -235,5 +235,21 @@ namespace VentaVideojuegos
                 MessageBox.Show("Hubo un error al abrir el frame");
             }
         }
+
+        private void reservarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReservacion frmReservacion = new frmReservacion();
+
+            try
+            {
+                frmReservacion = new frmReservacion();
+                frmReservacion.MdiParent = this;
+                frmReservacion.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
+        }
     }
 }
