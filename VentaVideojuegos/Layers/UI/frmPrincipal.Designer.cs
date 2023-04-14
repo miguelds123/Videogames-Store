@@ -138,6 +138,7 @@
             this.listaDeseosToolStripMenuItem.Name = "listaDeseosToolStripMenuItem";
             this.listaDeseosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listaDeseosToolStripMenuItem.Text = "Lista Deseos";
+            this.listaDeseosToolStripMenuItem.Click += new System.EventHandler(this.listaDeseosToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem
             // 

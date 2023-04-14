@@ -16,8 +16,11 @@ namespace VentaVideojuegos
         Usuario _Usuario = new Usuario();
         public DALListaDeseos()
         {
-            _Usuario.Login = Settings.Default.Login;
-            _Usuario.Password = Settings.Default.Password;
+            //_Usuario.Login = Settings.Default.Login;
+            //_Usuario.Password = Settings.Default.Password;
+
+            _Usuario.Login = "sa";
+            _Usuario.Password = "123456";
         }
 
         public void DeleteListaDeseos(string pIdCliente, string pIdProducto)
@@ -144,7 +147,9 @@ namespace VentaVideojuegos
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.CommandText = "PA_SELECT_LISTA_DESEOS_ByIdCliente";
-                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt64(pId));
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt32(pId));
+
+                    ds = db.ExecuteDataSet(command);
                 }
 
                 if (ds.Tables[0].Rows.Count > 0)
