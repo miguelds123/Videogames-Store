@@ -9,9 +9,9 @@ namespace VentaVideojuegos
 {
     class ClienteRAWG
     {
-        public async Task<RAWGJuego> ObtenerJuego(string nombre, string rawgkey)
+        public RAWGJuego ObtenerJuego(string nombre, string rawgkey)
         {
-            return await ManejadorRAWG.RespuestaRAWG(nombre, rawgkey);
+            return ManejadorRAWG.RespuestaRAWGObjecto(nombre, rawgkey);
         }
     }
 }

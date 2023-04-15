@@ -20,10 +20,5 @@ namespace VentaVideojuegos
 
         [JsonProperty("rating", NullValueHandling = NullValueHandling.Ignore)]
         public double Rating { get; set; }
-
-        public static explicit operator RAWGJuego(Task<RAWGJuego> v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

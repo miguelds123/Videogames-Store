@@ -45,11 +45,25 @@ namespace VentaVideojuegos
             return DeserializeJsonToObject<T>(respuesta);
         }
 
-        public static async Task<RAWGJuego> RespuestaRAWG (string nombre, string rawgkey)
-        {
-            RAWGJuego juegoConsulta= await Consulta<RAWGJuego>(nombre, rawgkey);
+        //public static async Task<RAWGJuego> RespuestaRAWG (string nombre, string rawgkey)
+        //{
+        //    RAWGJuego juegoConsulta= await Consulta<RAWGJuego>(nombre, rawgkey);
 
-            return juegoConsulta;
+        //    return juegoConsulta;
+        //}
+
+        public static RAWGJuego RespuestaRAWGObjecto(string nombre, string rawgkey)
+        {
+            Task<RAWGJuego> task= Consulta<RAWGJuego>(nombre, rawgkey);
+
+            RAWGJuego rawgJuego= new RAWGJuego();
+
+            rawgJuego.Name= task.Result.Name;
+            rawgJuego.Description= task.Result.Description;
+            rawgJuego.Rating= task.Result.Rating;
+            rawgJuego.Released= task.Result.Released;
+
+            return rawgJuego;
         }
 
         public static T DeserializeJsonToObject<T>(string json)

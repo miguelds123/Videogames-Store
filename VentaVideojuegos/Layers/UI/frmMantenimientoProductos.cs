@@ -63,7 +63,7 @@ namespace VentaVideojuegos.Layers.UI
 
             //try
             //{
-            //    ClienteRAWG clienteRAWG= new ClienteRAWG();
+            //    ClienteRAWG clienteRAWG = new ClienteRAWG();
 
             //    MessageBox.Show(((RAWGJuego)clienteRAWG.ObtenerJuego("Hogwarts Legacy", "c2440053b87e41b88030c0bd0099a493")).Name);
             //}
@@ -71,6 +71,9 @@ namespace VentaVideojuegos.Layers.UI
             //{
             //    MessageBox.Show("F");
             //}
+                ClienteRAWG clienteRAWG = new ClienteRAWG();
+
+                MessageBox.Show(clienteRAWG.ObtenerJuego("Hogwarts Legacy", "c2440053b87e41b88030c0bd0099a493").Name);
         }
 
         private void CargarDatos()
@@ -486,6 +489,11 @@ namespace VentaVideojuegos.Layers.UI
                 MessageBox.Show("Ocurrio un error en el programa");
                 return;
             }
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
