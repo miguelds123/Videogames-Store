@@ -9,19 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VentaVideojuegos.Layers.Entities;
-using VentaVideojuegos;
+using VentaVideojuegos.Layers.BLL;
 
 namespace VentaVideojuegos.Layers.UI
 {
-    public partial class frmMantenimientoProductos : Form
+    public partial class frmMantenimientoVideojuego : Form
     {
-
         EstadoMantenimiento estadoFrame;
 
-        public frmMantenimientoProductos()
+        public frmMantenimientoVideojuego()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -35,15 +38,11 @@ namespace VentaVideojuegos.Layers.UI
             this.btnNuevo.Enabled = false;
         }
 
-        private void frmMantenimientoProductos_Load(object sender, EventArgs e)
+        private void frmMantenimientoVideojuego_Load(object sender, EventArgs e)
         {
-            this.Text = "Mantenimiento Producto";
+            this.Text = "Mantenimiento Videojuego";
 
-            cmbCategoria.Items.Clear();
             cmbEstado.Items.Clear();
-
-            cmbCategoria.Items.Add(CategoriaProducto.Consola);
-            cmbCategoria.Items.Add(CategoriaProducto.Perifericos);
 
             cmbEstado.Items.Add(Estado.Activo);
             cmbEstado.Items.Add(Estado.Inactivo);
@@ -64,7 +63,7 @@ namespace VentaVideojuegos.Layers.UI
 
         private void CargarDatos()
         {
-            BLLProducto _BLLProducto = new BLLProducto();
+            BLLVideojuego _BLLVideojuego = new BLLVideojuego();
 
             // Cambiar el estado
             this.CambiarEstado(EstadoMantenimiento.Ninguno);
@@ -75,7 +74,7 @@ namespace VentaVideojuegos.Layers.UI
             dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             // Cargar el DataGridView
-            this.dgvDatos.DataSource = _BLLProducto.GetAllProducto();
+            this.dgvDatos.DataSource = _BLLVideojuego.GetAllVideojuego();
 
             this.btnNuevo.Enabled = true;
             this.btnEditar.Enabled = true;
@@ -91,7 +90,9 @@ namespace VentaVideojuegos.Layers.UI
             this.txtDescuento.Clear();
             this.txtPrecioColones.Clear();
             this.txtPrecioDolares.Clear();
-            this.cmbCategoria.SelectedIndex = -1;
+            txtNombre.Clear();
+            txtFechaSalida.Clear();
+            txtNota.Clear();
 
             this.txtID.Enabled = false;
             this.txtDescripcion.Enabled = false;
@@ -99,7 +100,12 @@ namespace VentaVideojuegos.Layers.UI
             this.txtDescuento.Enabled = false;
             this.txtPrecioColones.Enabled = false;
             this.txtPrecioDolares.Enabled = false;
-            this.cmbCategoria.Enabled = false;
+            txtNombre.Enabled = false;
+            txtFechaSalida.Enabled = false;
+            txtNota.Enabled = false;
+            btnBuscar.Enabled = false;
+            btnConfirmar.Enabled = false;
+
             this.cmbEstado.Enabled = false;
             this.pbImagen.Enabled = false;
 
@@ -110,28 +116,19 @@ namespace VentaVideojuegos.Layers.UI
             {
                 case EstadoMantenimiento.Nuevo:
                     this.txtID.Enabled = true;
-                    this.txtDescripcion.Enabled = true;
-                    this.txtCantidadInventario.Enabled = true;
-                    this.txtDescuento.Enabled = true;
-                    this.txtPrecioColones.Enabled = true;
-                    this.cmbCategoria.Enabled = true;
-                    this.cmbEstado.Enabled = true;
-                    this.pbImagen.Enabled = true;
+                    txtNombre.Enabled = true;
+                    btnBuscar.Enabled = true;
 
-                    this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
+                    btnAceptar.Enabled = true;
                     txtID.Focus();
                     estadoFrame = EstadoMantenimiento.Nuevo;
                     break;
 
                 case EstadoMantenimiento.Editar:
-                    this.txtDescripcion.Enabled = true;
-                    this.txtCantidadInventario.Enabled = true;
-                    this.txtDescuento.Enabled = true;
-                    this.txtPrecioColones.Enabled = true;
-                    this.cmbCategoria.Enabled = true;
-                    this.cmbEstado.Enabled = true;
-                    this.pbImagen.Enabled = true;
+                    this.txtID.Enabled = true;
+                    txtNombre.Enabled = true;
+                    btnBuscar.Enabled = true;
 
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
@@ -187,6 +184,27 @@ namespace VentaVideojuegos.Layers.UI
                 txtPrecioColones.Focus();
                 return;
             }
+
+            if (String.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("Debe digitar el nombre del videojuego");
+                txtNombre.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtFechaSalida.Text))
+            {
+                MessageBox.Show("Debe digitar la fecha de salida del producto");
+                txtFechaSalida.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtNota.Text))
+            {
+                MessageBox.Show("Debe digitar la nota del producto");
+                txtNota.Focus();
+                return;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -196,8 +214,8 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            BLLProducto _BLLProducto = new BLLProducto();
-            Producto producto = new Producto();
+            BLLVideojuego _BLLVideojuego = new BLLVideojuego();
+            Videojuego videojuego = new Videojuego();
 
             switch (estadoFrame)
             {
@@ -205,43 +223,35 @@ namespace VentaVideojuegos.Layers.UI
 
                     ValidarCampos();
 
-                    producto = new Producto();
+                    videojuego = new Videojuego();
 
-                    producto.ID = Convert.ToInt32(txtID.Text);
-                    producto.Descripcion = txtDescripcion.Text;
-                    producto.CantidadInventario = Convert.ToInt32(txtCantidadInventario.Text);
-                    producto.Descuento = Convert.ToDouble(txtDescuento.Text);
-                    producto.PrecioColones = Convert.ToDouble(txtPrecioColones.Text);
-                    producto.PrecioDolares = Convert.ToDouble(txtPrecioDolares.Text);
-                    producto.Imagen = (byte[])this.pbImagen.Tag;
-
-                    if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Consola))
-                    {
-                        producto.IdCategoria = 2;
-                    }
-                    else
-                    {
-                        if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Perifericos))
-                        {
-                            producto.IdCategoria = 3;
-                        }
-                    }
+                    videojuego.ID = Convert.ToInt32(txtID.Text);
+                    videojuego.DESCRIPCION = txtDescripcion.Text;
+                    videojuego.CANTIDAD_INVENTARIO = Convert.ToInt32(txtCantidadInventario.Text);
+                    videojuego.DESCUENTO = Convert.ToInt32(txtDescuento.Text);
+                    videojuego.PRECIO_COLONES = Convert.ToDouble(txtPrecioColones.Text);
+                    videojuego.PRECIO_DOLARES = Convert.ToDouble(txtPrecioDolares.Text);
+                    videojuego.Imagen = (byte[])this.pbImagen.Tag;
+                    videojuego.NOMBRE = txtNombre.Text;
+                    videojuego.FECHA_SALIDA = Convert.ToDateTime(txtFechaSalida.Text);
+                    videojuego.NOTA = Convert.ToDouble(txtNota.Text);
+                    videojuego.ID_CATEGORIA = 1;
 
                     if (cmbEstado.SelectedItem.Equals(Estado.Activo))
                     {
-                        producto.Estado = 1;
+                        videojuego.ESTADO = 1;
                     }
                     else
                     {
                         if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
                         {
-                            producto.Estado = 0;
+                            videojuego.ESTADO = 0;
                         }
                     }
 
                     try
                     {
-                        _BLLProducto.SaveProducto(producto);
+                        _BLLVideojuego.SaveVideojuego(videojuego);
 
                         this.CargarDatos();
                     }
@@ -266,43 +276,35 @@ namespace VentaVideojuegos.Layers.UI
                         ValidarCampos();
 
                         //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
-                        producto = new Producto();
+                        videojuego = new Videojuego();
 
-                        producto.ID = Convert.ToInt32(txtID.Text);
-                        producto.Descripcion = txtDescripcion.Text;
-                        producto.CantidadInventario = Convert.ToInt32(txtCantidadInventario.Text);
-                        producto.Descuento = Convert.ToDouble(txtDescuento.Text);
-                        producto.PrecioColones = Convert.ToDouble(txtPrecioColones.Text);
-                        producto.PrecioDolares = Convert.ToDouble(txtPrecioDolares.Text);
-                        producto.Imagen = (byte[])this.pbImagen.Tag;
-
-                        if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Consola))
-                        {
-                            producto.IdCategoria = 2;
-                        }
-                        else
-                        {
-                            if (cmbCategoria.SelectedItem.Equals(CategoriaProducto.Perifericos))
-                            {
-                                producto.IdCategoria = 3;
-                            }
-                        }
+                        videojuego.ID = Convert.ToInt32(txtID.Text);
+                        videojuego.DESCRIPCION = txtDescripcion.Text;
+                        videojuego.CANTIDAD_INVENTARIO = Convert.ToInt32(txtCantidadInventario.Text);
+                        videojuego.DESCUENTO = Convert.ToInt32(txtDescuento.Text);
+                        videojuego.PRECIO_COLONES = Convert.ToDouble(txtPrecioColones.Text);
+                        videojuego.PRECIO_DOLARES = Convert.ToDouble(txtPrecioDolares.Text);
+                        videojuego.Imagen = (byte[])this.pbImagen.Tag;
+                        videojuego.NOMBRE = txtNombre.Text;
+                        videojuego.FECHA_SALIDA = Convert.ToDateTime(txtFechaSalida.Text);
+                        videojuego.NOTA = Convert.ToDouble(txtNota.Text);
+                        videojuego.ID_CATEGORIA = 1;
 
                         if (cmbEstado.SelectedItem.Equals(Estado.Activo))
                         {
-                            producto.Estado = 1;
+                            videojuego.ESTADO = 1;
                         }
                         else
                         {
                             if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
                             {
-                                producto.Estado = 0;
+                                videojuego.ESTADO = 0;
                             }
                         }
 
                         try
                         {
-                            _BLLProducto.UpdateProducto(producto);
+                            _BLLVideojuego.UpdateVideojuego(videojuego);
 
                             this.CargarDatos();
                         }
@@ -327,7 +329,7 @@ namespace VentaVideojuegos.Layers.UI
 
                 case EstadoMantenimiento.Borrar:
 
-                    string mensaje = "Esta seguro que desea eliminar este producto, esta accion es irreversible";
+                    string mensaje = "Esta seguro que desea eliminar este videojuego, esta accion es irreversible";
                     string caption = "Advertencia";
 
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -342,7 +344,7 @@ namespace VentaVideojuegos.Layers.UI
                         {
                             //_BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
 
-                            _BLLProducto.BorradoLogico(Convert.ToInt32(txtID.Text));
+                            _BLLVideojuego.BorradoLogico(Convert.ToInt32(txtID.Text));
 
                             this.CargarDatos();
                         }
@@ -387,14 +389,17 @@ namespace VentaVideojuegos.Layers.UI
 
                 this.CambiarEstado(EstadoMantenimiento.Editar);
 
-                Producto producto = this.dgvDatos.SelectedRows[0].DataBoundItem as Producto;
+                Videojuego videojuego = this.dgvDatos.SelectedRows[0].DataBoundItem as Videojuego;
 
-                txtID.Text = producto.ID.ToString();
-                txtDescripcion.Text = producto.Descripcion.ToString();
-                txtCantidadInventario.Text = producto.CantidadInventario.ToString();
-                txtDescuento.Text = producto.Descuento.ToString();
-                txtPrecioColones.Text = producto.PrecioColones.ToString();
-                txtPrecioDolares.Text = producto.PrecioDolares.ToString();
+                txtID.Text = videojuego.ID.ToString();
+                txtDescripcion.Text = videojuego.DESCRIPCION.ToString();
+                txtCantidadInventario.Text = videojuego.CANTIDAD_INVENTARIO.ToString();
+                txtDescuento.Text = videojuego.DESCUENTO.ToString();
+                txtPrecioColones.Text = videojuego.PRECIO_COLONES.ToString();
+                txtPrecioDolares.Text = videojuego.PRECIO_DOLARES.ToString();
+                txtNombre.Text = videojuego.NOMBRE.ToString();
+                txtFechaSalida.Text = videojuego.FECHA_SALIDA.ToString();
+                txtNota.Text = videojuego.NOTA.ToString();
 
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
@@ -403,7 +408,7 @@ namespace VentaVideojuegos.Layers.UI
             }
             else
             {
-                MessageBox.Show("Debe seleccionar el producto que desea editar");
+                MessageBox.Show("Debe seleccionar el videojuego que desea editar");
             }
         }
 
@@ -413,14 +418,17 @@ namespace VentaVideojuegos.Layers.UI
             {
                 this.CambiarEstado(EstadoMantenimiento.Borrar);
 
-                Producto producto = this.dgvDatos.SelectedRows[0].DataBoundItem as Producto;
+                Videojuego videojuego = this.dgvDatos.SelectedRows[0].DataBoundItem as Videojuego;
 
-                txtID.Text = producto.ID.ToString();
-                txtDescripcion.Text = producto.Descripcion.ToString();
-                txtCantidadInventario.Text = producto.CantidadInventario.ToString();
-                txtDescuento.Text = producto.Descuento.ToString();
-                txtPrecioColones.Text = producto.PrecioColones.ToString();
-                txtPrecioDolares.Text = producto.PrecioDolares.ToString();
+                txtID.Text = videojuego.ID.ToString();
+                txtDescripcion.Text = videojuego.DESCRIPCION.ToString();
+                txtCantidadInventario.Text = videojuego.CANTIDAD_INVENTARIO.ToString();
+                txtDescuento.Text = videojuego.DESCUENTO.ToString();
+                txtPrecioColones.Text = videojuego.PRECIO_COLONES.ToString();
+                txtPrecioDolares.Text = videojuego.PRECIO_DOLARES.ToString();
+                txtNombre.Text = videojuego.NOMBRE.ToString();
+                txtFechaSalida.Text = videojuego.FECHA_SALIDA.ToString();
+                txtNota.Text = videojuego.NOTA.ToString();
 
                 this.btnEditar.Enabled = false;
                 this.btnBorrar.Enabled = false;
@@ -429,7 +437,7 @@ namespace VentaVideojuegos.Layers.UI
             }
             else
             {
-                MessageBox.Show("Debe seleccionar el producto que desea eliminar");
+                MessageBox.Show("Debe seleccionar el videojeugo que desea eliminar");
             }
         }
 
@@ -477,9 +485,30 @@ namespace VentaVideojuegos.Layers.UI
             }
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ClienteRAWG clienteRAWG = new ClienteRAWG();
 
+                RAWGJuego rawgJuego = clienteRAWG.ObtenerJuego(txtNombre.Text, "c2440053b87e41b88030c0bd0099a493");
+
+                txtDescripcion.Text = rawgJuego.Description;
+                txtFechaSalida.Text = rawgJuego.Released.ToString();
+                txtNota.Text = rawgJuego.Rating.ToString();
+
+                txtCantidadInventario.Enabled= true;
+                txtDescuento.Enabled= true;
+                txtPrecioColones.Enabled= true;
+                cmbEstado.Enabled= true;
+                pbImagen.Enabled = true;
+                btnConfirmar.Enabled= true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("No se encontro el videojuego");
+                return;
+            }
         }
     }
 }

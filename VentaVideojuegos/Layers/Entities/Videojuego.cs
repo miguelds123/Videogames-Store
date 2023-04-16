@@ -18,6 +18,8 @@ namespace VentaVideojuegos
         public string DESCRIPCION { set; get; }
         public DateTime FECHA_SALIDA { set; get; }
         public double NOTA { set; get; }
+        public int ESTADO { set; get; }
+        public byte[] Imagen { set; get; }
 
     }
 }
