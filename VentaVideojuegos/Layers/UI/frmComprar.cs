@@ -33,8 +33,8 @@ namespace VentaVideojuegos.Layers.UI
             txtTotal.Text = string.Empty;
             txtCantidad.Text = string.Empty;
 
-            txtIDCliente.Enabled = true;
-            btnConfirmar.Enabled = true;
+            rdbProducto.Enabled = true;
+            rdbVideojuego.Enabled = true;
             btnCancelar.Enabled = true;
 
             btnNuevo.Enabled = false;
@@ -67,6 +67,8 @@ namespace VentaVideojuegos.Layers.UI
             txtSubtotal.Enabled = false;
             txtTotal.Enabled = false;
             txtCantidad.Enabled = false;
+            rdbProducto.Enabled = false;
+            rdbVideojuego.Enabled = false;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -108,44 +110,98 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnConfirmarProducto_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtIDProducto.Text))
+            if (rdbProducto.Checked)
             {
-                MessageBox.Show("Debe digitar el id del producto que desea comprar");
-                txtIDProducto.Focus();
-                return;
-            }
-
-            if (String.IsNullOrEmpty(txtCantidad.Text))
-            {
-                MessageBox.Show("Debe digitar la cantidad de productos que desea comprar");
-                txtCantidad.Focus();
-                return;
-            }
-
-            BLLProducto _BLLProducto = new BLLProducto();
-
-            List<Producto> lista = _BLLProducto.GetAllProducto();
-
-            bool estado = false;
-
-            foreach (Producto p in lista)
-            {
-                if (p.ID == Convert.ToInt32(txtIDProducto.Text))
+                if (String.IsNullOrEmpty(txtIDProducto.Text))
                 {
-                    estado = true;
+                    MessageBox.Show("Debe digitar el id del producto que desea comprar");
+                    txtIDProducto.Focus();
+                    return;
                 }
-            }
 
-            if (estado)
-            {
-                btnAgregar.Enabled = true;
-                txtIDProducto.Enabled = false;
-                txtCantidad.Enabled = false;
-                btnConfirmarProducto.Enabled = false;
+                if (String.IsNullOrEmpty(txtCantidad.Text))
+                {
+                    MessageBox.Show("Debe digitar la cantidad de productos que desea comprar");
+                    txtCantidad.Focus();
+                    return;
+                }
+
+                BLLProducto _BLLProducto = new BLLProducto();
+
+                List<Producto> lista = _BLLProducto.GetAllProducto();
+
+                bool estado = false;
+
+                foreach (Producto p in lista)
+                {
+                    if (p.ID == Convert.ToInt32(txtIDProducto.Text))
+                    {
+                        estado = true;
+                    }
+                }
+
+                if (estado)
+                {
+                    btnAgregar.Enabled = true;
+                    txtIDProducto.Enabled = false;
+                    txtCantidad.Enabled = false;
+                    btnConfirmarProducto.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("El producto que selecciono no es valido");
+                }
             }
             else
             {
-                MessageBox.Show("El producto que selecciono no es valido");
+                if (rdbVideojuego.Checked)
+                {
+                    if (String.IsNullOrEmpty(txtIDProducto.Text))
+                    {
+                        MessageBox.Show("Debe digitar el id del videojuego que desea comprar");
+                        txtIDProducto.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtCantidad.Text))
+                    {
+                        MessageBox.Show("Debe digitar la cantidad de videojuegos que desea comprar");
+                        txtCantidad.Focus();
+                        return;
+                    }
+
+                    BLLVideojuego _BLLVideojuego= new BLLVideojuego();
+
+                    List<Videojuego> lista = _BLLVideojuego.GetAllVideojuego();
+
+                    bool estado = false;
+
+                    foreach (Videojuego v in lista)
+                    {
+                        if (v.ID == Convert.ToInt32(txtIDProducto.Text))
+                        {
+                            estado = true;
+                        }
+                    }
+
+                    if (estado)
+                    {
+                        btnAgregar.Enabled = true;
+                        txtIDProducto.Enabled = false;
+                        txtCantidad.Enabled = false;
+                        btnConfirmarProducto.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El videojuego que selecciono no es valido");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el tipo de lo que desea comprar");
+                    rdbProducto.Focus();
+                    return;
+                }
             }
         }
 
@@ -164,14 +220,17 @@ namespace VentaVideojuegos.Layers.UI
             txtIDProducto.Text = string.Empty;
             txtCantidad.Text = string.Empty;
 
+            rdbProducto.Checked = false;
+            rdbVideojuego.Checked = false;
+            rdbProducto.Enabled = true;
+            rdbVideojuego.Enabled = true;
+           
+
             txtSubtotal.Text = "0";
 
             txtTotal.Text = "0";
 
             numeroDetalle = 1;
-
-            txtIDCliente.Enabled = true;
-            btnConfirmar.Enabled = true;
 
             btnNuevo.Enabled = false;
 
@@ -184,50 +243,52 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            BLLProducto _BLLProducto = new BLLProducto();
-            DetalleOrden detalleOrden= new DetalleOrden();
-
-            detalleOrden.IdOrden= Convert.ToInt32(txtIDFactura.Text);
-            detalleOrden.IdDetalle = numeroDetalle;
-            detalleOrden.IdProducto= Convert.ToInt32(txtIDProducto.Text);
-            detalleOrden.Cantidad= Convert.ToInt32(txtCantidad.Text);
-
-            List<Producto> lista = _BLLProducto.GetAllProducto();
-
-            foreach(Producto producto in lista)
+            if (rdbProducto.Checked)
             {
-                if (Convert.ToUInt32(txtIDProducto.Text) == producto.ID)
-                {
-                    if (producto.Estado == 1)
-                    {
-                        if (producto.CantidadInventario >= Convert.ToInt32(txtCantidad.Text))
-                        {
-                            detalleOrden.Total = (producto.PrecioColones - producto.Descuento) * detalleOrden.Cantidad;
+                BLLProducto _BLLProducto = new BLLProducto();
+                DetalleOrden detalleOrden = new DetalleOrden();
 
-                            varDescuento += producto.Descuento * detalleOrden.Cantidad;
+                detalleOrden.IdOrden = Convert.ToInt32(txtIDFactura.Text);
+                detalleOrden.IdDetalle = numeroDetalle;
+                detalleOrden.IdProducto = Convert.ToInt32(txtIDProducto.Text);
+                detalleOrden.Cantidad = Convert.ToInt32(txtCantidad.Text);
+
+                List<Producto> lista = _BLLProducto.GetAllProducto();
+
+                foreach (Producto producto in lista)
+                {
+                    if (Convert.ToUInt32(txtIDProducto.Text) == producto.ID)
+                    {
+                        if (producto.Estado == 1)
+                        {
+                            if (producto.CantidadInventario >= Convert.ToInt32(txtCantidad.Text))
+                            {
+                                detalleOrden.Total = (producto.PrecioColones - producto.Descuento) * detalleOrden.Cantidad;
+
+                                varDescuento += producto.Descuento * detalleOrden.Cantidad;
+                            }
+                            else
+                            {
+                                MessageBox.Show("En este momento no tenemos suficientes existencias de este producto, el numero maximo que puede comprar es: " + producto.CantidadInventario);
+                                txtCantidad.Enabled = true;
+                                txtIDProducto.Enabled = true;
+                                btnConfirmarProducto.Enabled = true;
+                                return;
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("En este momento no tenemos suficientes existencias de este producto, el numero maximo que puede comprar es: " + producto.CantidadInventario);
-                            txtCantidad.Enabled= true;
-                            txtIDProducto.Enabled= true;
-                            btnConfirmarProducto.Enabled= true;
+                            MessageBox.Show("El producto que desea agregar no esta disponible en este momento");
+                            txtCantidad.Enabled = true;
+                            txtIDProducto.Enabled = true;
+                            btnConfirmarProducto.Enabled = true;
                             return;
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("El producto que desea agregar no esta disponible en este momento");
-                        txtCantidad.Enabled = true;
-                        txtIDProducto.Enabled = true;
-                        btnConfirmarProducto.Enabled = true;
-                        return;
-                    }
                 }
-            }
 
-            string[] detalleDataGrid =
-            {
+                string[] detalleDataGrid =
+                {
                 detalleOrden.IdDetalle.ToString(),
                 detalleOrden.IdProducto.ToString(),
                 detalleOrden.Cantidad.ToString(),
@@ -235,26 +296,110 @@ namespace VentaVideojuegos.Layers.UI
                 detalleOrden.Total.ToString(),
             };
 
-            ordenCompraDTO.listaDetalles.Add(detalleOrden);
-            dgvDatos.Rows.Add(detalleDataGrid);
+                ordenCompraDTO.listaDetalles.Add(detalleOrden);
+                dgvDatos.Rows.Add(detalleDataGrid);
 
-            numeroDetalle++;
+                numeroDetalle++;
 
-            btnComprar.Enabled = true;
+                btnComprar.Enabled = true;
 
-            varSubTotal += detalleOrden.Total;
-            txtSubtotal.Text= (varSubTotal + varDescuento).ToString();
+                varSubTotal += detalleOrden.Total;
+                txtSubtotal.Text = (varSubTotal + varDescuento).ToString();
 
-            varTotal += detalleOrden.Total;
-            txtTotal.Text= varTotal.ToString();
+                varTotal += detalleOrden.Total;
+                txtTotal.Text = varTotal.ToString();
 
-            varDescuentoTotal += varDescuento;
-            varDescuento = 0;
+                varDescuentoTotal += varDescuento;
+                varDescuento = 0;
 
-            txtIDProducto.Enabled = true;
-            txtCantidad.Enabled = true;
-            btnConfirmarProducto.Enabled = true;
-            btnAgregar.Enabled = false;
+                txtIDProducto.Enabled = true;
+                txtCantidad.Enabled = true;
+                btnConfirmarProducto.Enabled = true;
+                btnAgregar.Enabled = false;
+            }
+            else
+            {
+                if (rdbVideojuego.Checked)
+                {
+                    BLLVideojuego _BLLVideojuego= new BLLVideojuego();
+                    DetalleOrden detalleOrden = new DetalleOrden();
+
+                    detalleOrden.IdOrden = Convert.ToInt32(txtIDFactura.Text);
+                    detalleOrden.IdDetalle = numeroDetalle;
+                    detalleOrden.IdProducto = Convert.ToInt32(txtIDProducto.Text);
+                    detalleOrden.Cantidad = Convert.ToInt32(txtCantidad.Text);
+
+                    List<Videojuego> lista = _BLLVideojuego.GetAllVideojuego();
+
+                    foreach (Videojuego videojuego in lista)
+                    {
+                        if (Convert.ToUInt32(txtIDProducto.Text) == videojuego.ID)
+                        {
+                            if (videojuego.ESTADO == 1)
+                            {
+                                if (videojuego.CANTIDAD_INVENTARIO >= Convert.ToInt32(txtCantidad.Text))
+                                {
+                                    detalleOrden.Total = (videojuego.PRECIO_COLONES - videojuego.DESCUENTO) * detalleOrden.Cantidad;
+
+                                    varDescuento += videojuego.DESCUENTO * detalleOrden.Cantidad;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("En este momento no tenemos suficientes existencias de este videojuego, el numero maximo que puede comprar es: " + videojuego.CANTIDAD_INVENTARIO);
+                                    txtCantidad.Enabled = true;
+                                    txtIDProducto.Enabled = true;
+                                    btnConfirmarProducto.Enabled = true;
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("El videojuego que desea agregar no esta disponible en este momento");
+                                txtCantidad.Enabled = true;
+                                txtIDProducto.Enabled = true;
+                                btnConfirmarProducto.Enabled = true;
+                                return;
+                            }
+                        }
+                    }
+
+                    string[] detalleDataGrid =
+                    {
+                    detalleOrden.IdDetalle.ToString(),
+                    detalleOrden.IdProducto.ToString(),
+                    detalleOrden.Cantidad.ToString(),
+                    varDescuento.ToString(),
+                    detalleOrden.Total.ToString(),
+                    };
+
+                    ordenCompraDTO.listaDetalles.Add(detalleOrden);
+                    dgvDatos.Rows.Add(detalleDataGrid);
+
+                    numeroDetalle++;
+
+                    btnComprar.Enabled = true;
+
+                    varSubTotal += detalleOrden.Total;
+                    txtSubtotal.Text = (varSubTotal + varDescuento).ToString();
+
+                    varTotal += detalleOrden.Total;
+                    txtTotal.Text = varTotal.ToString();
+
+                    varDescuentoTotal += varDescuento;
+                    varDescuento = 0;
+
+                    txtIDProducto.Enabled = true;
+                    txtCantidad.Enabled = true;
+                    btnConfirmarProducto.Enabled = true;
+                    btnAgregar.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el tipo de lo que desea comprar");
+                    rdbProducto.Focus();
+                    return;
+                }
+            }
         }
 
         private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -264,57 +409,137 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            BLLFactura _BLLFactura= new BLLFactura();
-            BLLProducto _BLLProducto= new BLLProducto();
-
-            List<Producto> lista = _BLLProducto.GetAllProducto();
-
-            int cantidad = 0;
-
-            foreach (Producto producto in lista)
+            if (rdbProducto.Checked)
             {
-                foreach (DetalleOrden detalleOrden in ordenCompraDTO.listaDetalles)
-                {
-                    if (detalleOrden.IdProducto == producto.ID)
-                    {
-                        cantidad += detalleOrden.Cantidad;
+                BLLFactura _BLLFactura = new BLLFactura();
+                BLLProducto _BLLProducto = new BLLProducto();
 
-                        if (producto.CantidadInventario < cantidad)
+                List<Producto> lista = _BLLProducto.GetAllProducto();
+
+                int cantidad = 0;
+
+                foreach (Producto producto in lista)
+                {
+                    foreach (DetalleOrden detalleOrden in ordenCompraDTO.listaDetalles)
+                    {
+                        if (detalleOrden.IdProducto == producto.ID)
                         {
-                            MessageBox.Show("En este momento no poseemos la cantidad de inventario necesario para realizar su compra, su compra sera cancerlada para que pueda intentar realizarla de nuevo");
-                            btnCancelar_Click(sender, e);
-                            return;
+                            cantidad += detalleOrden.Cantidad;
+
+                            if (producto.CantidadInventario < cantidad)
+                            {
+                                MessageBox.Show("En este momento no poseemos la cantidad de inventario necesario para realizar su compra, su compra sera cancerlada para que pueda intentar realizarla de nuevo");
+                                btnCancelar_Click(sender, e);
+                                return;
+                            }
                         }
                     }
+                    cantidad = 0;
                 }
-                cantidad = 0;
+
+                ordenCompraDTO.ID = Convert.ToInt32(txtIDFactura.Text);
+                ordenCompraDTO.FechaOrden = DateTime.Now;
+                ordenCompraDTO.IdCliente = Convert.ToInt32(txtIDCliente.Text);
+                ordenCompraDTO.Total = Convert.ToInt32(txtTotal.Text);
+                ordenCompraDTO.SubTotal = Convert.ToInt32(txtTotal.Text) + varDescuentoTotal;
+
+                try
+                {
+                    _BLLFactura.SaveFactura(ordenCompraDTO);
+
+                    MessageBox.Show("Su compra a sido realizada con exito");
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo realizar la compra");
+
+                    btnCancelar_Click(sender, e);
+                }
             }
-
-            ordenCompraDTO.ID= Convert.ToInt32(txtIDFactura.Text);
-            ordenCompraDTO.FechaOrden = DateTime.Now;
-            ordenCompraDTO.IdCliente = Convert.ToInt32(txtIDCliente.Text);
-            ordenCompraDTO.Total = Convert.ToInt32(txtTotal.Text);
-            ordenCompraDTO.SubTotal = Convert.ToInt32(txtTotal.Text) + varDescuentoTotal;
-
-            try
+            else
             {
-                _BLLFactura.SaveFactura(ordenCompraDTO);
+                if (rdbVideojuego.Checked)
+                {
+                    BLLFacturaVideojuego _BLLFacturaVideojuego = new BLLFacturaVideojuego();
+                    BLLVideojuego _BLLVideojuego = new BLLVideojuego();
 
-                MessageBox.Show("Su compra a sido realizada con exito");
+                    List<Videojuego> lista = _BLLVideojuego.GetAllVideojuego();
 
-                this.Close();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("No se pudo realizar la compra");
+                    int cantidad = 0;
 
-                btnCancelar_Click(sender, e);
+                    foreach (Videojuego videojuego in lista)
+                    {
+                        foreach (DetalleOrden detalleOrden in ordenCompraDTO.listaDetalles)
+                        {
+                            if (detalleOrden.IdProducto == videojuego.ID)
+                            {
+                                cantidad += detalleOrden.Cantidad;
+
+                                if (videojuego.CANTIDAD_INVENTARIO < cantidad)
+                                {
+                                    MessageBox.Show("En este momento no poseemos la cantidad de inventario necesario para realizar su compra, su compra sera cancerlada para que pueda intentar realizarla de nuevo");
+                                    btnCancelar_Click(sender, e);
+                                    return;
+                                }
+                            }
+                        }
+                        cantidad = 0;
+                    }
+
+                    ordenCompraDTO.ID = Convert.ToInt32(txtIDFactura.Text);
+                    ordenCompraDTO.FechaOrden = DateTime.Now;
+                    ordenCompraDTO.IdCliente = Convert.ToInt32(txtIDCliente.Text);
+                    ordenCompraDTO.Total = Convert.ToInt32(txtTotal.Text);
+                    ordenCompraDTO.SubTotal = Convert.ToInt32(txtTotal.Text) + varDescuentoTotal;
+
+                    try
+                    {
+                        _BLLFacturaVideojuego.SaveFactura(ordenCompraDTO);
+
+                        MessageBox.Show("Su compra a sido realizada con exito");
+
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("No se pudo realizar la compra");
+
+                        btnCancelar_Click(sender, e);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el tipo de la compra que desea realizar");
+                }
             }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdbProducto_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIDCliente.Enabled= true;
+            btnConfirmar.Enabled= true;
+            rdbProducto.Enabled= false;
+            rdbVideojuego.Enabled= false;
+        }
+
+        private void rdbVideojuego_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIDCliente.Enabled = true;
+            btnConfirmar.Enabled = true;
+            rdbProducto.Enabled = false;
+            rdbVideojuego.Enabled = false;
         }
     }
 }

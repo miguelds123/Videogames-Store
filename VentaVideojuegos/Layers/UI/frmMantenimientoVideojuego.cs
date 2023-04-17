@@ -214,68 +214,17 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            BLLVideojuego _BLLVideojuego = new BLLVideojuego();
-            Videojuego videojuego = new Videojuego();
-
-            switch (estadoFrame)
+            if (!String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                case EstadoMantenimiento.Nuevo:
+                BLLVideojuego _BLLVideojuego = new BLLVideojuego();
+                Videojuego videojuego = new Videojuego();
 
-                    ValidarCampos();
-
-                    videojuego = new Videojuego();
-
-                    videojuego.ID = Convert.ToInt32(txtID.Text);
-                    videojuego.DESCRIPCION = txtDescripcion.Text;
-                    videojuego.CANTIDAD_INVENTARIO = Convert.ToInt32(txtCantidadInventario.Text);
-                    videojuego.DESCUENTO = Convert.ToInt32(txtDescuento.Text);
-                    videojuego.PRECIO_COLONES = Convert.ToDouble(txtPrecioColones.Text);
-                    videojuego.PRECIO_DOLARES = Convert.ToDouble(txtPrecioDolares.Text);
-                    videojuego.Imagen = (byte[])this.pbImagen.Tag;
-                    videojuego.NOMBRE = txtNombre.Text;
-                    videojuego.FECHA_SALIDA = Convert.ToDateTime(txtFechaSalida.Text);
-                    videojuego.NOTA = Convert.ToDouble(txtNota.Text);
-                    videojuego.ID_CATEGORIA = 1;
-
-                    if (cmbEstado.SelectedItem.Equals(Estado.Activo))
-                    {
-                        videojuego.ESTADO = 1;
-                    }
-                    else
-                    {
-                        if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
-                        {
-                            videojuego.ESTADO = 0;
-                        }
-                    }
-
-                    try
-                    {
-                        _BLLVideojuego.SaveVideojuego(videojuego);
-
-                        this.CargarDatos();
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo producto");
-                        return;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo ");
-                        return;
-                    }
-
-                    break;
-
-                case EstadoMantenimiento.Editar:
-
-                    if (this.dgvDatos.SelectedRows.Count > 0)
-                    {
+                switch (estadoFrame)
+                {
+                    case EstadoMantenimiento.Nuevo:
 
                         ValidarCampos();
 
-                        //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
                         videojuego = new Videojuego();
 
                         videojuego.ID = Convert.ToInt32(txtID.Text);
@@ -304,66 +253,125 @@ namespace VentaVideojuegos.Layers.UI
 
                         try
                         {
-                            _BLLVideojuego.UpdateVideojuego(videojuego);
+                            _BLLVideojuego.SaveVideojuego(videojuego);
 
                             this.CargarDatos();
                         }
                         catch (SqlException ex)
                         {
-                            MessageBox.Show("Ocurrio un error en la base de datos al editar el producto");
+                            MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo producto");
                             return;
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ocurrio un error en el programa al editar el producto");
+                            MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo ");
                             return;
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe seleccionar el producto que desea editar");
-                        return;
-                    }
 
-                    break;
+                        break;
 
-                case EstadoMantenimiento.Borrar:
+                    case EstadoMantenimiento.Editar:
 
-                    string mensaje = "Esta seguro que desea eliminar este videojuego, esta accion es irreversible";
-                    string caption = "Advertencia";
-
-                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-                    DialogResult result;
-
-                    result = MessageBox.Show(mensaje, caption, buttons);
-
-                    if (result == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        try
+                        if (this.dgvDatos.SelectedRows.Count > 0)
                         {
-                            //_BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
 
-                            _BLLVideojuego.BorradoLogico(Convert.ToInt32(txtID.Text));
+                            ValidarCampos();
 
-                            this.CargarDatos();
+                            //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
+                            videojuego = new Videojuego();
+
+                            videojuego.ID = Convert.ToInt32(txtID.Text);
+                            videojuego.DESCRIPCION = txtDescripcion.Text;
+                            videojuego.CANTIDAD_INVENTARIO = Convert.ToInt32(txtCantidadInventario.Text);
+                            videojuego.DESCUENTO = Convert.ToInt32(txtDescuento.Text);
+                            videojuego.PRECIO_COLONES = Convert.ToDouble(txtPrecioColones.Text);
+                            videojuego.PRECIO_DOLARES = Convert.ToDouble(txtPrecioDolares.Text);
+                            videojuego.Imagen = (byte[])this.pbImagen.Tag;
+                            videojuego.NOMBRE = txtNombre.Text;
+                            videojuego.FECHA_SALIDA = Convert.ToDateTime(txtFechaSalida.Text);
+                            videojuego.NOTA = Convert.ToDouble(txtNota.Text);
+                            videojuego.ID_CATEGORIA = 1;
+
+                            if (cmbEstado.SelectedItem.Equals(Estado.Activo))
+                            {
+                                videojuego.ESTADO = 1;
+                            }
+                            else
+                            {
+                                if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
+                                {
+                                    videojuego.ESTADO = 0;
+                                }
+                            }
+
+                            try
+                            {
+                                _BLLVideojuego.UpdateVideojuego(videojuego);
+
+                                this.CargarDatos();
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Ocurrio un error en la base de datos al editar el producto");
+                                return;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ocurrio un error en el programa al editar el producto");
+                                return;
+                            }
                         }
-                        catch (SqlException ex)
+                        else
                         {
-                            MessageBox.Show("Ocurrio un error en la base de datos al borrar el producto");
+                            MessageBox.Show("Debe seleccionar el producto que desea editar");
                             return;
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Ocurrio un error en el programa al borrar el producto");
-                            return;
-                        }
-                    }
 
-                    break;
+                        break;
+
+                    case EstadoMantenimiento.Borrar:
+
+                        string mensaje = "Esta seguro que desea eliminar este videojuego, esta accion es irreversible";
+                        string caption = "Advertencia";
+
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                        DialogResult result;
+
+                        result = MessageBox.Show(mensaje, caption, buttons);
+
+                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            try
+                            {
+                                //_BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
+
+                                _BLLVideojuego.BorradoLogico(Convert.ToInt32(txtID.Text));
+
+                                this.CargarDatos();
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Ocurrio un error en la base de datos al borrar el producto");
+                                return;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ocurrio un error en el programa al borrar el producto");
+                                return;
+                            }
+                        }
+
+                        break;
+                }
+
+                this.CambiarEstado(EstadoMantenimiento.Ninguno);
             }
-
-            this.CambiarEstado(EstadoMantenimiento.Ninguno);
+            else
+            {
+                MessageBox.Show("El juego que desea agregar no fue encontrado");
+                return;
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
