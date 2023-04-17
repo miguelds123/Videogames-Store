@@ -90,6 +90,7 @@
     <Compile Include="Layers\BLL\BLLProducto.cs" />
     <Compile Include="Layers\BLL\BLLReservacion.cs" />
     <Compile Include="Layers\BLL\BLLProvincia.cs" />
+    <Compile Include="Layers\BLL\BLLReservacionVideojuego.cs" />
     <Compile Include="Layers\BLL\BLLTelefono.cs" />
     <Compile Include="Layers\BLL\BLLVideojuego.cs" />
     <Compile Include="Layers\DAL\DALCanton.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Layers\DAL\DALProducto.cs" />
     <Compile Include="Layers\DAL\DALProvincia.cs" />
     <Compile Include="Layers\DAL\DALReservacion.cs" />
+    <Compile Include="Layers\DAL\DALReservacionVideojuego.cs" />
     <Compile Include="Layers\DAL\DALTelefono.cs" />
     <Compile Include="Layers\DAL\DALVideojuego.cs" />
     <Compile Include="Layers\Entities\Canton.cs" />
