@@ -377,13 +377,13 @@ namespace VentaVideojuegos.Layers.UI
 
         private void rdbVideojuego_CheckedChanged(object sender, EventArgs e)
         {
-            txtIDCliente.Text = string.Empty;;
-            txtIDProducto.Text = string.Empty;
-            txtAdelanto.Text = string.Empty;
-
             txtIDCliente.Enabled = true;
             btnConfirmar.Enabled = true;
             btnCancelar.Enabled = true;
+
+            txtIDCliente.Text = string.Empty;
+            txtIDProducto.Text = string.Empty;
+            txtAdelanto.Text = string.Empty;
 
             rdbProducto.Enabled = false;
             rdbVideojuego.Enabled = false;

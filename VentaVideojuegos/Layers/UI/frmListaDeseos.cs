@@ -248,6 +248,8 @@ namespace VentaVideojuegos.Layers.UI
                                 if (listaDeseos1.IdProducto == Convert.ToInt32(txtIdProducto.Text))
                                 {
                                     MessageBox.Show("El producto que desea añadir ya esta en su lista deseos");
+                                    txtIdProducto.Enabled= true;
+                                    btnConfirmar.Enabled= true;
                                     return;
                                 }
                                 else
@@ -368,6 +370,8 @@ namespace VentaVideojuegos.Layers.UI
                                     if (listaDeseos1.IdProducto == Convert.ToInt32(txtIdProducto.Text))
                                     {
                                         MessageBox.Show("El producto que desea añadir ya esta en su lista deseos");
+                                        txtIdProducto.Enabled = true;
+                                        btnConfirmar.Enabled = true;
                                         return;
                                     }
                                     else
@@ -690,8 +694,8 @@ namespace VentaVideojuegos.Layers.UI
 
         private void rdbVideojuego_CheckedChanged(object sender, EventArgs e)
         {
-            //txtIdCliente.Enabled = true;
-            //btnBuscar.Enabled = true;
+            txtIdCliente.Enabled = true;
+            btnBuscar.Enabled = true;
         }
     }
 }
