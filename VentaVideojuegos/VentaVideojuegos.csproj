@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MessagingToolkit.QRCode.1.3.0\lib\MessagingToolkit.QRCode.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -131,6 +134,7 @@
     <Compile Include="Layers\Persistencia\FactoryDataBase.cs" />
     <Compile Include="Layers\Persistencia\IDataBase.cs" />
     <Compile Include="Layers\Persistencia\UsuarioIniciado.cs" />
+    <Compile Include="Layers\Procesos\QR.cs" />
     <Compile Include="Layers\Servicios\ServiceBCCR.cs" />
     <Compile Include="Layers\Servicios\ServiceRAWG\ClienteRAWG.cs" />
     <Compile Include="Layers\Servicios\ServiceRAWG\ManejadorRAWG.cs" />

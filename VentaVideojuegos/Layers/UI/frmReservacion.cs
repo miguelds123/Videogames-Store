@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -267,6 +269,17 @@ namespace VentaVideojuegos.Layers.UI
 
                                     MessageBox.Show("Su reservacion a sido realizada con exito");
 
+                                    string rutaImagen = @"c:\temp\qr.png";
+
+                                    if (File.Exists(rutaImagen))
+                                        File.Delete(rutaImagen);
+
+                                    Image quickResponseImage = QR.QuickResponseGenerador(txtIDReservacion.Text, 53);
+
+                                    quickResponseImage.Save(rutaImagen, ImageFormat.Png);
+
+                                    MessageBox.Show("En la siguiente direccion podra encontrar un codigo qr con su numero de reservacion con el que podra ir a retirar su reservacion: " + rutaImagen);
+
                                     this.Close();
 
                                     return;
@@ -323,6 +336,17 @@ namespace VentaVideojuegos.Layers.UI
                                         _BLLReservacionVideojuego.SaveReservacion(reservacion);
 
                                         MessageBox.Show("Su reservacion a sido realizada con exito");
+
+                                        string rutaImagen = @"c:\temp\qr.png";
+
+                                        if (File.Exists(rutaImagen))
+                                            File.Delete(rutaImagen);
+
+                                        Image quickResponseImage = QR.QuickResponseGenerador(txtIDReservacion.Text, 53);
+
+                                        quickResponseImage.Save(rutaImagen, ImageFormat.Png);
+
+                                        MessageBox.Show("En la siguiente direccion podra encontrar un codigo qr con su numero de reservacion con el que podra ir a retirar su reservacion: " + rutaImagen);
 
                                         this.Close();
 
