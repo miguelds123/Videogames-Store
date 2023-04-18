@@ -209,52 +209,75 @@ namespace VentaVideojuegos.Layers.UI
                 {
                     case EstadoMantenimiento.Nuevo:
 
-                        BLLProducto _BLLProducto = new BLLProducto();
-
                         List<ListaDeseos> lista = new List<ListaDeseos>();
-                        List<Producto> listaProductos = new List<Producto>();
 
                         lista = _BLLListaDeseos.GetListaDeseosByIdCliente(txtIdCliente.Text);
-                        listaProductos = _BLLProducto.GetAllProducto();
-
+                        
                         string estado = "";
 
-                        foreach (Producto producto in listaProductos)
+                        if (lista.Count == 0)
                         {
-                            foreach (ListaDeseos listaD in lista)
+                            ValidarCampos();
+
+                            listaDeseos = new ListaDeseos();
+
+                            listaDeseos.IdProducto = Convert.ToInt32(txtIdProducto.Text);
+                            listaDeseos.IdCliente = Convert.ToInt32(txtIdCliente.Text);
+
+                            try
                             {
-                                if (producto.ID == listaD.IdProducto)
-                                {
-                                    MessageBox.Show("El producto que desea agregar ya esta en su lista de deseos");
-                                    txtIdProducto.Enabled = true;
-                                    btnConfirmar.Enabled = true;
-                                    return;
-                                }
+                                _BLLListaDeseos.SaveListaDeseos(listaDeseos);
+
+                                this.CargarDatos();
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                return;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                return;
                             }
                         }
-
-                        ValidarCampos();
-
-                        listaDeseos = new ListaDeseos();
-
-                        listaDeseos.IdProducto = Convert.ToInt32(txtIdProducto.Text);
-                        listaDeseos.IdCliente = Convert.ToInt32(txtIdCliente.Text);
-
-                        try
+                        else
                         {
-                            _BLLListaDeseos.SaveListaDeseos(listaDeseos);
+                            foreach (ListaDeseos listaDeseos1 in lista)
+                            {
+                                if (listaDeseos1.IdProducto == Convert.ToInt32(txtIdProducto.Text))
+                                {
+                                    MessageBox.Show("El producto que desea añadir ya esta en su lista deseos");
+                                    return;
+                                }
+                                else
+                                {
 
-                            this.CargarDatos();
-                        }
-                        catch (SqlException ex)
-                        {
-                            MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
-                            return;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
-                            return;
+                                    ValidarCampos();
+
+                                    listaDeseos = new ListaDeseos();
+
+                                    listaDeseos.IdProducto = Convert.ToInt32(txtIdProducto.Text);
+                                    listaDeseos.IdCliente = Convert.ToInt32(txtIdCliente.Text);
+
+                                    try
+                                    {
+                                        _BLLListaDeseos.SaveListaDeseos(listaDeseos);
+
+                                        this.CargarDatos();
+                                    }
+                                    catch (SqlException ex)
+                                    {
+                                        MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                        return;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                        return;
+                                    }
+                                }
+                            }
                         }
 
                         break;
@@ -306,52 +329,75 @@ namespace VentaVideojuegos.Layers.UI
                     {
                         case EstadoMantenimiento.Nuevo:
 
-                            BLLVideojuego _BLLVideojuego = new BLLVideojuego();
-
                             List<ListaDeseos> lista = new List<ListaDeseos>();
-                            List<Videojuego> listaProductos = new List<Videojuego>();
 
                             lista = _BLLListaDeseosVideojuego.GetListaDeseosVideojuegoByIdCliente(txtIdCliente.Text);
-                            listaProductos = _BLLVideojuego.GetAllVideojuego();
 
                             string estado = "";
 
-                            foreach (Videojuego videojuego in listaProductos)
+                            if (lista.Count == 0)
                             {
-                                foreach (ListaDeseos listaD in lista)
+                                ValidarCampos();
+
+                                listaDeseos = new ListaDeseos();
+
+                                listaDeseos.IdProducto = Convert.ToInt32(txtIdProducto.Text);
+                                listaDeseos.IdCliente = Convert.ToInt32(txtIdCliente.Text);
+
+                                try
                                 {
-                                    if (videojuego.ID == listaD.IdProducto)
-                                    {
-                                        MessageBox.Show("El producto que desea agregar ya esta en su lista de deseos");
-                                        txtIdProducto.Enabled = true;
-                                        btnConfirmar.Enabled = true;
-                                        return;
-                                    }
+                                    _BLLListaDeseosVideojuego.SaveListaDeseosVideojuegos(listaDeseos);
+
+                                    this.CargarDatosVideojuegos();
+                                }
+                                catch (SqlException ex)
+                                {
+                                    MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                    return;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                    return;
                                 }
                             }
-
-                            ValidarCampos();
-
-                            listaDeseos = new ListaDeseos();
-
-                            listaDeseos.IdProducto = Convert.ToInt32(txtIdProducto.Text);
-                            listaDeseos.IdCliente = Convert.ToInt32(txtIdCliente.Text);
-
-                            try
+                            else
                             {
-                                _BLLListaDeseosVideojuego.SaveListaDeseosVideojuegos(listaDeseos);
+                                foreach (ListaDeseos listaDeseos1 in lista)
+                                {
+                                    if (listaDeseos1.IdProducto == Convert.ToInt32(txtIdProducto.Text))
+                                    {
+                                        MessageBox.Show("El producto que desea añadir ya esta en su lista deseos");
+                                        return;
+                                    }
+                                    else
+                                    {
 
-                                this.CargarDatosVideojuegos();
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
-                                return;
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
-                                return;
+                                        ValidarCampos();
+
+                                        listaDeseos = new ListaDeseos();
+
+                                        listaDeseos.IdProducto = Convert.ToInt32(txtIdProducto.Text);
+                                        listaDeseos.IdCliente = Convert.ToInt32(txtIdCliente.Text);
+
+                                        try
+                                        {
+                                            _BLLListaDeseosVideojuego.SaveListaDeseosVideojuegos(listaDeseos);
+
+                                            this.CargarDatosVideojuegos();
+                                        }
+                                        catch (SqlException ex)
+                                        {
+                                            MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                            return;
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                            return;
+                                        }
+                                    }
+                                }
                             }
 
                             break;
