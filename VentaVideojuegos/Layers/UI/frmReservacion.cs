@@ -27,9 +27,9 @@ namespace VentaVideojuegos.Layers.UI
             txtIDProducto.Text = string.Empty;
             txtAdelanto.Text = string.Empty;
 
-            txtIDCliente.Enabled = true;
-            btnConfirmar.Enabled = true;
             btnCancelar.Enabled = true;
+            rdbProducto.Enabled = true;
+            rdbVideojuego.Enabled = true;
 
             btnNuevo.Enabled = false;
 
@@ -79,50 +79,109 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnConfirmarProducto_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtIDProducto.Text))
+            if (rdbProducto.Checked)
             {
-                MessageBox.Show("Debe digitar el id del producto que desea reservar");
-                txtIDProducto.Focus();
-                return;
-            }
-
-            BLLProducto _BLLProducto= new BLLProducto();
-
-            List<Producto> lista= _BLLProducto.GetAllProducto();
-
-            bool estado= false;
-
-            foreach (Producto p in lista)
-            {
-                if (p.ID == Convert.ToInt32(txtIDProducto.Text))
+                if (String.IsNullOrEmpty(txtIDProducto.Text))
                 {
-                    estado= true;
-                }
-            }
-
-            if (estado)
-            {
-                Producto producto;
-
-                try
-                {
-                    producto = _BLLProducto.GetProductoById(Double.Parse(txtIDProducto.Text));
-                }
-                catch
-                {
-                    MessageBox.Show("El producto que usted selecciono no es valido");
+                    MessageBox.Show("Debe digitar el id del producto que desea reservar");
+                    txtIDProducto.Focus();
                     return;
                 }
 
-                txtAdelanto.Text = (producto.PrecioColones * 0.5).ToString();
+                BLLProducto _BLLProducto = new BLLProducto();
 
-                btnReservar.Enabled = true;
-                txtIDProducto.Enabled = false;
-                btnConfirmarProducto.Enabled = false;
+                List<Producto> lista = _BLLProducto.GetAllProducto();
+
+                bool estado = false;
+
+                foreach (Producto p in lista)
+                {
+                    if (p.ID == Convert.ToInt32(txtIDProducto.Text))
+                    {
+                        estado = true;
+                    }
+                }
+
+                if (estado)
+                {
+                    Producto producto;
+
+                    try
+                    {
+                        producto = _BLLProducto.GetProductoById(Double.Parse(txtIDProducto.Text));
+                    }
+                    catch
+                    {
+                        MessageBox.Show("El producto que usted selecciono no es valido");
+                        return;
+                    }
+
+                    txtAdelanto.Text = (producto.PrecioColones * 0.5).ToString();
+
+                    btnReservar.Enabled = true;
+                    txtIDProducto.Enabled = false;
+                    btnConfirmarProducto.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("El producto que selecciono no es valido");
+                }
             }
             else
             {
-                MessageBox.Show("El producto que selecciono no es valido");
+                if (rdbVideojuego.Checked)
+                {
+                    if (String.IsNullOrEmpty(txtIDProducto.Text))
+                    {
+                        MessageBox.Show("Debe digitar el id del videojuego que desea reservar");
+                        txtIDProducto.Focus();
+                        return;
+                    }
+
+                    BLLVideojuego _BLLVideojuego = new BLLVideojuego();
+
+                    List<Videojuego> lista = _BLLVideojuego.GetAllVideojuego();
+
+                    bool estado = false;
+
+                    foreach (Videojuego v in lista)
+                    {
+                        if (v.ID == Convert.ToInt32(txtIDProducto.Text))
+                        {
+                            estado = true;
+                        }
+                    }
+
+                    if (estado)
+                    {
+                        Videojuego videojuego;
+
+                        try
+                        {
+                            videojuego = _BLLVideojuego.GetVideojuegoById(Double.Parse(txtIDProducto.Text));
+                        }
+                        catch
+                        {
+                            MessageBox.Show("El producto que usted selecciono no es valido");
+                            return;
+                        }
+
+                        txtAdelanto.Text = (videojuego.PRECIO_COLONES * 0.5).ToString();
+
+                        btnReservar.Enabled = true;
+                        txtIDProducto.Enabled = false;
+                        btnConfirmarProducto.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El videojuego que selecciono no es valido");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el tipo de lo que desea reservar");
+                    return;
+                }
             }
         }
 
@@ -159,6 +218,11 @@ namespace VentaVideojuegos.Layers.UI
             txtIDReservacion.Enabled= false;
             txtIDProducto.Enabled = false;
             txtAdelanto.Enabled = false;
+            rdbProducto.Enabled = false;
+            rdbProducto.Checked= false;
+            rdbVideojuego.Enabled = false;
+            rdbProducto.Enabled = false;
+            rdbVideojuego.Enabled= false;
 
             MessageBox.Show("Recuerde que a la hora de hacer un apartado, debera pagar por adelantado la mitad del precio del producto, ademas de que cualquier descuento que le producto posea, no sera valido");
         }
@@ -170,56 +234,148 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            BLLReservacion _BLLReservacion = new BLLReservacion();
-            BLLProducto _BLLProducto = new BLLProducto();
-
-            reservacion.ID = Convert.ToInt32(txtIDReservacion.Text);
-            reservacion.IdProducto = Convert.ToInt32(txtIDProducto.Text);
-            reservacion.IdCliente = Convert.ToInt32(txtIDCliente.Text);
-            reservacion.Adelanto = Convert.ToInt32(txtAdelanto.Text);
-
-            List<Producto> lista = _BLLProducto.GetAllProducto();
-
-            foreach (Producto producto in lista)
+            if (rdbProducto.Checked)
             {
-                if (Convert.ToUInt32(txtIDProducto.Text) == producto.ID)
+                BLLReservacion _BLLReservacion = new BLLReservacion();
+                BLLProducto _BLLProducto = new BLLProducto();
+
+                reservacion.ID = Convert.ToInt32(txtIDReservacion.Text);
+                reservacion.IdProducto = Convert.ToInt32(txtIDProducto.Text);
+                reservacion.IdCliente = Convert.ToInt32(txtIDCliente.Text);
+                reservacion.Adelanto = Convert.ToInt32(txtAdelanto.Text);
+
+                List<Producto> lista = _BLLProducto.GetAllProducto();
+
+                foreach (Producto producto in lista)
                 {
-                    if (producto.Estado == 1)
+                    if (Convert.ToUInt32(txtIDProducto.Text) == producto.ID)
                     {
-                        if (producto.CantidadInventario >= 1)
+                        if (producto.Estado == 1)
                         {
-                            try
+                            if (producto.CantidadInventario >= 1)
                             {
-                                _BLLReservacion.SaveReservacion(reservacion);
+                                try
+                                {
+                                    _BLLReservacion.SaveReservacion(reservacion);
 
-                                MessageBox.Show("Su reservacion a sido realizada con exito");
+                                    MessageBox.Show("Su reservacion a sido realizada con exito");
 
-                                this.Close();
+                                    this.Close();
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("No se pudo realizar la reservacion");
+
+                                    btnCancelar_Click(sender, e);
+                                }
                             }
-                            catch (Exception ex)
+                            else
                             {
-                                MessageBox.Show("No se pudo realizar la reservacion");
-
-                                btnCancelar_Click(sender, e);
+                                MessageBox.Show("En este momento no tenemos suficientes existencias de este producto");
+                                txtIDProducto.Enabled = true;
+                                btnConfirmarProducto.Enabled = true;
+                                return;
                             }
                         }
                         else
                         {
-                            MessageBox.Show("En este momento no tenemos suficientes existencias de este producto");
+                            MessageBox.Show("El producto que desea agregar no esta disponible en este momento");
                             txtIDProducto.Enabled = true;
                             btnConfirmarProducto.Enabled = true;
                             return;
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("El producto que desea agregar no esta disponible en este momento");
-                        txtIDProducto.Enabled = true;
-                        btnConfirmarProducto.Enabled = true;
-                        return;
-                    }
                 }
             }
+            else
+            {
+                if (rdbVideojuego.Checked)
+                {
+                    BLLReservacionVideojuego _BLLReservacionVideojuego = new BLLReservacionVideojuego();
+                    BLLVideojuego _BLLVideojuego = new BLLVideojuego();
+
+                    reservacion.ID = Convert.ToInt32(txtIDReservacion.Text);
+                    reservacion.IdProducto = Convert.ToInt32(txtIDProducto.Text);
+                    reservacion.IdCliente = Convert.ToInt32(txtIDCliente.Text);
+                    reservacion.Adelanto = Convert.ToInt32(txtAdelanto.Text);
+
+                    List<Videojuego> lista = _BLLVideojuego.GetAllVideojuego();
+
+                    foreach (Videojuego videojuego in lista)
+                    {
+                        if (Convert.ToUInt32(txtIDProducto.Text) == videojuego.ID)
+                        {
+                            if (videojuego.ESTADO == 1)
+                            {
+                                if (videojuego.CANTIDAD_INVENTARIO >= 1)
+                                {
+                                    try
+                                    {
+                                        _BLLReservacionVideojuego.SaveReservacion(reservacion);
+
+                                        MessageBox.Show("Su reservacion a sido realizada con exito");
+
+                                        this.Close();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("No se pudo realizar la reservacion");
+
+                                        btnCancelar_Click(sender, e);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("En este momento no tenemos suficientes existencias de este producto");
+                                    txtIDProducto.Enabled = true;
+                                    btnConfirmarProducto.Enabled = true;
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("El producto que desea agregar no esta disponible en este momento");
+                                txtIDProducto.Enabled = true;
+                                btnConfirmarProducto.Enabled = true;
+                                return;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el tipo de lo que desea reservar");
+                    return;
+                }
+            }
+        }
+
+        private void rdbProducto_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIDCliente.Text = string.Empty;
+            txtIDProducto.Text = string.Empty;
+            txtAdelanto.Text = string.Empty;
+
+            txtIDCliente.Enabled = true;
+            btnConfirmar.Enabled = true;
+            btnCancelar.Enabled = true;
+
+            rdbProducto.Enabled = false;
+            rdbVideojuego.Enabled = false;
+        }
+
+        private void rdbVideojuego_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIDCliente.Text = string.Empty;;
+            txtIDProducto.Text = string.Empty;
+            txtAdelanto.Text = string.Empty;
+
+            txtIDCliente.Enabled = true;
+            btnConfirmar.Enabled = true;
+            btnCancelar.Enabled = true;
+
+            rdbProducto.Enabled = false;
+            rdbVideojuego.Enabled = false;
         }
     }
 }

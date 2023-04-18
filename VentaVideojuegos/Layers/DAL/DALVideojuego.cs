@@ -143,6 +143,7 @@ namespace VentaVideojuegos
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables[0].Rows[0];
+                    videojuego = new Videojuego();
                     videojuego.ID = (int)dr["ID"];
                     videojuego.NOMBRE = dr["NOMBRE"].ToString();
                     videojuego.CANTIDAD_INVENTARIO = (int)dr["CANTIDAD_INVENTARIO"];
