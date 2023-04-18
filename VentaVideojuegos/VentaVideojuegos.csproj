@@ -86,6 +86,7 @@
     <Compile Include="Layers\BLL\BLLFactura.cs" />
     <Compile Include="Layers\BLL\BLLFacturaVideojuego.cs" />
     <Compile Include="Layers\BLL\BLLListaDeseos.cs" />
+    <Compile Include="Layers\BLL\BLLListaDeseosVideojuego.cs" />
     <Compile Include="Layers\BLL\BLLLogin.cs" />
     <Compile Include="Layers\BLL\BLLProducto.cs" />
     <Compile Include="Layers\BLL\BLLReservacion.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Layers\DAL\DALFactura.cs" />
     <Compile Include="Layers\DAL\DALFacturaVideojuego.cs" />
     <Compile Include="Layers\DAL\DALListaDeseos.cs" />
+    <Compile Include="Layers\DAL\DALListaDeseosVideojuegos.cs" />
     <Compile Include="Layers\DAL\DALLogin.cs" />
     <Compile Include="Layers\DAL\DALProducto.cs" />
     <Compile Include="Layers\DAL\DALProvincia.cs" />

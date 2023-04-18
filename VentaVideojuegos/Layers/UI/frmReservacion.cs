@@ -203,6 +203,13 @@ namespace VentaVideojuegos.Layers.UI
             btnConfirmar.Enabled = true;
 
             btnNuevo.Enabled = false;
+
+            rdbProducto.Checked= false;
+            rdbVideojuego.Checked= false;
+            rdbProducto.Enabled=true;
+            rdbVideojuego.Enabled=true;
+            txtIDCliente.Enabled=false;
+            btnConfirmar.Enabled=false;
         }
 
         private void frmReservacion_Load(object sender, EventArgs e)

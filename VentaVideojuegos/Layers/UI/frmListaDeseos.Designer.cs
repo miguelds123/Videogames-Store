@@ -34,6 +34,12 @@
             this.btnBorrar = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioColones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCorreo = new System.Windows.Forms.Label();
             this.txtIdProducto = new System.Windows.Forms.TextBox();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
@@ -42,14 +48,12 @@
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioColones = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbVideojuego = new System.Windows.Forms.RadioButton();
+            this.rdbProducto = new System.Windows.Forms.RadioButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -110,10 +114,40 @@
             this.dgvDatos.Size = new System.Drawing.Size(544, 380);
             this.dgvDatos.TabIndex = 4;
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            // 
+            // Descuento
+            // 
+            this.Descuento.HeaderText = "Descuento";
+            this.Descuento.Name = "Descuento";
+            // 
+            // PrecioColones
+            // 
+            this.PrecioColones.HeaderText = "PrecioColones";
+            this.PrecioColones.Name = "PrecioColones";
+            // 
+            // PrecioDolares
+            // 
+            this.PrecioDolares.HeaderText = "PrecioDolares";
+            this.PrecioDolares.Name = "PrecioDolares";
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
             // lblCorreo
             // 
             this.lblCorreo.AutoSize = true;
-            this.lblCorreo.Location = new System.Drawing.Point(591, 103);
+            this.lblCorreo.Location = new System.Drawing.Point(591, 156);
             this.lblCorreo.Name = "lblCorreo";
             this.lblCorreo.Size = new System.Drawing.Size(62, 13);
             this.lblCorreo.TabIndex = 27;
@@ -121,7 +155,7 @@
             // 
             // txtIdProducto
             // 
-            this.txtIdProducto.Location = new System.Drawing.Point(664, 100);
+            this.txtIdProducto.Location = new System.Drawing.Point(664, 153);
             this.txtIdProducto.Name = "txtIdProducto";
             this.txtIdProducto.Size = new System.Drawing.Size(196, 20);
             this.txtIdProducto.TabIndex = 28;
@@ -162,7 +196,7 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(869, 97);
+            this.btnConfirmar.Location = new System.Drawing.Point(869, 150);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmar.TabIndex = 33;
@@ -189,41 +223,47 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // ID
+            // groupBox1
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
+            this.groupBox1.Controls.Add(this.rdbVideojuego);
+            this.groupBox1.Controls.Add(this.rdbProducto);
+            this.groupBox1.Location = new System.Drawing.Point(594, 59);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 43);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Seleccione el tipo de lista de deseos";
             // 
-            // Descripcion
+            // rdbVideojuego
             // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
+            this.rdbVideojuego.AutoSize = true;
+            this.rdbVideojuego.Location = new System.Drawing.Point(99, 20);
+            this.rdbVideojuego.Name = "rdbVideojuego";
+            this.rdbVideojuego.Size = new System.Drawing.Size(78, 17);
+            this.rdbVideojuego.TabIndex = 1;
+            this.rdbVideojuego.TabStop = true;
+            this.rdbVideojuego.Text = "Videojuego";
+            this.rdbVideojuego.UseVisualStyleBackColor = true;
+            this.rdbVideojuego.CheckedChanged += new System.EventHandler(this.rdbVideojuego_CheckedChanged);
             // 
-            // Descuento
+            // rdbProducto
             // 
-            this.Descuento.HeaderText = "Descuento";
-            this.Descuento.Name = "Descuento";
-            // 
-            // PrecioColones
-            // 
-            this.PrecioColones.HeaderText = "PrecioColones";
-            this.PrecioColones.Name = "PrecioColones";
-            // 
-            // PrecioDolares
-            // 
-            this.PrecioDolares.HeaderText = "PrecioDolares";
-            this.PrecioDolares.Name = "PrecioDolares";
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
+            this.rdbProducto.AutoSize = true;
+            this.rdbProducto.Location = new System.Drawing.Point(7, 20);
+            this.rdbProducto.Name = "rdbProducto";
+            this.rdbProducto.Size = new System.Drawing.Size(68, 17);
+            this.rdbProducto.TabIndex = 0;
+            this.rdbProducto.TabStop = true;
+            this.rdbProducto.Text = "Producto";
+            this.rdbProducto.UseVisualStyleBackColor = true;
+            this.rdbProducto.CheckedChanged += new System.EventHandler(this.rdbProducto_CheckedChanged);
             // 
             // frmListaDeseos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnConfirmar);
@@ -241,6 +281,8 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +309,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioColones;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDolares;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdbVideojuego;
+        private System.Windows.Forms.RadioButton rdbProducto;
     }
 }
