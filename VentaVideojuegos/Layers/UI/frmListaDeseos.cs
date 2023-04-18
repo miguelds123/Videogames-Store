@@ -690,8 +690,8 @@ namespace VentaVideojuegos.Layers.UI
 
         private void rdbVideojuego_CheckedChanged(object sender, EventArgs e)
         {
-            txtIdCliente.Enabled = true;
-            btnBuscar.Enabled = true;
+            //txtIdCliente.Enabled = true;
+            //btnBuscar.Enabled = true;
         }
     }
 }

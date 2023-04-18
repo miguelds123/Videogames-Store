@@ -268,6 +268,8 @@ namespace VentaVideojuegos.Layers.UI
                                     MessageBox.Show("Su reservacion a sido realizada con exito");
 
                                     this.Close();
+
+                                    return;
                                 }
                                 catch (Exception ex)
                                 {
@@ -323,6 +325,8 @@ namespace VentaVideojuegos.Layers.UI
                                         MessageBox.Show("Su reservacion a sido realizada con exito");
 
                                         this.Close();
+
+                                        return;
                                     }
                                     catch (Exception ex)
                                     {
