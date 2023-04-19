@@ -32,24 +32,32 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporteFactura));
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSetReporteFactura = new VentaVideojuegos.Layers.UI.Reportes.DataSetReporteFactura();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
-            this.btnBorrar = new System.Windows.Forms.ToolStripButton();
+            this.btnCorreo = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DataSetReporteFactura = new VentaVideojuegos.Layers.UI.Reportes.DataSetReporteFactura();
-            this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PA_REPORTE_FACTURA_PRODUCTOSTableAdapter = new VentaVideojuegos.Layers.UI.Reportes.DataSetReporteFacturaTableAdapters.PA_REPORTE_FACTURA_PRODUCTOSTableAdapter();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteFactura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteFactura)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // PA_REPORTE_FACTURA_PRODUCTOSBindingSource
+            // 
+            this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource.DataMember = "PA_REPORTE_FACTURA_PRODUCTOS";
+            this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource.DataSource = this.DataSetReporteFactura;
+            // 
+            // DataSetReporteFactura
+            // 
+            this.DataSetReporteFactura.DataSetName = "DataSetReporteFactura";
+            this.DataSetReporteFactura.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnNuevo,
-            this.btnBorrar,
+            this.btnCorreo,
             this.btnSalir});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -57,23 +65,15 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnNuevo
+            // btnCorreo
             // 
-            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
-            this.btnNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(94, 52);
-            this.btnNuevo.Text = "Nuevo";
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
-            this.btnBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnBorrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(91, 52);
-            this.btnBorrar.Text = "Borrar";
+            this.btnCorreo.Image = ((System.Drawing.Image)(resources.GetObject("btnCorreo.Image")));
+            this.btnCorreo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCorreo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCorreo.Name = "btnCorreo";
+            this.btnCorreo.Size = new System.Drawing.Size(164, 52);
+            this.btnCorreo.Text = "Enviar PDF al correo";
+            this.btnCorreo.Click += new System.EventHandler(this.btnCorreo_Click);
             // 
             // btnSalir
             // 
@@ -83,6 +83,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(81, 52);
             this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // reportViewer1
             // 
@@ -96,16 +97,6 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.reportViewer1.Size = new System.Drawing.Size(775, 379);
             this.reportViewer1.TabIndex = 5;
             // 
-            // DataSetReporteFactura
-            // 
-            this.DataSetReporteFactura.DataSetName = "DataSetReporteFactura";
-            this.DataSetReporteFactura.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // PA_REPORTE_FACTURA_PRODUCTOSBindingSource
-            // 
-            this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource.DataMember = "PA_REPORTE_FACTURA_PRODUCTOS";
-            this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource.DataSource = this.DataSetReporteFactura;
-            // 
             // PA_REPORTE_FACTURA_PRODUCTOSTableAdapter
             // 
             this.PA_REPORTE_FACTURA_PRODUCTOSTableAdapter.ClearBeforeFill = true;
@@ -118,12 +109,13 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmReporteFactura";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmReporteFactura";
             this.Load += new System.EventHandler(this.frmReporteFactura_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteFactura)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteFactura)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PA_REPORTE_FACTURA_PRODUCTOSBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,8 +124,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnNuevo;
-        private System.Windows.Forms.ToolStripButton btnBorrar;
+        private System.Windows.Forms.ToolStripButton btnCorreo;
         private System.Windows.Forms.ToolStripButton btnSalir;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource PA_REPORTE_FACTURA_PRODUCTOSBindingSource;

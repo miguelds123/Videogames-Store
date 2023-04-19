@@ -448,7 +448,9 @@ namespace VentaVideojuegos.Layers.UI
                 {
                     _BLLFactura.SaveFactura(ordenCompraDTO);
 
-                    MessageBox.Show("Su compra a sido realizada con exito");
+                    string rutaPDF = @"c:\temp\reporte.png";
+
+                    MessageBox.Show("Su compra a sido realizada con exito, su factura la puede encontrar en: " + rutaPDF);
 
                     frmReporteFactura frmReporteFactura = new frmReporteFactura(Convert.ToInt32(txtIDFactura.Text));
                     frmReporteFactura.Show();
