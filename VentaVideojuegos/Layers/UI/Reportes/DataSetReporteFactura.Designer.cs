@@ -303,6 +303,8 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
             
             private global::System.Data.DataColumn columnTOTAL;
             
+            private global::System.Data.DataColumn columnColumn1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public PA_REPORTE_FACTURA_PRODUCTOSDataTable() {
@@ -434,6 +436,14 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Column1Column {
+                get {
+                    return this.columnColumn1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -469,7 +479,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public PA_REPORTE_FACTURA_PRODUCTOSRow AddPA_REPORTE_FACTURA_PRODUCTOSRow(int ID, int ID1, string Nombre, System.DateTime FECHA_ORDEN, int ID_DETALLE, int ID_PRODUCTO, string DESCRIPCION, int CANTIDAD, decimal DESCUENTO, decimal TOTAL_DETALLE, decimal SUBTOTAL, decimal TOTAL) {
+            public PA_REPORTE_FACTURA_PRODUCTOSRow AddPA_REPORTE_FACTURA_PRODUCTOSRow(int ID, int ID1, string Nombre, System.DateTime FECHA_ORDEN, int ID_DETALLE, int ID_PRODUCTO, string DESCRIPCION, int CANTIDAD, decimal DESCUENTO, decimal TOTAL_DETALLE, decimal SUBTOTAL, decimal TOTAL, System.DateTime Column1) {
                 PA_REPORTE_FACTURA_PRODUCTOSRow rowPA_REPORTE_FACTURA_PRODUCTOSRow = ((PA_REPORTE_FACTURA_PRODUCTOSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -483,7 +493,8 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
                         DESCUENTO,
                         TOTAL_DETALLE,
                         SUBTOTAL,
-                        TOTAL};
+                        TOTAL,
+                        Column1};
                 rowPA_REPORTE_FACTURA_PRODUCTOSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPA_REPORTE_FACTURA_PRODUCTOSRow);
                 return rowPA_REPORTE_FACTURA_PRODUCTOSRow;
@@ -518,6 +529,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
                 this.columnTOTAL_DETALLE = base.Columns["TOTAL_DETALLE"];
                 this.columnSUBTOTAL = base.Columns["SUBTOTAL"];
                 this.columnTOTAL = base.Columns["TOTAL"];
+                this.columnColumn1 = base.Columns["Column1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -547,6 +559,8 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
                 base.Columns.Add(this.columnSUBTOTAL);
                 this.columnTOTAL = new global::System.Data.DataColumn("TOTAL", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTOTAL);
+                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn1);
                 this.columnID.AllowDBNull = false;
                 this.columnID1.AllowDBNull = false;
                 this.columnNombre.ReadOnly = true;
@@ -554,6 +568,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
                 this.columnID_DETALLE.AllowDBNull = false;
                 this.columnID_PRODUCTO.AllowDBNull = false;
                 this.columnDESCRIPCION.MaxLength = 50;
+                this.columnColumn1.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -874,6 +889,23 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime Column1 {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablePA_REPORTE_FACTURA_PRODUCTOS.Column1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'PA_REPORTE_FACTURA_PRODUCTOS\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tablePA_REPORTE_FACTURA_PRODUCTOS.Column1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsNombreNull() {
                 return this.IsNull(this.tablePA_REPORTE_FACTURA_PRODUCTOS.NombreColumn);
             }
@@ -966,6 +998,18 @@ namespace VentaVideojuegos.Layers.UI.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetTOTALNull() {
                 this[this.tablePA_REPORTE_FACTURA_PRODUCTOS.TOTALColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsColumn1Null() {
+                return this.IsNull(this.tablePA_REPORTE_FACTURA_PRODUCTOS.Column1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetColumn1Null() {
+                this[this.tablePA_REPORTE_FACTURA_PRODUCTOS.Column1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1140,6 +1184,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes.DataSetReporteFacturaTableAdapters
             tableMapping.ColumnMappings.Add("TOTAL_DETALLE", "TOTAL_DETALLE");
             tableMapping.ColumnMappings.Add("SUBTOTAL", "SUBTOTAL");
             tableMapping.ColumnMappings.Add("TOTAL", "TOTAL");
+            tableMapping.ColumnMappings.Add("Column1", "Column1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

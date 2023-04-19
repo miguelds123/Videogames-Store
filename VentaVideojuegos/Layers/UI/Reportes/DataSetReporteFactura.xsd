@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PA_REPORTE_FACTURA_PRODUCTOSTableAdapter" GeneratorDataComponentClassName="PA_REPORTE_FACTURA_PRODUCTOSTableAdapter" Name="PA_REPORTE_FACTURA_PRODUCTOS" UserDataComponentName="PA_REPORTE_FACTURA_PRODUCTOSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="PaginaVentasVideojuegosConnectionString (Settings)" DbObjectName="PaginaVentasVideojuegos.dbo.PA_REPORTE_FACTURA_PRODUCTOS" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="PaginaVentasVideojuegosConnectionString (Settings)" DbObjectName="PaginaVentasVideojuegos.dbo.PA_REPORTE_FACTURA_PRODUCTOS" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.PA_REPORTE_FACTURA_PRODUCTOS</CommandText>
@@ -34,6 +34,7 @@
               <Mapping SourceColumn="TOTAL_DETALLE" DataSetColumn="TOTAL_DETALLE" />
               <Mapping SourceColumn="SUBTOTAL" DataSetColumn="SUBTOTAL" />
               <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -45,7 +46,7 @@
   <xs:element name="DataSetReporteFactura" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetReporteFactura" msprop:Generator_UserDSName="DataSetReporteFactura">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_TableClassName="PA_REPORTE_FACTURA_PRODUCTOSDataTable" msprop:Generator_TableVarName="tablePA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_TablePropName="PA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_RowDeletingName="PA_REPORTE_FACTURA_PRODUCTOSRowDeleting" msprop:Generator_RowChangingName="PA_REPORTE_FACTURA_PRODUCTOSRowChanging" msprop:Generator_RowEvHandlerName="PA_REPORTE_FACTURA_PRODUCTOSRowChangeEventHandler" msprop:Generator_RowDeletedName="PA_REPORTE_FACTURA_PRODUCTOSRowDeleted" msprop:Generator_UserTableName="PA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_RowChangedName="PA_REPORTE_FACTURA_PRODUCTOSRowChanged" msprop:Generator_RowEvArgName="PA_REPORTE_FACTURA_PRODUCTOSRowChangeEvent" msprop:Generator_RowClassName="PA_REPORTE_FACTURA_PRODUCTOSRow">
+        <xs:element name="PA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_TableClassName="PA_REPORTE_FACTURA_PRODUCTOSDataTable" msprop:Generator_TableVarName="tablePA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_RowChangedName="PA_REPORTE_FACTURA_PRODUCTOSRowChanged" msprop:Generator_TablePropName="PA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_RowDeletingName="PA_REPORTE_FACTURA_PRODUCTOSRowDeleting" msprop:Generator_RowChangingName="PA_REPORTE_FACTURA_PRODUCTOSRowChanging" msprop:Generator_RowEvHandlerName="PA_REPORTE_FACTURA_PRODUCTOSRowChangeEventHandler" msprop:Generator_RowDeletedName="PA_REPORTE_FACTURA_PRODUCTOSRowDeleted" msprop:Generator_RowClassName="PA_REPORTE_FACTURA_PRODUCTOSRow" msprop:Generator_UserTableName="PA_REPORTE_FACTURA_PRODUCTOS" msprop:Generator_RowEvArgName="PA_REPORTE_FACTURA_PRODUCTOSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -72,6 +73,7 @@
               <xs:element name="TOTAL_DETALLE" msprop:Generator_ColumnVarNameInTable="columnTOTAL_DETALLE" msprop:Generator_ColumnPropNameInRow="TOTAL_DETALLE" msprop:Generator_ColumnPropNameInTable="TOTAL_DETALLEColumn" msprop:Generator_UserColumnName="TOTAL_DETALLE" type="xs:decimal" minOccurs="0" />
               <xs:element name="SUBTOTAL" msprop:Generator_ColumnVarNameInTable="columnSUBTOTAL" msprop:Generator_ColumnPropNameInRow="SUBTOTAL" msprop:Generator_ColumnPropNameInTable="SUBTOTALColumn" msprop:Generator_UserColumnName="SUBTOTAL" type="xs:decimal" minOccurs="0" />
               <xs:element name="TOTAL" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

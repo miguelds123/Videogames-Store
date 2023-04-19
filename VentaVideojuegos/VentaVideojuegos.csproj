@@ -223,6 +223,9 @@
     <Compile Include="Layers\UI\frmReservacion.Designer.cs">
       <DependentUpon>frmReservacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteFactura.cs">
+      <DependentUpon>DataSetReporteFactura.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\Reportes\DataSetReporteFactura.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
