@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaVideojuegos.Layers.UI.Reportes;
 
 namespace VentaVideojuegos.Layers.UI
 {
@@ -448,6 +449,9 @@ namespace VentaVideojuegos.Layers.UI
                     _BLLFactura.SaveFactura(ordenCompraDTO);
 
                     MessageBox.Show("Su compra a sido realizada con exito");
+
+                    frmReporteFactura frmReporteFactura = new frmReporteFactura(Convert.ToInt32(txtIDFactura.Text));
+                    frmReporteFactura.Show();
 
                     this.Close();
                 }

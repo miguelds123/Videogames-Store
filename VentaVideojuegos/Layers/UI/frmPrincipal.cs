@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaVideojuegos.Layers.UI;
+using VentaVideojuegos.Layers.UI.Reportes;
 
 namespace VentaVideojuegos
 {
@@ -280,6 +281,10 @@ namespace VentaVideojuegos
             {
                 MessageBox.Show("Hubo un error al abrir el frame");
             }
+        }
+
+        private void productosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
         }
     }
 }
