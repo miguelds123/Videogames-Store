@@ -285,6 +285,17 @@ namespace VentaVideojuegos
 
         private void productosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            frmFiltroReporteProducto frmFiltroReporteProducto = new frmFiltroReporteProducto();
+
+            try
+            {
+                frmFiltroReporteProducto.MdiParent = this;
+                frmFiltroReporteProducto.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
         }
     }
 }

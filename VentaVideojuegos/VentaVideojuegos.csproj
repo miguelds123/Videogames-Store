@@ -236,6 +236,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReporteFacturaVideojuego.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteProducto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReporteProducto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteProductoAll.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReporteProductoAll.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +257,24 @@
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteFacturaVideojuego.Designer.cs">
       <DependentUpon>frmReporteFacturaVideojuego.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmFiltroReporteProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmFiltroReporteProducto.Designer.cs">
+      <DependentUpon>frmFiltroReporteProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteProducto.Designer.cs">
+      <DependentUpon>frmReporteProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteProductoAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteProductoAll.Designer.cs">
+      <DependentUpon>frmReporteProductoAll.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -291,8 +319,19 @@
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteFacturaVideojuego.resx">
       <DependentUpon>frmReporteFacturaVideojuego.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmFiltroReporteProducto.resx">
+      <DependentUpon>frmFiltroReporteProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmReporteProducto.resx">
+      <DependentUpon>frmReporteProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmReporteProductoAll.resx">
+      <DependentUpon>frmReporteProductoAll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\ReporteFactura.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportFacturaVideojuego.rdlc" />
+    <EmbeddedResource Include="Layers\UI\Reportes\ReportProducto.rdlc" />
+    <EmbeddedResource Include="Layers\UI\Reportes\ReportProductoAll.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -325,6 +364,28 @@
     </None>
     <None Include="Layers\UI\Reportes\DataSetReporteFacturaVideojuego.xss">
       <DependentUpon>DataSetReporteFacturaVideojuego.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteProducto.xsc">
+      <DependentUpon>DataSetReporteProducto.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteProducto.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReporteProducto.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteProducto.xss">
+      <DependentUpon>DataSetReporteProducto.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteProductoAll.xsc">
+      <DependentUpon>DataSetReporteProductoAll.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteProductoAll.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReporteProductoAll.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteProductoAll.xss">
+      <DependentUpon>DataSetReporteProductoAll.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />

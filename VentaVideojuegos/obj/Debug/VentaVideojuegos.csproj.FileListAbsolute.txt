@@ -103,3 +103,6 @@ C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra 
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\RdlCompile.cache
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\RdlCompile.compiled
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteFacturaVideojuego.resources
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmFiltroReporteProducto.resources
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteProducto.resources
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteProductoAll.resources
