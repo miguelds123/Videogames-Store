@@ -506,6 +506,13 @@ namespace VentaVideojuegos.Layers.UI
 
                         MessageBox.Show("Su compra a sido realizada con exito");
 
+                        string rutaPDF = @"c:\temp\reporte.png";
+
+                        MessageBox.Show("Su compra a sido realizada con exito, su factura la puede encontrar en: " + rutaPDF);
+
+                        frmReporteFacturaVideojuego frmReporteFacturaVideojuego = new frmReporteFacturaVideojuego(Convert.ToInt32(txtIDFactura.Text));
+                        frmReporteFacturaVideojuego.Show();
+
                         this.Close();
                     }
                     catch (Exception ex)
