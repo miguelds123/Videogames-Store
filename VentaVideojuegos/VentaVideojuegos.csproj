@@ -246,6 +246,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReporteProductoAll.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteVideojuego.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReporteVideojuego.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteVideojuegoAll.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReporteVideojuegoAll.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmFiltroReporteVideojuego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmFiltroReporteVideojuego.Designer.cs">
+      <DependentUpon>frmFiltroReporteVideojuego.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +291,18 @@
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteProductoAll.Designer.cs">
       <DependentUpon>frmReporteProductoAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteVideojuego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteVideojuego.Designer.cs">
+      <DependentUpon>frmReporteVideojuego.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteVideojuegoAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteVideojuegoAll.Designer.cs">
+      <DependentUpon>frmReporteVideojuegoAll.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -313,6 +341,9 @@
     <EmbeddedResource Include="Layers\UI\frmReservacion.resx">
       <DependentUpon>frmReservacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmFiltroReporteVideojuego.resx">
+      <DependentUpon>frmFiltroReporteVideojuego.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteFactura.resx">
       <DependentUpon>frmReporteFactura.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,10 +359,18 @@
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteProductoAll.resx">
       <DependentUpon>frmReporteProductoAll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmReporteVideojuego.resx">
+      <DependentUpon>frmReporteVideojuego.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmReporteVideojuegoAll.resx">
+      <DependentUpon>frmReporteVideojuegoAll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\ReporteFactura.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportFacturaVideojuego.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportProducto.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportProductoAll.rdlc" />
+    <EmbeddedResource Include="Layers\UI\Reportes\ReportVideojuego.rdlc" />
+    <EmbeddedResource Include="Layers\UI\Reportes\ReportVideojuegoAll.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -386,6 +425,28 @@
     </None>
     <None Include="Layers\UI\Reportes\DataSetReporteProductoAll.xss">
       <DependentUpon>DataSetReporteProductoAll.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteVideojuego.xsc">
+      <DependentUpon>DataSetReporteVideojuego.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteVideojuego.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReporteVideojuego.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteVideojuego.xss">
+      <DependentUpon>DataSetReporteVideojuego.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteVideojuegoAll.xsc">
+      <DependentUpon>DataSetReporteVideojuegoAll.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteVideojuegoAll.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReporteVideojuegoAll.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteVideojuegoAll.xss">
+      <DependentUpon>DataSetReporteVideojuegoAll.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />

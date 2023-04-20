@@ -297,5 +297,20 @@ namespace VentaVideojuegos
                 MessageBox.Show("Hubo un error al abrir el frame");
             }
         }
+
+        private void videojuegosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFiltroReporteVideojuego frmFiltroReporteVideojuego = new frmFiltroReporteVideojuego();
+
+            try
+            {
+                frmFiltroReporteVideojuego.MdiParent = this;
+                frmFiltroReporteVideojuego.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al abrir el frame");
+            }
+        }
     }
 }
