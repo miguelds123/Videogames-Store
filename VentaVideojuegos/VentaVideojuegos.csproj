@@ -223,6 +223,11 @@
     <Compile Include="Layers\UI\frmReservacion.Designer.cs">
       <DependentUpon>frmReservacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteCantidadProductosVendidos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReporteCantidadProductosVendidos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\Reportes\DataSetReporteFactura.cs">
       <DependentUpon>DataSetReporteFactura.xsd</DependentUpon>
     </Compile>
@@ -266,6 +271,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReporteVideojuegoAll.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\Reportes\frmFiltroReporteCantidadProductosVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmFiltroReporteCantidadProductosVendidos.Designer.cs">
+      <DependentUpon>frmFiltroReporteCantidadProductosVendidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\Reportes\frmFiltroReporteOrdenCompraProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +288,12 @@
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmFiltroReporteVideojuego.Designer.cs">
       <DependentUpon>frmFiltroReporteVideojuego.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteCantidadProductosVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteCantidadProductosVendidos.Designer.cs">
+      <DependentUpon>frmReporteCantidadProductosVendidos.cs</DependentUpon>
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteFactura.cs">
       <SubType>Form</SubType>
@@ -369,11 +386,17 @@
     <EmbeddedResource Include="Layers\UI\frmReservacion.resx">
       <DependentUpon>frmReservacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmFiltroReporteCantidadProductosVendidos.resx">
+      <DependentUpon>frmFiltroReporteCantidadProductosVendidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\frmFiltroReporteOrdenCompraProducto.resx">
       <DependentUpon>frmFiltroReporteOrdenCompraProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\frmFiltroReporteVideojuego.resx">
       <DependentUpon>frmFiltroReporteVideojuego.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmReporteCantidadProductosVendidos.resx">
+      <DependentUpon>frmReporteCantidadProductosVendidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteFactura.resx">
       <DependentUpon>frmReporteFactura.cs</DependentUpon>
@@ -402,6 +425,7 @@
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteVideojuegoAll.resx">
       <DependentUpon>frmReporteVideojuegoAll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\ReportCantidadProductosVendidos.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReporteFactura.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportFacturaVideojuego.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportOrdenCompraProducto.rdlc" />
@@ -421,6 +445,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Connected Services\BCCR\wsindicadoreseconomicos.wsdl" />
+    <None Include="Layers\UI\Reportes\DataSetReporteCantidadProductosVendidos.xsc">
+      <DependentUpon>DataSetReporteCantidadProductosVendidos.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteCantidadProductosVendidos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReporteCantidadProductosVendidos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteCantidadProductosVendidos.xss">
+      <DependentUpon>DataSetReporteCantidadProductosVendidos.xsd</DependentUpon>
+    </None>
     <None Include="Layers\UI\Reportes\DataSetReporteFactura.xsc">
       <DependentUpon>DataSetReporteFactura.xsd</DependentUpon>
     </None>
