@@ -69,6 +69,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "frmFiltroReporteOrdenCompraProducto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmFiltroReporteOrdenCompraProducto";
             this.ResumeLayout(false);
             this.PerformLayout();
