@@ -19,9 +19,9 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            frmReporteOrdenCompraProducto frmReporteOrdenCompraProducto = new frmReporteOrdenCompraProducto(dateTimePicker1.Value);
+            //frmReporteOrdenCompraProducto frmReporteOrdenCompraProducto = new frmReporteOrdenCompraProducto(dateTimePicker1.Value);
 
-            frmReporteOrdenCompraProducto.Show();
+            //frmReporteOrdenCompraProducto.Show();
         }
     }
 }

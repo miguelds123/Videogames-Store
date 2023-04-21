@@ -118,6 +118,7 @@ namespace VentaVideojuegos
                     cmdFacturaEncabezado.Parameters.AddWithValue(@"ID_CLIENTE", pOrdenCompraDTO.IdCliente);
                     cmdFacturaEncabezado.Parameters.AddWithValue(@"TOTAL", pOrdenCompraDTO.Total);
                     cmdFacturaEncabezado.Parameters.AddWithValue(@"SUBTOTAL", pOrdenCompraDTO.SubTotal);
+                    cmdFacturaEncabezado.Parameters.AddWithValue(@"TOTAL_DOLARES", pOrdenCompraDTO.TotalDolares);
 
                     db.ExecuteNonQuery(cmdFacturaEncabezado);
 
@@ -190,7 +191,8 @@ namespace VentaVideojuegos
                         FechaOrden = (DateTime)dr["FECHA_ORDEN"],
                         IdCliente = (int)dr["ID_CLIENTE"],
                         Total = (double)dr["TOTAL"],
-                        SubTotal = (double)dr["SUBTOTAL"]
+                        SubTotal = (double)dr["SUBTOTAL"],
+                        TotalDolares= (double)dr["TOTAL_DOLARES"]
                     };
 
                     foreach(var item in ds.Tables[0].Rows)

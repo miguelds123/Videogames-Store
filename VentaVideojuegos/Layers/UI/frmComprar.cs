@@ -438,6 +438,17 @@ namespace VentaVideojuegos.Layers.UI
                     cantidad = 0;
                 }
 
+                ServiceBCCR serviceBCCR = new ServiceBCCR();
+
+                List<Dolar> listaDolar = new List<Dolar>();
+
+                listaDolar = serviceBCCR.GetDolar(DateTime.UtcNow, DateTime.UtcNow, "318") as List<Dolar>;
+
+                foreach (Dolar d in listaDolar)
+                {
+                    ordenCompraDTO.TotalDolares = Convert.ToDouble(txtTotal.Text) / d.Monto;
+                }
+
                 ordenCompraDTO.ID = Convert.ToInt32(txtIDFactura.Text);
                 ordenCompraDTO.FechaOrden = DateTime.Now;
                 ordenCompraDTO.IdCliente = Convert.ToInt32(txtIDCliente.Text);
@@ -492,6 +503,17 @@ namespace VentaVideojuegos.Layers.UI
                             }
                         }
                         cantidad = 0;
+                    }
+
+                    ServiceBCCR serviceBCCR = new ServiceBCCR();
+
+                    List<Dolar> listaDolar = new List<Dolar>();
+
+                    listaDolar = serviceBCCR.GetDolar(DateTime.UtcNow, DateTime.UtcNow, "318") as List<Dolar>;
+
+                    foreach (Dolar d in listaDolar)
+                    {
+                        ordenCompraDTO.TotalDolares = Convert.ToDouble(txtTotal.Text) / d.Monto;
                     }
 
                     ordenCompraDTO.ID = Convert.ToInt32(txtIDFactura.Text);

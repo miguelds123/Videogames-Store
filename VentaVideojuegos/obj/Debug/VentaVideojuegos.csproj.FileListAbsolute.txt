@@ -100,8 +100,6 @@ C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra 
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\zh-HANS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\zh-HANT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteFactura.resources
-C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\RdlCompile.cache
-C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\RdlCompile.compiled
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteFacturaVideojuego.resources
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmFiltroReporteProducto.resources
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteProducto.resources
@@ -110,4 +108,5 @@ C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra 
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteVideojuego.resources
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteVideojuegoAll.resources
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmFiltroReporteOrdenCompraProducto.resources
-C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteOrdenCompraProducto.resources
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.csproj.SuggestedBindingRedirects.cache
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\EnvDTE.xml

@@ -16,6 +16,8 @@ namespace VentaVideojuegos
 
         public double Total { get; set; }
 
+        public double TotalDolares { get; set; }
+
         public double SubTotal { get; set; }
 
 
