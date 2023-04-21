@@ -31,13 +31,23 @@ namespace VentaVideojuegos.Layers.UI.Reportes
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DataSetReporteVideojuego = new VentaVideojuegos.Layers.UI.Reportes.DataSetReporteVideojuego();
             this.PA_REPORTE_VIDEOJUEGOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSetReporteVideojuego = new VentaVideojuegos.Layers.UI.Reportes.DataSetReporteVideojuego();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.PA_REPORTE_VIDEOJUEGOTableAdapter = new VentaVideojuegos.Layers.UI.Reportes.DataSetReporteVideojuegoTableAdapters.PA_REPORTE_VIDEOJUEGOTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteVideojuego)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PA_REPORTE_VIDEOJUEGOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteVideojuego)).BeginInit();
             this.SuspendLayout();
+            // 
+            // PA_REPORTE_VIDEOJUEGOBindingSource
+            // 
+            this.PA_REPORTE_VIDEOJUEGOBindingSource.DataMember = "PA_REPORTE_VIDEOJUEGO";
+            this.PA_REPORTE_VIDEOJUEGOBindingSource.DataSource = this.DataSetReporteVideojuego;
+            // 
+            // DataSetReporteVideojuego
+            // 
+            this.DataSetReporteVideojuego.DataSetName = "DataSetReporteVideojuego";
+            this.DataSetReporteVideojuego.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -51,16 +61,6 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.reportViewer1.Size = new System.Drawing.Size(775, 425);
             this.reportViewer1.TabIndex = 0;
             // 
-            // DataSetReporteVideojuego
-            // 
-            this.DataSetReporteVideojuego.DataSetName = "DataSetReporteVideojuego";
-            this.DataSetReporteVideojuego.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // PA_REPORTE_VIDEOJUEGOBindingSource
-            // 
-            this.PA_REPORTE_VIDEOJUEGOBindingSource.DataMember = "PA_REPORTE_VIDEOJUEGO";
-            this.PA_REPORTE_VIDEOJUEGOBindingSource.DataSource = this.DataSetReporteVideojuego;
-            // 
             // PA_REPORTE_VIDEOJUEGOTableAdapter
             // 
             this.PA_REPORTE_VIDEOJUEGOTableAdapter.ClearBeforeFill = true;
@@ -72,10 +72,11 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmReporteVideojuego";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmReporteVideojuego";
             this.Load += new System.EventHandler(this.frmReporteVideojuego_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteVideojuego)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PA_REPORTE_VIDEOJUEGOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSetReporteVideojuego)).EndInit();
             this.ResumeLayout(false);
 
         }
