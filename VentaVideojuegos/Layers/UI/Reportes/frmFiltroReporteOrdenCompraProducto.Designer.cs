@@ -32,6 +32,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // dateTimePicker1
@@ -46,13 +47,13 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.lblMensaje.AutoSize = true;
             this.lblMensaje.Location = new System.Drawing.Point(12, 19);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(247, 13);
+            this.lblMensaje.Size = new System.Drawing.Size(349, 13);
             this.lblMensaje.TabIndex = 2;
-            this.lblMensaje.Text = "Por favor, seleccione la fecha que desea consultar";
+            this.lblMensaje.Text = "Por favor, seleccione la fecha y el tipo de producto  que desea consultar";
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(219, 44);
+            this.btnConfirmar.Location = new System.Drawing.Point(346, 42);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmar.TabIndex = 4;
@@ -60,17 +61,27 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // cmbTipo
+            // 
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(219, 44);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipo.TabIndex = 5;
+            // 
             // frmFiltroReporteOrdenCompraProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 130);
+            this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "frmFiltroReporteOrdenCompraProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmFiltroReporteOrdenCompraProducto";
+            this.Load += new System.EventHandler(this.frmFiltroReporteOrdenCompraProducto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +92,6 @@ namespace VentaVideojuegos.Layers.UI.Reportes
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.ComboBox cmbTipo;
     }
 }

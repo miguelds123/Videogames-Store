@@ -19,9 +19,34 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            frmReporteOrdenCompraProducto frmReporteOrdenCompraProducto = new frmReporteOrdenCompraProducto(dateTimePicker1.Value);
+            if (cmbTipo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar el tipo de producto que desea consultar");
+                return;
+            }
+            
+            if (cmbTipo.SelectedItem.Equals("Producto"))
+            {
+                frmReporteOrdenCompraProducto frmReporteOrdenCompraProducto = new frmReporteOrdenCompraProducto(dateTimePicker1.Value);
 
-            frmReporteOrdenCompraProducto.Show();
+                frmReporteOrdenCompraProducto.Show();
+            }
+            else
+            {
+                if (cmbTipo.SelectedItem.Equals("Videojuego"))
+                {
+                    frmReporteOrdenCompraVideojuego frmReporteOrdenCompraVideojuego = new frmReporteOrdenCompraVideojuego(dateTimePicker1.Value);
+
+                    frmReporteOrdenCompraVideojuego.Show();
+                }
+            }
+        }
+
+        private void frmFiltroReporteOrdenCompraProducto_Load(object sender, EventArgs e)
+        {
+            cmbTipo.Items.Clear();
+            cmbTipo.Items.Add("Producto");
+            cmbTipo.Items.Add("Videojuego");
         }
     }
 }

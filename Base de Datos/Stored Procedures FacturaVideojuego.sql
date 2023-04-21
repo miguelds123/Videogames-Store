@@ -2,10 +2,10 @@
 
 -- Stored Procedures FacturaVideojuego
 
-CREATE PROCEDURE InsertarEncabezadoVideojuego
-(@ID int, @FECHA_ORDEN date, @ID_CLIENTE int, @TOTAL money, @SUBTOTAL money)
+ALTER PROCEDURE InsertarEncabezadoVideojuego
+(@ID int, @FECHA_ORDEN date, @ID_CLIENTE int, @TOTAL money, @SUBTOTAL money, @TOTAL_DOLARES money)
 AS
-	insert into ORDEN_COMPRA_VIDEOJUEGO values (@ID, @FECHA_ORDEN, @ID_CLIENTE, @TOTAL, @SUBTOTAL)
+	insert into ORDEN_COMPRA_VIDEOJUEGO values (@ID, @FECHA_ORDEN, @ID_CLIENTE, @TOTAL, @SUBTOTAL, @TOTAL_DOLARES)
 
 
 CREATE PROCEDURE InsertarDetalleVideojuego

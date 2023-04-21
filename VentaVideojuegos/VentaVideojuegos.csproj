@@ -241,6 +241,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReporteOrdenCompraProducto.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteOrdenCompraVideojuego.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReporteOrdenCompraVideojuego.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\Reportes\DataSetReporteProducto.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -296,6 +301,12 @@
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteOrdenCompraProducto.Designer.cs">
       <DependentUpon>frmReporteOrdenCompraProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteOrdenCompraVideojuego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteOrdenCompraVideojuego.Designer.cs">
+      <DependentUpon>frmReporteOrdenCompraVideojuego.cs</DependentUpon>
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteProducto.cs">
       <SubType>Form</SubType>
@@ -376,6 +387,9 @@
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteOrdenCompraProducto.resx">
       <DependentUpon>frmReporteOrdenCompraProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmReporteOrdenCompraVideojuego.resx">
+      <DependentUpon>frmReporteOrdenCompraVideojuego.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteProducto.resx">
       <DependentUpon>frmReporteProducto.cs</DependentUpon>
     </EmbeddedResource>
@@ -391,6 +405,7 @@
     <EmbeddedResource Include="Layers\UI\Reportes\ReporteFactura.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportFacturaVideojuego.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportOrdenCompraProducto.rdlc" />
+    <EmbeddedResource Include="Layers\UI\Reportes\ReportOrdenCompraVideojuego.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportProducto.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportProductoAll.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportVideojuego.rdlc" />
@@ -438,6 +453,17 @@
     </None>
     <None Include="Layers\UI\Reportes\DataSetReporteOrdenCompraProducto.xss">
       <DependentUpon>DataSetReporteOrdenCompraProducto.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteOrdenCompraVideojuego.xsc">
+      <DependentUpon>DataSetReporteOrdenCompraVideojuego.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteOrdenCompraVideojuego.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReporteOrdenCompraVideojuego.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteOrdenCompraVideojuego.xss">
+      <DependentUpon>DataSetReporteOrdenCompraVideojuego.xsd</DependentUpon>
     </None>
     <None Include="Layers\UI\Reportes\DataSetReporteProducto.xsc">
       <DependentUpon>DataSetReporteProducto.xsd</DependentUpon>
