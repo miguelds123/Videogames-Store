@@ -35,7 +35,9 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             {
                 if (cmbTipo.SelectedItem.Equals("Videojuego"))
                 {
-                    MessageBox.Show("Insertar Reporte Videojuego");
+                    frmReporteCantidaVideojuegosVendidos frmReporteCantidaVideojuegosVendidos = new frmReporteCantidaVideojuegosVendidos(dateTimePicker1.Value, dateTimePicker2.Value);
+
+                    frmReporteCantidaVideojuegosVendidos.Show();
                 }
             }
         }

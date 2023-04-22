@@ -228,6 +228,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReporteCantidadProductosVendidos.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Layers\UI\Reportes\DataSetReporteCantidadVideojuegoVendidos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReporteCantidadVideojuegoVendidos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Layers\UI\Reportes\DataSetReporteFactura.cs">
       <DependentUpon>DataSetReporteFactura.xsd</DependentUpon>
     </Compile>
@@ -294,6 +299,12 @@
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteCantidadProductosVendidos.Designer.cs">
       <DependentUpon>frmReporteCantidadProductosVendidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteCantidaVideojuegosVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layers\UI\Reportes\frmReporteCantidaVideojuegosVendidos.Designer.cs">
+      <DependentUpon>frmReporteCantidaVideojuegosVendidos.cs</DependentUpon>
     </Compile>
     <Compile Include="Layers\UI\Reportes\frmReporteFactura.cs">
       <SubType>Form</SubType>
@@ -398,6 +409,9 @@
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteCantidadProductosVendidos.resx">
       <DependentUpon>frmReporteCantidadProductosVendidos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Layers\UI\Reportes\frmReporteCantidaVideojuegosVendidos.resx">
+      <DependentUpon>frmReporteCantidaVideojuegosVendidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\frmReporteFactura.resx">
       <DependentUpon>frmReporteFactura.cs</DependentUpon>
     </EmbeddedResource>
@@ -426,6 +440,7 @@
       <DependentUpon>frmReporteVideojuegoAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\ReportCantidadProductosVendidos.rdlc" />
+    <EmbeddedResource Include="Layers\UI\Reportes\ReportCantidadVideojuegosVendidos.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReporteFactura.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportFacturaVideojuego.rdlc" />
     <EmbeddedResource Include="Layers\UI\Reportes\ReportOrdenCompraProducto.rdlc" />
@@ -455,6 +470,17 @@
     </None>
     <None Include="Layers\UI\Reportes\DataSetReporteCantidadProductosVendidos.xss">
       <DependentUpon>DataSetReporteCantidadProductosVendidos.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteCantidadVideojuegoVendidos.xsc">
+      <DependentUpon>DataSetReporteCantidadVideojuegoVendidos.xsd</DependentUpon>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteCantidadVideojuegoVendidos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReporteCantidadVideojuegoVendidos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Layers\UI\Reportes\DataSetReporteCantidadVideojuegoVendidos.xss">
+      <DependentUpon>DataSetReporteCantidadVideojuegoVendidos.xsd</DependentUpon>
     </None>
     <None Include="Layers\UI\Reportes\DataSetReporteFactura.xsc">
       <DependentUpon>DataSetReporteFactura.xsd</DependentUpon>
