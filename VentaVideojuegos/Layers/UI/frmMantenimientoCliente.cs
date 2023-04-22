@@ -63,15 +63,18 @@ namespace VentaVideojuegos.Layers.UI
             listaProvincias = _BLLProvincia.GetAllProvincia();
             listaCantones= _BLLCanton.GetAllCanton();
 
-            foreach(Provincia provincia in listaProvincias)
-            {
-                this.cmbProvincia.Items.Add(provincia);
-            }
+            //foreach(Provincia provincia in listaProvincias)
+            //{
+            //    this.cmbProvincia.Items.Add(provincia);
+            //}
 
-            foreach(Canton canton in listaCantones)
-            {
-                this.cmbCanton.Items.Add((canton));
-            }
+            //foreach(Canton canton in listaCantones)
+            //{
+            //    this.cmbCanton.Items.Add((canton));
+            //}
+
+            listaProvincias.ForEach(provincia => this.cmbProvincia.Items.Add(provincia));
+            listaCantones.ForEach(canton => this.cmbCanton.Items.Add(canton));
 
             this.cmbEstado.Items.Clear();
 
