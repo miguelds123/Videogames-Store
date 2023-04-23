@@ -12,6 +12,9 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 {
     public partial class frmFiltroReporteOrdenCompraProducto : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         public frmFiltroReporteOrdenCompraProducto()
         {
             InitializeComponent();
@@ -19,26 +22,38 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (cmbTipo.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("Debe seleccionar el tipo de producto que desea consultar");
-                return;
-            }
-            
-            if (cmbTipo.SelectedItem.Equals("Producto"))
-            {
-                frmReporteOrdenCompraProducto frmReporteOrdenCompraProducto = new frmReporteOrdenCompraProducto(dateTimePicker1.Value);
-
-                frmReporteOrdenCompraProducto.Show();
-            }
-            else
-            {
-                if (cmbTipo.SelectedItem.Equals("Videojuego"))
+                if (cmbTipo.SelectedIndex == -1)
                 {
-                    frmReporteOrdenCompraVideojuego frmReporteOrdenCompraVideojuego = new frmReporteOrdenCompraVideojuego(dateTimePicker1.Value);
-
-                    frmReporteOrdenCompraVideojuego.Show();
+                    MessageBox.Show("Debe seleccionar el tipo de producto que desea consultar");
+                    return;
                 }
+
+                if (cmbTipo.SelectedItem.Equals("Producto"))
+                {
+                    frmReporteOrdenCompraProducto frmReporteOrdenCompraProducto = new frmReporteOrdenCompraProducto(dateTimePicker1.Value);
+
+                    frmReporteOrdenCompraProducto.Show();
+                }
+                else
+                {
+                    if (cmbTipo.SelectedItem.Equals("Videojuego"))
+                    {
+                        frmReporteOrdenCompraVideojuego frmReporteOrdenCompraVideojuego = new frmReporteOrdenCompraVideojuego(dateTimePicker1.Value);
+
+                        frmReporteOrdenCompraVideojuego.Show();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = "Ocurrio un error al cargar el reporte: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
+                return;
             }
         }
 

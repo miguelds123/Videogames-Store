@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,9 @@ namespace VentaVideojuegos
 {
     public partial class frmPrincipal : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         public frmPrincipal()
         {
             InitializeComponent();
@@ -40,7 +44,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio el siguiente error: " + ex.Message);
+                string message = ("Ocurrio el siguiente error: " + ex.Message);
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }
@@ -56,7 +64,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -72,7 +84,11 @@ namespace VentaVideojuegos
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -88,7 +104,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -104,7 +124,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -125,7 +149,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -139,7 +167,11 @@ namespace VentaVideojuegos
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Porfavor inicie sesion");
+                string message = "Porfavor inicie sesion " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
 
             if (usuario.IdCategoria == 1)
@@ -196,7 +228,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message; 
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -217,7 +253,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -233,7 +273,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -249,7 +293,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -264,7 +312,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -279,7 +331,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message= "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -294,7 +350,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -309,7 +369,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -324,7 +388,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -339,7 +407,11 @@ namespace VentaVideojuegos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al abrir el frame");
+                string message = "Hubo un error al abrir el frame " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
     }

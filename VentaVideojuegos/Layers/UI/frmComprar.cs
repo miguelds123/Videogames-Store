@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,9 @@ namespace VentaVideojuegos.Layers.UI
 {
     public partial class frmComprar : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         static int numeroDetalle = 1;
         double varSubTotal = 0;
         double varTotal = 0;
@@ -470,7 +474,11 @@ namespace VentaVideojuegos.Layers.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("No se pudo realizar la compra");
+                    string message= "No se pudo realizar la compra " + ex.Message;
+
+                    _MyLogControlEventos.Error(message.ToString());
+
+                    MessageBox.Show(message);
 
                     btnCancelar_Click(sender, e);
                 }
@@ -539,7 +547,11 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("No se pudo realizar la compra");
+                        string message= "No se pudo realizar la compra " + ex.Message;
+
+                        _MyLogControlEventos.Error(message.ToString());
+
+                        MessageBox.Show(message);
 
                         btnCancelar_Click(sender, e);
                     }

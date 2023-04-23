@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,9 @@ namespace VentaVideojuegos.Layers.UI
 {
     public partial class frmReservacion : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         Reservacion reservacion= new Reservacion();
 
         public frmReservacion()
@@ -112,9 +116,13 @@ namespace VentaVideojuegos.Layers.UI
                     {
                         producto = _BLLProducto.GetProductoById(Double.Parse(txtIDProducto.Text));
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("El producto que usted selecciono no es valido");
+                        string message = "El producto que usted selecciono no es valido " + ex.Message;
+
+                        _MyLogControlEventos.Error(message.ToString());
+
+                        MessageBox.Show(message);
                         return;
                     }
 
@@ -162,9 +170,13 @@ namespace VentaVideojuegos.Layers.UI
                         {
                             videojuego = _BLLVideojuego.GetVideojuegoById(Double.Parse(txtIDProducto.Text));
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("El producto que usted selecciono no es valido");
+                            string message = "El producto que usted selecciono no es valido " + ex.Message;
+
+                            _MyLogControlEventos.Error(message.ToString());
+
+                            MessageBox.Show(message);
                             return;
                         }
 
@@ -286,7 +298,11 @@ namespace VentaVideojuegos.Layers.UI
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show("No se pudo realizar la reservacion");
+                                    string message = "No se pudo realizar la reservacion " + ex.Message;
+
+                                    _MyLogControlEventos.Error(message.ToString());
+
+                                    MessageBox.Show(message);
 
                                     btnCancelar_Click(sender, e);
                                 }
@@ -354,7 +370,11 @@ namespace VentaVideojuegos.Layers.UI
                                     }
                                     catch (Exception ex)
                                     {
-                                        MessageBox.Show("No se pudo realizar la reservacion");
+                                        string message = "No se pudo realizar la reservacion " + ex.Message;
+
+                                        _MyLogControlEventos.Error(message.ToString());
+
+                                        MessageBox.Show(message);
 
                                         btnCancelar_Click(sender, e);
                                     }

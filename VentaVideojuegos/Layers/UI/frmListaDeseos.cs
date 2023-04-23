@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,9 @@ namespace VentaVideojuegos.Layers.UI
 {
     public partial class frmListaDeseos : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         EstadoMantenimiento estadoFrame;
 
         public frmListaDeseos()
@@ -232,12 +236,22 @@ namespace VentaVideojuegos.Layers.UI
                             }
                             catch (SqlException ex)
                             {
-                                MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                string message = "Ocurrio un error en la base de datos al agregar el nuevo correo " + ex.Message; 
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
+
                                 return;
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                string message = "Ocurrio un error en el programa al agregar el nuevo correo " + ex.Message; 
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
+
                                 return;
                             }
                         }
@@ -270,12 +284,21 @@ namespace VentaVideojuegos.Layers.UI
                                     }
                                     catch (SqlException ex)
                                     {
-                                        MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                        string message= "Ocurrio un error en la base de datos al agregar el nuevo correo " + ex.Message;
+
+                                        _MyLogControlEventos.Error(message.ToString());
+
+                                        MessageBox.Show(message);
+
                                         return;
                                     }
                                     catch (Exception ex)
                                     {
-                                        MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                        string message = "Ocurrio un error en el programa al agregar el nuevo correo " + ex.Message; 
+
+                                        _MyLogControlEventos.Error(message.ToString());
+
+                                        MessageBox.Show(message);
                                         return;
                                     }
                                 }
@@ -305,12 +328,22 @@ namespace VentaVideojuegos.Layers.UI
                             }
                             catch (SqlException ex)
                             {
-                                MessageBox.Show("Ocurrio un error en la base de datos al borrar el cliente");
+                                string message = "Ocurrio un error en la base de datos al borrar el cliente " + ex.Message; 
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
+
                                 return;
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Ocurrio un error en el programa al borrar el cliente");
+                                string message = "Ocurrio un error en el programa al borrar el cliente " + ex.Message; 
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
+
                                 return;
                             }
                         }
@@ -354,12 +387,22 @@ namespace VentaVideojuegos.Layers.UI
                                 }
                                 catch (SqlException ex)
                                 {
-                                    MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                    string message = "Ocurrio un error en la base de datos al agregar el nuevo correo " + ex.Message;
+
+                                    _MyLogControlEventos.Error(message.ToString());
+
+                                    MessageBox.Show(message);
+
                                     return;
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                    string message = "Ocurrio un error en el programa al agregar el nuevo correo " + ex.Message;
+
+                                    _MyLogControlEventos.Error(message.ToString());
+
+                                    MessageBox.Show(message);
+
                                     return;
                                 }
                             }
@@ -392,12 +435,22 @@ namespace VentaVideojuegos.Layers.UI
                                         }
                                         catch (SqlException ex)
                                         {
-                                            MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo correo");
+                                            string message = "Ocurrio un error en la base de datos al agregar el nuevo correo " + ex.Message;
+
+                                            _MyLogControlEventos.Error(message.ToString());
+
+                                            MessageBox.Show(message);
+
                                             return;
                                         }
                                         catch (Exception ex)
                                         {
-                                            MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo correo");
+                                            string message= "Ocurrio un error en el programa al agregar el nuevo correo " + ex.Message;
+ 
+                                            _MyLogControlEventos.Error(message.ToString());
+
+                                            MessageBox.Show(message);
+
                                             return;
                                         }
                                     }
@@ -427,12 +480,22 @@ namespace VentaVideojuegos.Layers.UI
                                 }
                                 catch (SqlException ex)
                                 {
-                                    MessageBox.Show("Ocurrio un error en la base de datos al borrar el cliente");
+                                    string message = "Ocurrio un error en la base de datos al borrar el cliente " + ex.Message; 
+
+                                    _MyLogControlEventos.Error(message.ToString());
+
+                                    MessageBox.Show(message);
+
                                     return;
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show("Ocurrio un error en el programa al borrar el cliente");
+                                    string message = "Ocurrio un error en el programa al borrar el cliente " + ex.Message; 
+
+                                    _MyLogControlEventos.Error(message.ToString());
+
+                                    MessageBox.Show(message);
+
                                     return;
                                 }
                             }
@@ -622,7 +685,11 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("No se pudo cargar su lista de deseos");
+                        string message = "No se pudo cargar su lista de deseos " + ex.Message; 
+
+                        _MyLogControlEventos.Error(message.ToString());
+
+                        MessageBox.Show(message);
                     }
                 }
                 else
@@ -661,7 +728,12 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("No se pudo cargar su lista de deseos");
+                            string message = "No se pudo cargar su lista de deseos " + ex.Message; 
+
+                            _MyLogControlEventos.Error(message.ToString());
+
+                            MessageBox.Show(message);
+
                         }
                     }
                     else

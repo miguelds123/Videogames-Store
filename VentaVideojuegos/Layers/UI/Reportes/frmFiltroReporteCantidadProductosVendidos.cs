@@ -12,6 +12,10 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 {
     public partial class frmFiltroReporteCantidadProductosVendidos : Form
     {
+
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         public frmFiltroReporteCantidadProductosVendidos()
         {
             InitializeComponent();
@@ -19,30 +23,42 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (cmbTipo.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("Porfavor, seleccione el tipo de producto que desea consultar");
-                return;
-            }
-
-            if (cmbTipo.SelectedItem.Equals("Producto"))
-            {
-                frmReporteCantidadProductosVendidos frmReporteCantidadProductosVendidos = new frmReporteCantidadProductosVendidos(dateTimePicker1.Value, dateTimePicker2.Value);
-
-                frmReporteCantidadProductosVendidos.Show();
-            }
-            else
-            {
-                if (cmbTipo.SelectedItem.Equals("Videojuego"))
+                if (cmbTipo.SelectedIndex == -1)
                 {
-                    frmReporteCantidaVideojuegosVendidos frmReporteCantidaVideojuegosVendidos = new frmReporteCantidaVideojuegosVendidos(dateTimePicker1.Value, dateTimePicker2.Value);
-
-                    frmReporteCantidaVideojuegosVendidos.Show();
+                    MessageBox.Show("Porfavor, seleccione el tipo de producto que desea consultar");
+                    return;
                 }
+
+                if (cmbTipo.SelectedItem.Equals("Producto"))
+                {
+                    frmReporteCantidadProductosVendidos frmReporteCantidadProductosVendidos = new frmReporteCantidadProductosVendidos(dateTimePicker1.Value, dateTimePicker2.Value);
+
+                    frmReporteCantidadProductosVendidos.Show();
+                }
+                else
+                {
+                    if (cmbTipo.SelectedItem.Equals("Videojuego"))
+                    {
+                        frmReporteCantidaVideojuegosVendidos frmReporteCantidaVideojuegosVendidos = new frmReporteCantidaVideojuegosVendidos(dateTimePicker1.Value, dateTimePicker2.Value);
+
+                        frmReporteCantidaVideojuegosVendidos.Show();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = "Ocurrio un error al cargar el reporte: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
+                return;
             }
         }
 
-        private void frmFiltroReporteCantidadProductosVendidos_Load(object sender, EventArgs e)
+    private void frmFiltroReporteCantidadProductosVendidos_Load(object sender, EventArgs e)
         {
             cmbTipo.Items.Clear();
             cmbTipo.Items.Add("Producto");

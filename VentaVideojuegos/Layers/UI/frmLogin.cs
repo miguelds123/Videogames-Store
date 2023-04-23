@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,9 @@ namespace VentaVideojuegos.Layers.UI
 {
     public partial class frmLogin : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         public frmLogin()
         {
             InitializeComponent();
@@ -25,23 +29,45 @@ namespace VentaVideojuegos.Layers.UI
 
             string truncatedString = Encriptado.GetSHA256(txtPassword.Text).Substring(0, Math.Min(Encriptado.GetSHA256(txtPassword.Text).Length, 32));
 
-            if (_BLLLogin.Login(txtUsuario.Text, truncatedString))
+            try
             {
-                Usuario usuario= _BLLLogin.GetUsuarioByFilter(txtUsuario.Text);
+                if (_BLLLogin.Login(txtUsuario.Text, truncatedString))
+                {
+                    Usuario usuario = _BLLLogin.GetUsuarioByFilter(txtUsuario.Text);
 
-                UsuarioIniciado.usuarioLogin.Clear();
+                    UsuarioIniciado.usuarioLogin.Clear();
 
-                UsuarioIniciado.usuarioLogin.Add(usuario);
+                    UsuarioIniciado.usuarioLogin.Add(usuario);
 
-                MessageBox.Show("Su usuario y su coontraseña son correctos. Bienvenido");
+                    MessageBox.Show("Su usuario y su coontraseña son correctos. Bienvenido");
 
-                this.Close();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Su usuario y su coontraseña son incorrectos. Por favor intentelo de nuevo");
+                    txtUsuario.Clear();
+                    txtPassword.Clear();
+                    return;
+                }
             }
-            else
+            catch (SqlException ex)
             {
-                MessageBox.Show("Su usuario y su coontraseña son incorrectos. Por favor intentelo de nuevo");
-                txtUsuario.Clear();
-                txtPassword.Clear();
+                String message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
+                return;
+            }
+            catch (Exception ex)
+            {
+                string message = "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }

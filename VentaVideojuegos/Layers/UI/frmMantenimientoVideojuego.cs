@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,9 @@ namespace VentaVideojuegos.Layers.UI
 {
     public partial class frmMantenimientoVideojuego : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         EstadoMantenimiento estadoFrame;
 
         public frmMantenimientoVideojuego()
@@ -53,11 +57,19 @@ namespace VentaVideojuegos.Layers.UI
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Dio error la base de datos");
+                string message = "Dio error la base de datos " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Dio error el programa");
+                string message = "Dio error el programa " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
             }
         }
 
@@ -259,12 +271,20 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (SqlException ex)
                         {
-                            MessageBox.Show("Ocurrio un error en la base de datos al agregar el nuevo producto");
+                            string message = "Ocurrio un error en la base de datos al agregar el nuevo producto " + ex.Message;
+
+                            _MyLogControlEventos.Error(message.ToString());
+
+                            MessageBox.Show(message);
                             return;
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ocurrio un error en el programa al agregar el nuevo ");
+                            string message = "Ocurrio un error en el programa al agregar el nuevo " + ex.Message;
+
+                            _MyLogControlEventos.Error(message.ToString());
+
+                            MessageBox.Show(message);
                             return;
                         }
 
@@ -312,12 +332,20 @@ namespace VentaVideojuegos.Layers.UI
                             }
                             catch (SqlException ex)
                             {
-                                MessageBox.Show("Ocurrio un error en la base de datos al editar el producto");
+                                string message = "Ocurrio un error en la base de datos al editar el producto " + ex.Message;
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
                                 return;
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Ocurrio un error en el programa al editar el producto");
+                                string message = "Ocurrio un error en el programa al editar el producto " + ex.Message;
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
                                 return;
                             }
                         }
@@ -352,12 +380,20 @@ namespace VentaVideojuegos.Layers.UI
                             }
                             catch (SqlException ex)
                             {
-                                MessageBox.Show("Ocurrio un error en la base de datos al borrar el producto");
+                                string message = "Ocurrio un error en la base de datos al borrar el producto " + ex.Message;
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
                                 return;
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Ocurrio un error en el programa al borrar el producto");
+                                string message = "Ocurrio un error en el programa al borrar el producto " + ex.Message;
+
+                                _MyLogControlEventos.Error(message.ToString());
+
+                                MessageBox.Show(message);
                                 return;
                             }
                         }
@@ -482,13 +518,21 @@ namespace VentaVideojuegos.Layers.UI
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
-                    " de datos");
+                string message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message = ("Ocurrio un error en el programa " + ex.Message);
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }
@@ -514,7 +558,11 @@ namespace VentaVideojuegos.Layers.UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show("No se encontro el videojuego");
+                string message = ("No se encontro el videojuego " + ex.Message);
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }

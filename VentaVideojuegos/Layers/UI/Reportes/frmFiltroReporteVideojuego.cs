@@ -12,6 +12,9 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 {
     public partial class frmFiltroReporteVideojuego : Form
     {
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         public frmFiltroReporteVideojuego()
         {
             InitializeComponent();
@@ -36,7 +39,11 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error al cargar el reporte");
+                string message = "Ocurrio un error al cargar el reporte: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }
