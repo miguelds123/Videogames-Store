@@ -14,6 +14,9 @@ namespace VentaVideojuegos
     {
         Usuario _UsuarioBD = new Usuario();
 
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         public DALLogin()
         {
             //_Usuario.Login = Settings.Default.Login;
@@ -39,13 +42,21 @@ namespace VentaVideojuegos
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
-                    " de datos");
+                String message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message = "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }
@@ -83,13 +94,21 @@ namespace VentaVideojuegos
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
-                    " de datos");
+                String message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message = "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return null;
             }
         }
@@ -125,13 +144,21 @@ namespace VentaVideojuegos
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
-                    " de datos");
+                String message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message = "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return null;
             }
         }
@@ -156,13 +183,21 @@ namespace VentaVideojuegos
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
-                    " de datos");
+                String message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message = "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }
@@ -187,13 +222,21 @@ namespace VentaVideojuegos
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
-                    " de datos");
+                String message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message = "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return;
             }
         }
@@ -222,12 +265,21 @@ namespace VentaVideojuegos
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al intentar ingresar");
+                String message = "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message = "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return false;
             }
         }

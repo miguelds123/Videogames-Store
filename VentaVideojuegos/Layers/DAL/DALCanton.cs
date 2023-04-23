@@ -14,6 +14,10 @@ namespace VentaVideojuegos.Layers.DAL
     class DALCanton : IDALCanton
     {
         Usuario _Usuario = new Usuario();
+
+        private static readonly log4net.ILog _MyLogControlEventos =
+        log4net.LogManager.GetLogger("MyControlEventos");
+
         public DALCanton()
         {
             //_Usuario.Login = Settings.Default.Login;
@@ -52,13 +56,21 @@ namespace VentaVideojuegos.Layers.DAL
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrio un error al ejecutar la instruccion en la base" +
-                    " de datos");
+                String message= "Ocurrio un error al ejecutar la instruccion en la base" +
+                    " de datos: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error en el programa");
+                string message= "Ocurrio un error en el programa: " + ex.Message;
+
+                _MyLogControlEventos.Error(message.ToString());
+
+                MessageBox.Show(message);
                 return null;
             }
         }
