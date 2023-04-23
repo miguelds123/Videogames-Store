@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase Usuario que contiene las propiedades necesarias para almacenar el contenido
+    /// de la tabla Usuario en la base de datos
+    /// </summary>
+
     class Usuario
     {
         public string Login { set; get; }

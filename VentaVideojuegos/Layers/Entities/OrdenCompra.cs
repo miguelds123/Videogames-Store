@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase OrdenCompra que contiene las propiedades necesarias para almacenar el contenido
+    /// de la tabla OrdenCompra en la base de datos
+    /// </summary>
+
     public class OrdenCompra
     {
         public int ID { get; set; }

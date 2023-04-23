@@ -7,12 +7,27 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase ServiceBCCR que contiene todos lo metodos necesarios para obtener el 
+    /// precio del Dolar
+    /// </summary>
+
     class ServiceBCCR
     {
         //Agregar los credenciales para el uso del consumo API del Dolar BCCR
         private readonly string TOKEN = "A0NAVPOBA8";
         private readonly string NOMBRE = "Miguel David Santamaria Obando";
         private readonly string CORREO = "mdsantamaria02@gmail.com";
+
+        /// <summary>
+        /// Método que obtiene del servicio BCCR la informacion necesaria sobre el precio
+        /// del dolar y lo almacena en la clase Dolar
+        /// </summary>
+        /// <param name="pFechaInicial">fecha de inicio de la consulta</param>
+        /// <param name="pFechaFinal">fecha de fin de la consulta</param>
+        /// <param name="pCompraoVenta">string que le indica al servicio la informacion
+        /// que se desea consultar</param>
+        /// <returns>Una instancia de la clase Dolar con la informacion necesaria</returns>
 
         public IEnumerable<Dolar> GetDolar(DateTime pFechaInicial, DateTime
         pFechaFinal, String pCompraoVenta)

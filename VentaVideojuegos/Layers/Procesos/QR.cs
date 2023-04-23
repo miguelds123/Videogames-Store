@@ -8,8 +8,19 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase QR que contiene todos los metodos necesarios para generar un QR
+    /// </summary>
+
     class QR
     {
+        /// <summary>
+        /// Método que retorna una imagen QR
+        /// </summary>
+        /// <param name="input">informacion que va estar contenida en el QR</param>
+        /// <param name="qrlevel">tamaño de la imagen QR</param>
+        /// <returns>Imagen QR</returns>
+
         public static Image QuickResponseGenerador(string input, int qrlevel)
         {
 

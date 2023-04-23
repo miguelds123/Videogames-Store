@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase Provincia que contiene las propiedades necesarias para almacenar el contenido
+    /// de la tabla Provincia en la base de datos
+    /// </summary>
+
     class Provincia
     {
         public int Id { get; set; }

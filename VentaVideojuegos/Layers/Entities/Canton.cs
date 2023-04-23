@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+
+    /// <summary>
+    /// Clase Canton que contiene las propiedades necesarias para almacenar el contenido
+    /// de la tabla Canton en la base de datos
+    /// </summary>
+
     class Canton
     {
         public int Id { get; set; }

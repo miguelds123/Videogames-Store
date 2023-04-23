@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase ListaDeseos que contiene las propiedades necesarias para almacenar el contenido
+    /// de la tabla ListaDeseos en la base de datos
+    /// </summary>
+
     public class ListaDeseos
     {
         public int IdCliente { get; set; }

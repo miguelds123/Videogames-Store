@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase Dolar que contiene las propiedades necesarias para almacenar el contenido
+    /// del servicio ServiceBCCR
+    /// </summary>
+
     class Dolar
     {
         public string Codigo { get; set; }

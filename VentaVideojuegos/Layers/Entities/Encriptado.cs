@@ -7,8 +7,19 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos.Layers.Entities
 {
+    /// <summary>
+    /// Clase Encriptado que contiene los metodos necesarios para encriptar las contraseñas
+    /// de los usuarios
+    /// </summary>
+
     static class Encriptado
     {
+        /// <summary>
+        /// Metodo que recibe un string y lo retorna encriptado en SHA256 
+        /// </summary>
+        /// <param name="str">valor a encriptar</param>
+        /// <returns>String encriptado en SHA256</returns>
+
         public static string GetSHA256(string str)
         {
             SHA256 sha256 = SHA256Managed.Create();

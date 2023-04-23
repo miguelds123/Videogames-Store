@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase RAWGJuego que contiene las propiedades necesarias para almacenar la 
+    /// informacion obtenida desde la API RAWG
+    /// </summary>
+
     class RAWGJuego
     {
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]

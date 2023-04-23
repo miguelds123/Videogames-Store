@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+
+    /// <summary>
+    /// Clase Cliente que contiene las propiedades necesarias para almacenar el contenido
+    /// de la tabla Cliente en la base de datos
+    /// </summary>
+
     public class Cliente
     {
         public int ID { get; set; }

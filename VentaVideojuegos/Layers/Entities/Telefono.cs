@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase Telefono que contiene las propiedades necesarias para almacenar el contenido
+    /// de la tabla Telefono en la base de datos
+    /// </summary>
+
     public class Telefono
     {
         public string Numero { get; set; }
