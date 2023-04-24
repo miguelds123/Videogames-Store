@@ -10,6 +10,11 @@ using VentaVideojuegos.Properties;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase DALCliente que contiene todos los metodos necesarios para manejar la
+    /// informacion contenida en la tabla Cliente de la base de datos
+    /// </summary>
+
     class DALCliente : IDALCliente
     {
         Usuario _Usuario = new Usuario();
@@ -25,6 +30,12 @@ namespace VentaVideojuegos
             _Usuario.Login = "sa";
             _Usuario.Password = "123456";
         }
+
+        /// <summary>
+        /// Método que elimina un determinado campo en la tabla Cliente   
+        /// </summary>
+        /// <param name="pId">string que contiene el id del campo a eliminar</param>
+
         public void DeleteCliente(string pId)
         {
             try
@@ -59,6 +70,13 @@ namespace VentaVideojuegos
                 return;
             }
         }
+
+        /// <summary>
+        /// Método que retorna un lista de objetos con toda la informacion contenida 
+        /// en la tabla Cliente de la base de datos
+        /// </summary>
+        /// <returns>Una lista de objetos Cliente con la informacion de cada uno de 
+        /// los campos de la tabla Cliente</returns>
 
         public List<Cliente> GetAllCliente()
         {
@@ -117,6 +135,16 @@ namespace VentaVideojuegos
                 return null;
             }
         }
+
+        /// <summary>
+        /// Método que retorna una lista de objetos Cliente, con la informacion que 
+        /// contiene la tabla Cliente en la base de datos siempre y cuando, el campo
+        /// descripcion coincida con el parametro
+        /// </summary>
+        /// <param name="pDescripcion">string que contiene la descripcion a buscar
+        /// en la base de datos</param>
+        /// <returns>Una lista de objetos Cliente con la informacion de la tabla 
+        /// Cliente cuyo campo descripcion haya coincidido con el parametro</returns>
 
         public List<Cliente> GetClienteByFilter(string pDescripcion)
         {
@@ -177,6 +205,16 @@ namespace VentaVideojuegos
             }
         }
 
+        /// <summary>
+        /// Metodo que retorna una instancia de la clase Cliente con la informacion 
+        /// que contiene el campo de la base de datos que coinicide con el id del
+        /// parametro
+        /// </summary>
+        /// <param name="pId">string que contiene el id a buscar
+        /// en la base de datos</param>
+        /// <returns>Una instacia de la clase Cliente con la informacion de la tabla 
+        /// Cliente cuyo campo id haya coincidido con el parametro</returns>
+
         public Cliente GetClienteById(string pId)
         {
             DataSet ds = null;
@@ -234,6 +272,13 @@ namespace VentaVideojuegos
             }
         }
 
+        /// <summary>
+        /// Metodo que almacena la informacion de una instancia de la clase Cliente
+        /// como un campo de la tabla Cliente en la base de datos
+        /// </summary>
+        /// <param name="pCliente">instancia de la clase Cliente que sera almacenada
+        /// en la base de datos</param>
+
         public void SaveCliente(Cliente pCliente)
         {
             SqlCommand command = new SqlCommand();
@@ -279,6 +324,13 @@ namespace VentaVideojuegos
             }
         }
 
+        /// <summary>
+        /// Metodo que actualiza un campo de la tabla Cliente en la base de datos con la
+        /// informacion que contiene la instancia de la clase Cliente en el parametro
+        /// </summary>
+        /// <param name="pCliente">instancia de la clase Cliente cuya informacion
+        /// se utilizara para actualizar un campo en la tabla Cliente</param>
+
         public void UpdateCliente(Cliente pCliente)
         {
             SqlCommand command = new SqlCommand();
@@ -323,6 +375,13 @@ namespace VentaVideojuegos
                 return;
             }
         }
+
+        /// <summary>
+        /// Metodo que se utiliza para actualizar el Estado de un campo de la tabla 
+        /// Cliente en la base de datos
+        /// </summary>
+        /// <param name="pId">string que contiene el id del campo que se va a 
+        /// actualizar en la base de datos</param>
 
         public void BorradoLogico(string pId)
         {

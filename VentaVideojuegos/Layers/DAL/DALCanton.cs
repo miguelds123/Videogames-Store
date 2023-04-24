@@ -13,6 +13,11 @@ namespace VentaVideojuegos.Layers.DAL
 {
     class DALCanton : IDALCanton
     {
+        /// <summary>
+        /// Clase DALCanton que contiene todos los metodos necesarios para manejar la
+        /// informacion contenida en la tabla Canton de la base de datos
+        /// </summary>
+
         Usuario _Usuario = new Usuario();
 
         private static readonly log4net.ILog _MyLogControlEventos =
@@ -26,6 +31,14 @@ namespace VentaVideojuegos.Layers.DAL
             _Usuario.Login = "sa";
             _Usuario.Password = "123456";
         }
+
+        /// <summary>
+        /// Método que retorna toda la informacion contenida en la tabla Canton de la 
+        /// base de datos
+        /// </summary>
+        /// <returns>Una lista de objetos con toda la informacion contenida
+        /// en la tabla Canton de la base de datos</returns>
+
         public List<Canton> GetAllCanton()
         {
             IDataReader reader = null;
