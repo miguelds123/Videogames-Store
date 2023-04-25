@@ -35,7 +35,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.97042cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -310,7 +310,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.97042cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -612,7 +612,7 @@
         <DataSetName>DataSetReporteVideojuego</DataSetName>
         <Top>0.89641cm</Top>
         <Left>0.76412cm</Left>
-        <Height>1.2cm</Height>
+        <Height>1.94084cm</Height>
         <Width>22.5cm</Width>
         <Style>
           <Border>
@@ -621,7 +621,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.51042in</Height>
+    <Height>2.59375in</Height>
     <Style />
   </Body>
   <Width>9.57601in</Width>
