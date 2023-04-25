@@ -59,6 +59,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void frmFiltroReporteOrdenCompraProducto_Load(object sender, EventArgs e)
         {
+            this.Text = "Filtro Reporte Orden Compra";
             cmbTipo.Items.Clear();
             cmbTipo.Items.Add("Producto");
             cmbTipo.Items.Add("Videojuego");

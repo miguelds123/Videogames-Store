@@ -24,6 +24,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void frmReporteCantidadProductosVendidos_Load(object sender, EventArgs e)
         {
+            this.Text = "Reporte Cantidad de Producto Vendidos";
             // TODO: This line of code loads data into the 'DataSetReporteCantidadProductosVendidos.PA_REPORTE_CANTIDAD_PRODUCTOS_VENDIDOS' table. You can move, or remove it, as needed.
             this.PA_REPORTE_CANTIDAD_PRODUCTOS_VENDIDOSTableAdapter.Fill(this.DataSetReporteCantidadProductosVendidos.PA_REPORTE_CANTIDAD_PRODUCTOS_VENDIDOS, fechaIncio, fechaFinal);
 

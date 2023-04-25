@@ -47,5 +47,10 @@ namespace VentaVideojuegos.Layers.UI.Reportes
                 return;
             }
         }
+
+        private void frmFiltroReporteVideojuego_Load(object sender, EventArgs e)
+        {
+            this.Text = "Filtro Reporte Videojuego";
+        }
     }
 }

@@ -81,6 +81,8 @@ namespace VentaVideojuegos.Layers.UI
         private void frmLogin_Load(object sender, EventArgs e)
         {
             MessageBox.Show("Porfavor inicie sesion, de lo contrario, no podra hacer uso del programa, si no posee un usuario, por favor contactese con el administrador");
+
+            this.Text = "Login";
         }
     }
 }

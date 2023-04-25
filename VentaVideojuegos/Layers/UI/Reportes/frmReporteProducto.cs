@@ -22,6 +22,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void frmReporteProducto_Load(object sender, EventArgs e)
         {
+            this.Text = "Reporte Producto";
             // TODO: This line of code loads data into the 'DataSetReporteProducto.PA_REPORTE_PRODUCTO' table. You can move, or remove it, as needed.
             this.PA_REPORTE_PRODUCTOTableAdapter.Fill(this.DataSetReporteProducto.PA_REPORTE_PRODUCTO, numProducto);
 

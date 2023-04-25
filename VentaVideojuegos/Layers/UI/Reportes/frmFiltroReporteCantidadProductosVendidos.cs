@@ -60,6 +60,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
     private void frmFiltroReporteCantidadProductosVendidos_Load(object sender, EventArgs e)
         {
+            this.Text = "Filtro Reporte Cantidad de Productos Vendidos";
             cmbTipo.Items.Clear();
             cmbTipo.Items.Add("Producto");
             cmbTipo.Items.Add("Videojuego");

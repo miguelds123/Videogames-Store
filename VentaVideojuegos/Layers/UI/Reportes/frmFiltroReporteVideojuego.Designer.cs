@@ -71,6 +71,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
             this.Name = "frmFiltroReporteVideojuego";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmFiltroReporteVideojuego";
+            this.Load += new System.EventHandler(this.frmFiltroReporteVideojuego_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

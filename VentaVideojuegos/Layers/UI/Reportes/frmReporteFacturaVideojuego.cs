@@ -30,6 +30,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void frmReporteFacturaProducto_Load(object sender, EventArgs e)
         {
+            this.Text = "Reporte Factura Videojuego";
             // TODO: This line of code loads data into the 'DataSetReporteFacturaVideojuego.PA_REPORTE_FACTURA_VIDEOJUEGO' table. You can move, or remove it, as needed.
             this.PA_REPORTE_FACTURA_VIDEOJUEGOTableAdapter.Fill(this.DataSetReporteFacturaVideojuego.PA_REPORTE_FACTURA_VIDEOJUEGO, numFactura);
 

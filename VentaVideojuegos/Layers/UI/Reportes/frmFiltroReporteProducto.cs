@@ -24,7 +24,7 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
         private void frmReporteProducto_Load(object sender, EventArgs e)
         {
-
+            this.Text = "Filtro Reporte Producto";
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
