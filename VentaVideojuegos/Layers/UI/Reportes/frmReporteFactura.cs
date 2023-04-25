@@ -61,8 +61,8 @@ namespace VentaVideojuegos.Layers.UI.Reportes
                 String ContrasenaGeneradaGmail = "wglcnnjyegilimtq";
                 MailMessage mensaje = new MailMessage();
                 mensaje.IsBodyHtml = true;
-                mensaje.Subject = "Hola ! ";
-                mensaje.Body = "Mensaje de prueba";
+                mensaje.Subject = "Gracias por su compra";
+                mensaje.Body = "Muchas gracias por su compra, aqui tiene el pdf de su factura";
                 mensaje.From = new MailAddress(CuentaCorreoElectronico);
                 mensaje.To.Add("michiassasin@gmail.com"); //Correo del destinatario
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");

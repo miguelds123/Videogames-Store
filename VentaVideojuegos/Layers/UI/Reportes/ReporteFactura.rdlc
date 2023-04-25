@@ -47,7 +47,7 @@
         </Paragraphs>
         <rd:DefaultName>ID</rd:DefaultName>
         <Top>0.7112cm</Top>
-        <Left>2.64675cm</Left>
+        <Left>2.78786cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>1</ZIndex>
@@ -137,7 +137,7 @@
         </Paragraphs>
         <rd:DefaultName>Nombre</rd:DefaultName>
         <Top>1.87537cm</Top>
-        <Left>2.00293cm</Left>
+        <Left>2.14404cm</Left>
         <Height>0.6cm</Height>
         <Width>8.55896cm</Width>
         <ZIndex>4</ZIndex>
@@ -594,7 +594,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox20</rd:DefaultName>
         <Top>5.57953cm</Top>
-        <Left>11.62494cm</Left>
+        <Left>11.21926cm</Left>
         <Height>0.6cm</Height>
         <Width>1.53333cm</Width>
         <ZIndex>6</ZIndex>
@@ -654,7 +654,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox22</rd:DefaultName>
         <Top>6.32064cm</Top>
-        <Left>11.62494cm</Left>
+        <Left>11.21926cm</Left>
         <Height>0.6cm</Height>
         <Width>1.01833cm</Width>
         <ZIndex>8</ZIndex>
@@ -714,7 +714,7 @@
         </Paragraphs>
         <rd:DefaultName>Column1</rd:DefaultName>
         <Top>0.7112cm</Top>
-        <Left>8.02662cm</Left>
+        <Left>8.20301cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>10</ZIndex>
