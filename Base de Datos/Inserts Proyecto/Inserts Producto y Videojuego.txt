@@ -1,0 +1,29 @@
+Productos
+
+1. Audifonos. Precio:10000. Descuento: 0 
+2. PS4. Precio:300000. Descuento: 0 
+3. XBOX. Precio:300000. Descuento: 0 
+4. Control. Precio:30000. Descuento: 2000 
+5. Camisa. Precio:3000. Descuento: 0 
+6. Poster. Precio:1000. Descuento: 300 
+7. Llave Maya. Precio:5000. Descuento: 0 
+8. Cargador. Precio:10000. Descuento: 0 
+9. HDMI. Precio:10000. Descuento: 1000 
+10. Tazas. Precio: 4000. Descuento: 0 
+11. Figuras. Precio: 10000. Descuento: 0 
+
+
+Videojuegos
+
+
+1. Hogwarts Legacy. Precio: 30000. Descuento: 0
+2. Resident Evil 4 2023. Precio: 30000. Descuento: 0
+3. Dead Island. Precio: 20000. Descuento: 5000
+4. Star Wars Jedi Survivor. Precio: 40000. Descuento: 0
+5. Sons of the Forest. Precio: 25000. Descuento: 0
+6. Marvels Spider Man 2. Precio: 40000. Descuento: 0
+7. Assassins Creed Mirage. Precio: 30000. Descuento: 0
+8. Uncharted 4 A Thiefs End. Precio: 30000. Descuento: 10000
+9. Starfield. Precio: 30000. Descuento: 0
+10. Minecraft Legends. Precio: 15000. Descuento: 0
+11. Super Mario World. Precio: 5000. Descuento: 0

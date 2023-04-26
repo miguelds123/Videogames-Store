@@ -3,8 +3,6 @@
 
 -- Inserts Provincia
 
-Delete PROVINCIA
-
 Insert into PROVINCIA values (2, 'Alajuela')
 Insert into PROVINCIA values (3, 'Cartago')
 Insert into PROVINCIA values (4, 'Heredia')
@@ -17,8 +15,7 @@ Insert into PROVINCIA values (7, 'Limon')
 Select * from CANTON
 where CANTON.ID_PROVINCIA = 1
 
-Delete CANTON
-
+Insert into CANTON values (1, 1, 'San José')
 Insert into CANTON values (2, 1, 'Escazú')
 Insert into CANTON values (3, 1, 'Desamparados')
 Insert into CANTON values (4, 1, 'Puriscal')
