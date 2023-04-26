@@ -193,7 +193,7 @@ namespace VentaVideojuegos
         }
 
         /// <summary>
-        /// Metodo que retorna una instancia de la clase ListaDeseos con la informacion 
+        /// Metodo que retorna lista de objetos de la clase ListaDeseos con la informacion 
         /// que contiene el campo de la base de datos que coinicide con el id del
         /// parametro
         /// </summary>

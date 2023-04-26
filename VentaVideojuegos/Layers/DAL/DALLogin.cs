@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase DALLogin que contiene todos los metodos necesarios para manejar la
+    /// informacion contenida en la tabla Usuario y con ella permitir a los usuarios 
+    /// del programa iniciar sesion con su cuenta
+    /// </summary>
+
     internal class DALLogin : IDALLogin
     {
         Usuario _UsuarioBD = new Usuario();
@@ -25,6 +31,11 @@ namespace VentaVideojuegos
             _UsuarioBD.Login = "sa";
             _UsuarioBD.Password = "123456";
         }
+
+        /// <summary>
+        /// Método que elimina un determinado campo en la tabla Usuario   
+        /// </summary>
+        /// <param name="pId">string que contiene el id del campo a eliminar</param>
 
         public void DeleteUsuario(string pId)
         {
@@ -60,6 +71,13 @@ namespace VentaVideojuegos
                 return;
             }
         }
+
+        /// <summary>
+        /// Método que retorna un lista de objetos con toda la informacion contenida 
+        /// en la tabla Usuario de la base de datos
+        /// </summary>
+        /// <returns>Una lista de objetos Usuario con la informacion de cada uno de 
+        /// los campos de la tabla Usuario</returns>
 
         public List<Usuario> GetAllUsuario()
         {
@@ -113,6 +131,16 @@ namespace VentaVideojuegos
             }
         }
 
+        /// <summary>
+        /// Metodo que retorna una instancia de la clase Usuario con la informacion 
+        /// que contiene el campo de la base de datos que coinicide con la descripcion 
+        /// del parametro
+        /// </summary>
+        /// <param name="pDescripcion">string que contiene la descripcion del usuario 
+        /// a buscar en la base de datos</param>
+        /// <returns>Una instancia de la clase Usaurio con la informacion de la tabla 
+        /// Usuario cuyo campo descripcion haya coincidido con el parametro</returns>
+
         public Usuario GetUsuarioByFilter(string pDescripcion)
         {
             DataSet ds = null;
@@ -163,6 +191,13 @@ namespace VentaVideojuegos
             }
         }
 
+        /// <summary>
+        /// Metodo que almacena la informacion de una instancia de la clase Usuario
+        /// como un campo de la tabla Usuario en la base de datos
+        /// </summary>
+        /// <param name="pUsuario">instancia de la clase Usuario que sera almacenada
+        /// en la base de datos</param>
+
         public void SaveUsuario(Usuario pUsuario)
         {
             SqlCommand command = new SqlCommand();
@@ -202,6 +237,13 @@ namespace VentaVideojuegos
             }
         }
 
+        /// <summary>
+        /// Metodo que actualiza un campo de la tabla Usuario en la base de datos con la
+        /// informacion que contiene la instancia de la clase Usuario en el parametro
+        /// </summary>
+        /// <param name="pUsuario">instancia de la clase Usuario cuya informacion
+        /// se utilizara para actualizar un campo en la tabla Usuario</param>
+
         public void UpdateUsuario(Usuario pUsuario)
         {
             SqlCommand command = new SqlCommand();
@@ -240,6 +282,15 @@ namespace VentaVideojuegos
                 return;
             }
         }
+
+        /// <summary>
+        /// Metodo que permite a los usuarios iniciar sesion con su usuario y 
+        /// contraseña
+        /// </summary>
+        /// <param name="pUsuario">string que contiene el usuario</param>
+        /// <param name="pContrasena">string que contiene la contraseña</param>
+        /// <returns>Un valor booleano que indica si el usuario y la contraseña
+        /// fueron encontrados en la base de datos</returns>
 
         public bool Login(string pUsuario, string pContrasena)
         {

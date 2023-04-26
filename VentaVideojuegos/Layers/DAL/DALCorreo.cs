@@ -199,7 +199,7 @@ namespace VentaVideojuegos
         /// </summary>
         /// <param name="pId">string que contiene el id a buscar
         /// en la base de datos</param>
-        /// <returns>Una instacia de la clase Correo con la informacion de la tabla 
+        /// <returns>Una lista de objetos de la clase Correo con la informacion de la tabla 
         /// Correo cuyo campo id haya coincidido con el parametro</returns>
 
         public List<Correo> GetCorreoByIdCliente(string pId)
@@ -304,7 +304,7 @@ namespace VentaVideojuegos
         /// informacion que contiene la instancia de la clase Correo en el parametro
         /// </summary>
         /// <param name="correo">instancia de la clase Correo cuya informacion
-        /// se utilizara para actualizar un campo en la tabla Cliente</param>
+        /// se utilizara para actualizar un campo en la tabla Correo</param>
         /// <param name="pCorreoViejo">string que contiene el correo que se desea
         /// actualizar</param>
         /// <param name="pIdClienteViejo">string que contiene el id del cliente que se desea

@@ -11,6 +11,11 @@ using System.Windows.Forms;
 
 namespace VentaVideojuegos
 {
+    /// <summary>
+    /// Clase DALProvincia que contiene todos los metodos necesarios para manejar la
+    /// informacion contenida en la tabla Provincia de la base de datos
+    /// </summary>
+
     class DALProvincia : IDALProvincia
     {
         Usuario _Usuario = new Usuario();
@@ -26,6 +31,14 @@ namespace VentaVideojuegos
             _Usuario.Login = "sa";
             _Usuario.Password = "123456";
         }
+
+        /// <summary>
+        /// Método que retorna un lista de objetos con toda la informacion contenida 
+        /// en la tabla Provincia de la base de datos
+        /// </summary>
+        /// <returns>Una lista de objetos Provincia con la informacion de cada uno de 
+        /// los campos de la tabla Provincia</returns>
+
         public List<Provincia> GetAllProvincia()
         {
             IDataReader reader = null;
