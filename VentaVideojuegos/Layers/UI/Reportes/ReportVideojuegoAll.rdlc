@@ -556,7 +556,7 @@
                   <CellContents>
                     <Image Name="Image1">
                       <Source>Database</Source>
-                      <Value>=First(Fields!IMAGEN.Value, "DataSetVideojuegoAll1")</Value>
+                      <Value>=Fields!IMAGEN.Value</Value>
                       <MIMEType>image/jpeg</MIMEType>
                       <Sizing>FitProportional</Sizing>
                       <Style>
@@ -597,7 +597,7 @@
         <DataSetName>DataSetVideojuegoAll1</DataSetName>
         <Top>1.08162cm</Top>
         <Left>0.7112cm</Left>
-        <Height>2.04667cm</Height>
+        <Height>2.04666cm</Height>
         <Width>22.5cm</Width>
         <Style>
           <Border>

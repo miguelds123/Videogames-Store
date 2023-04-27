@@ -26,7 +26,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>1.3276cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -211,7 +211,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>1.3276cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -367,7 +367,7 @@
                   <CellContents>
                     <Image Name="Image1">
                       <Source>Database</Source>
-                      <Value>=First(Fields!IMAGEN.Value, "DataSetReporteProductoAll1")</Value>
+                      <Value>=Fields!IMAGEN.Value</Value>
                       <MIMEType>image/jpeg</MIMEType>
                       <Sizing>FitProportional</Sizing>
                       <Style>
@@ -405,7 +405,7 @@
         <DataSetName>DataSetReporteProductoAll1</DataSetName>
         <Top>0.52599cm</Top>
         <Left>0.28787cm</Left>
-        <Height>1.2cm</Height>
+        <Height>2.65521cm</Height>
         <Width>15cm</Width>
         <Style>
           <Border>
