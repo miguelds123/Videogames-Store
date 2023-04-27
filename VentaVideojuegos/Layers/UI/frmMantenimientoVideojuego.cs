@@ -375,9 +375,30 @@ namespace VentaVideojuegos.Layers.UI
 
                     try
                     {
-                        _BLLVideojuego.SaveVideojuego(videojuego);
+                        List<Videojuego> listaVideojuegos = _BLLVideojuego.GetAllVideojuego();
 
-                        this.CargarDatos();
+                        bool estado = false;
+
+                        foreach (Videojuego videojuego1 in listaVideojuegos)
+                        {
+                            if (videojuego1.ID == videojuego.ID)
+                            {
+                                estado = true;
+                            }
+                        }
+
+                        if (estado == false)
+                        {
+                            _BLLVideojuego.SaveVideojuego(videojuego);
+
+                            this.CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El id que intento agregar ya a sido registrado anteriormente, por favor digite uno que no se encuentre registrado");
+                            txtID.Focus();
+                            return;
+                        }
                     }
                     catch (SqlException ex)
                     {

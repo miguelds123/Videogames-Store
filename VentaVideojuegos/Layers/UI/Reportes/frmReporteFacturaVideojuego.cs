@@ -78,6 +78,8 @@ namespace VentaVideojuegos.Layers.UI.Reportes
 
                 MessageBox.Show("La factura a sido enviada a su correo");
 
+                this.Close();
+
             }
             catch (SqlException ex)
             {
