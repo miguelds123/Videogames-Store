@@ -170,9 +170,35 @@ namespace VentaVideojuegos.Layers.UI
             {
                 case EstadoMantenimiento.Nuevo:
 
-                    ValidarCampos();
+                    if (String.IsNullOrEmpty(txtUsuario.Text))
+                    {
+                        MessageBox.Show("Debe digitar el nombre de usuario");
+                        txtUsuario.Focus();
+                        return;
+                    }
 
-                    usuario= new Usuario();
+                    if (String.IsNullOrEmpty(txtPassword.Text))
+                    {
+                        MessageBox.Show("Debe digitar la contraseña del usuario");
+                        txtPassword.Focus();
+                        return;
+                    }
+
+                    if (cmbCategoria.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Debe seleccionar la categoria del producto");
+                        cmbCategoria.Focus();
+                        return;
+                    }
+
+                    if (pbImagen.Tag == null)
+                    {
+                        MessageBox.Show("Debe seleccionar una imagen");
+                        pbImagen.Focus();
+                        return;
+                    }
+
+                    usuario = new Usuario();
 
                     string truncatedString = Encriptado.GetSHA256(txtPassword.Text).Substring(0, Math.Min(Encriptado.GetSHA256(txtPassword.Text).Length, 32));
 
@@ -231,13 +257,41 @@ namespace VentaVideojuegos.Layers.UI
                     if (this.dgvDatos.SelectedRows.Count > 0)
                     {
 
-                        ValidarCampos();
+                        if (String.IsNullOrEmpty(txtUsuario.Text))
+                        {
+                            MessageBox.Show("Debe digitar el nombre de usuario");
+                            txtUsuario.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtPassword.Text))
+                        {
+                            MessageBox.Show("Debe digitar la contraseña del usuario");
+                            txtPassword.Focus();
+                            return;
+                        }
+
+                        if (cmbCategoria.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Debe seleccionar la categoria del producto");
+                            cmbCategoria.Focus();
+                            return;
+                        }
+
+                        if (pbImagen.Tag == null)
+                        {
+                            MessageBox.Show("Debe seleccionar una imagen");
+                            pbImagen.Focus();
+                            return;
+                        }
 
                         //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
-                        usuario= new Usuario();
+                        usuario = new Usuario();
+
+                        string truncatedString1 = Encriptado.GetSHA256(txtPassword.Text).Substring(0, Math.Min(Encriptado.GetSHA256(txtPassword.Text).Length, 32));
 
                         usuario.Login = txtUsuario.Text;
-                        usuario.Password = Encriptado.GetSHA256(txtPassword.Text);
+                        usuario.Password = truncatedString1;
                         usuario.IMAGEN = (byte[])this.pbImagen.Tag;
 
                         if (cmbCategoria.SelectedItem.Equals(CategoriaUsuario.Administrador))
