@@ -46,6 +46,7 @@ namespace VentaVideojuegos
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.CommandText = "PA_DELETE_TELEFONO";
                     command.Parameters.AddWithValue(@"TELEFONO", pTelefono);
+                    command.Parameters.AddWithValue(@"ID_CLIENTE", Convert.ToInt32(pId));
 
                     db.ExecuteNonQuery(command);
                 }

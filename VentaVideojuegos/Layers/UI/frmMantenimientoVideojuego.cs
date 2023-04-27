@@ -581,7 +581,7 @@ namespace VentaVideojuegos.Layers.UI
 
                 case EstadoMantenimiento.Borrar:
 
-                    string mensaje = "Esta seguro que desea eliminar este videojuego, esta accion es irreversible";
+                    string mensaje = "Esta seguro que desea deshabilitar este videojuego";
                     string caption = "Advertencia";
 
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;

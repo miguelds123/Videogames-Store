@@ -129,6 +129,17 @@ namespace VentaVideojuegos.Layers.UI
                 return;
             }
 
+            try
+            {
+                int num = Convert.ToInt32(txtIdCliente.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("El id debe estar compuesto de numero enteros");
+                txtIdCliente.Focus();
+                return;
+            }
+
             if (String.IsNullOrEmpty(txtCorreo.Text))
             {
                 MessageBox.Show("Debe digitar el numero de telefono del cliente");
@@ -146,9 +157,32 @@ namespace VentaVideojuegos.Layers.UI
             {
                 case EstadoMantenimiento.Nuevo:
 
-                    ValidarCampos();
+                    if (String.IsNullOrEmpty(txtIdCliente.Text))
+                    {
+                        MessageBox.Show("Debe digitar la identificacion del cliente");
+                        txtIdCliente.Focus();
+                        return;
+                    }
 
-                    correo= new Correo();
+                    try
+                    {
+                        int num = Convert.ToInt32(txtIdCliente.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        txtIdCliente.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtCorreo.Text))
+                    {
+                        MessageBox.Show("Debe digitar el numero de telefono del cliente");
+                        txtCorreo.Focus();
+                        return;
+                    }
+
+                    correo = new Correo();
 
                     correo.IdCliente = Convert.ToInt32(txtIdCliente.Text);
                     correo.CorreoElectronico = txtCorreo.Text;
@@ -185,10 +219,33 @@ namespace VentaVideojuegos.Layers.UI
                     if (this.dgvDatos.SelectedRows.Count > 0)
                     {
 
-                        ValidarCampos();
+                        if (String.IsNullOrEmpty(txtIdCliente.Text))
+                        {
+                            MessageBox.Show("Debe digitar la identificacion del cliente");
+                            txtIdCliente.Focus();
+                            return;
+                        }
+
+                        try
+                        {
+                            int num = Convert.ToInt32(txtIdCliente.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("El id debe estar compuesto de numero enteros");
+                            txtIdCliente.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtCorreo.Text))
+                        {
+                            MessageBox.Show("Debe digitar el numero de telefono del cliente");
+                            txtCorreo.Focus();
+                            return;
+                        }
 
                         //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
-                        correo= new Correo();
+                        correo = new Correo();
                         Correo correoViejo = this.dgvDatos.SelectedRows[0].DataBoundItem as Correo;
 
                         correo.IdCliente = Convert.ToInt32(txtIdCliente.Text);
