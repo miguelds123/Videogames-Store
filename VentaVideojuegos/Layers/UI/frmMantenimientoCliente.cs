@@ -261,9 +261,70 @@ namespace VentaVideojuegos.Layers.UI
             {
                 case EstadoMantenimiento.Nuevo:
 
-                    ValidarCampos();
+                    if (String.IsNullOrEmpty(txtIdentificacion.Text))
+                    {
+                        MessageBox.Show("Debe digitar la identificacion del cliente");
+                        txtIdentificacion.Focus();
+                        return;
+                    }
 
-                    cliente= new Cliente();
+                    if (String.IsNullOrEmpty(txtNombre.Text))
+                    {
+                        MessageBox.Show("Debe digitar el nombre del cliente");
+                        txtNombre.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtApellido1.Text))
+                    {
+                        MessageBox.Show("Debe digitar el apellido 1 del cliente");
+                        txtApellido1.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtApellido2.Text))
+                    {
+                        MessageBox.Show("Debe digitar el apellido 2 del cliente");
+                        txtApellido2.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtDireccion.Text))
+                    {
+                        MessageBox.Show("Debe digitar la direccion del cliente");
+                        txtDireccion.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtCodigoPostal.Text))
+                    {
+                        MessageBox.Show("Debe digitar el codigo postal del cliente");
+                        txtCodigoPostal.Focus();
+                        return;
+                    }
+
+                    if (cmbProvincia.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Debe seleccionar la provincia del cliente");
+                        cmbProvincia.Focus();
+                        return;
+                    }
+
+                    if (cmbCanton.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Debe seleccionar el canton del cliente");
+                        cmbCanton.Focus();
+                        return;
+                    }
+
+                    if (cmbEstado.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Debe seleccionar el estado del cliente");
+                        cmbEstado.Focus();
+                        return;
+                    }
+
+                    cliente = new Cliente();
 
                     cliente.ID = Convert.ToInt32((string)txtIdentificacion.Text);
                     cliente.Nombre = txtNombre.Text;
@@ -289,9 +350,30 @@ namespace VentaVideojuegos.Layers.UI
 
                     try
                     {
-                        _BLLCliente.SaveCliente(cliente);
+                        List<Cliente> lista= _BLLCliente.GetAllCliente();
 
-                        this.CargarDatos();
+                        bool estado= false;
+
+                        foreach(Cliente cliente1 in lista)
+                        {
+                            if (cliente1.ID == cliente.ID)
+                            {
+                                estado= true;
+                            }
+                        }
+
+                        if (estado == false)
+                        {
+                            _BLLCliente.SaveCliente(cliente);
+
+                            this.CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El id que intento agregar ya a sido registrado anteriormente, por favor digite uno que no se encuentre registrado");
+                            txtIdentificacion.Focus();
+                            return;
+                        }
                     }
                     catch(SqlException ex)
                     {
@@ -319,7 +401,68 @@ namespace VentaVideojuegos.Layers.UI
                     if (this.dgvDatos.SelectedRows.Count > 0)
                     {
 
-                        ValidarCampos();
+                        if (String.IsNullOrEmpty(txtIdentificacion.Text))
+                        {
+                            MessageBox.Show("Debe digitar la identificacion del cliente");
+                            txtIdentificacion.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtNombre.Text))
+                        {
+                            MessageBox.Show("Debe digitar el nombre del cliente");
+                            txtNombre.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtApellido1.Text))
+                        {
+                            MessageBox.Show("Debe digitar el apellido 1 del cliente");
+                            txtApellido1.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtApellido2.Text))
+                        {
+                            MessageBox.Show("Debe digitar el apellido 2 del cliente");
+                            txtApellido2.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtDireccion.Text))
+                        {
+                            MessageBox.Show("Debe digitar la direccion del cliente");
+                            txtDireccion.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtCodigoPostal.Text))
+                        {
+                            MessageBox.Show("Debe digitar el codigo postal del cliente");
+                            txtCodigoPostal.Focus();
+                            return;
+                        }
+
+                        if (cmbProvincia.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Debe seleccionar la provincia del cliente");
+                            cmbProvincia.Focus();
+                            return;
+                        }
+
+                        if (cmbCanton.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Debe seleccionar el canton del cliente");
+                            cmbCanton.Focus();
+                            return;
+                        }
+
+                        if (cmbEstado.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Debe seleccionar el estado del cliente");
+                            cmbEstado.Focus();
+                            return;
+                        }
 
                         cliente = this.dgvDatos.SelectedRows[0].DataBoundItem as Cliente;
 
@@ -380,7 +523,7 @@ namespace VentaVideojuegos.Layers.UI
 
                 case EstadoMantenimiento.Borrar:
 
-                    string mensaje = "Esta seguro que desea eliminar este cliente, esta accion es irreversible";
+                    string mensaje = "Esta seguro que desea desabilitar este cliente";
                     string caption = "Advertencia";
 
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
