@@ -226,14 +226,184 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txtDescripcion.Text))
-            {
-                BLLVideojuego _BLLVideojuego = new BLLVideojuego();
-                Videojuego videojuego = new Videojuego();
+            BLLVideojuego _BLLVideojuego = new BLLVideojuego();
+            Videojuego videojuego = new Videojuego();
 
-                switch (estadoFrame)
-                {
-                    case EstadoMantenimiento.Nuevo:
+            switch (estadoFrame)
+            {
+                case EstadoMantenimiento.Nuevo:
+
+                    if (String.IsNullOrEmpty(txtID.Text))
+                    {
+                        MessageBox.Show("Debe digitar el ID del producto");
+                        txtID.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtID.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        txtID.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtNombre.Text))
+                    {
+                        MessageBox.Show("Debe digitar el nombre del videojuego");
+                        txtNombre.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtCantidadInventario.Text))
+                    {
+                        MessageBox.Show("Debe digitar la cantidad de inventario del producto");
+                        txtCantidadInventario.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtCantidadInventario.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("La cantidad de inventario debe ser un numero entero");
+                        txtCantidadInventario.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtDescuento.Text))
+                    {
+                        MessageBox.Show("Debe digitar el descuento del producto");
+                        txtDescuento.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtDescuento.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El descuento debe ser un numero entero");
+                        txtDescuento.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtPrecioColones.Text))
+                    {
+                        MessageBox.Show("Debe digitar el precio en colones del producto");
+                        txtPrecioColones.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtPrecioColones.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El precio en colones debe ser un numero entero");
+                        txtPrecioColones.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtDescripcion.Text))
+                    {
+                        MessageBox.Show("Debe digitar la descripcion del producto");
+                        txtDescripcion.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtFechaSalida.Text))
+                    {
+                        MessageBox.Show("Debe digitar la fecha de salida del producto");
+                        txtFechaSalida.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtNota.Text))
+                    {
+                        MessageBox.Show("Debe digitar la nota del producto");
+                        txtNota.Focus();
+                        return;
+                    }
+
+                    if (cmbEstado.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Debe seleccionar el estado del producto");
+                        cmbEstado.Focus();
+                        return;
+                    }
+
+                    if (pbImagen.Tag == null)
+                    {
+                        MessageBox.Show("Debe seleccionar una imagen");
+                        pbImagen.Focus();
+                        return;
+                    }
+
+                    videojuego = new Videojuego();
+
+                    videojuego.ID = Convert.ToInt32(txtID.Text);
+                    videojuego.DESCRIPCION = txtDescripcion.Text;
+                    videojuego.CANTIDAD_INVENTARIO = Convert.ToInt32(txtCantidadInventario.Text);
+                    videojuego.DESCUENTO = Convert.ToInt32(txtDescuento.Text);
+                    videojuego.PRECIO_COLONES = Convert.ToDouble(txtPrecioColones.Text);
+                    videojuego.PRECIO_DOLARES = Convert.ToDouble(txtPrecioDolares.Text);
+                    videojuego.Imagen = (byte[])this.pbImagen.Tag;
+                    videojuego.NOMBRE = txtNombre.Text;
+                    videojuego.FECHA_SALIDA = Convert.ToDateTime(txtFechaSalida.Text);
+                    videojuego.NOTA = Convert.ToDouble(txtNota.Text);
+                    videojuego.ID_CATEGORIA = 1;
+
+                    if (cmbEstado.SelectedItem.Equals(Estado.Activo))
+                    {
+                        videojuego.ESTADO = 1;
+                    }
+                    else
+                    {
+                        if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
+                        {
+                            videojuego.ESTADO = 0;
+                        }
+                    }
+
+                    try
+                    {
+                        _BLLVideojuego.SaveVideojuego(videojuego);
+
+                        this.CargarDatos();
+                    }
+                    catch (SqlException ex)
+                    {
+                        string message = "Ocurrio un error en la base de datos al agregar el nuevo producto " + ex.Message;
+
+                        _MyLogControlEventos.Error(message.ToString());
+
+                        MessageBox.Show(message);
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        string message = "Ocurrio un error en el programa al agregar el nuevo " + ex.Message;
+
+                        _MyLogControlEventos.Error(message.ToString());
+
+                        MessageBox.Show(message);
+                        return;
+                    }
+
+                    break;
+
+                case EstadoMantenimiento.Editar:
+
+                    if (this.dgvDatos.SelectedRows.Count > 0)
+                    {
 
                         if (String.IsNullOrEmpty(txtID.Text))
                         {
@@ -242,16 +412,38 @@ namespace VentaVideojuegos.Layers.UI
                             return;
                         }
 
-                        if (String.IsNullOrEmpty(txtDescripcion.Text))
+                        try
                         {
-                            MessageBox.Show("Debe digitar la descripcion del producto");
-                            txtDescripcion.Focus();
+                            int num = Convert.ToInt32(txtID.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("El id debe estar compuesto de numero enteros");
+                            txtID.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtNombre.Text))
+                        {
+                            MessageBox.Show("Debe digitar el nombre del videojuego");
+                            txtNombre.Focus();
                             return;
                         }
 
                         if (String.IsNullOrEmpty(txtCantidadInventario.Text))
                         {
                             MessageBox.Show("Debe digitar la cantidad de inventario del producto");
+                            txtCantidadInventario.Focus();
+                            return;
+                        }
+
+                        try
+                        {
+                            int num = Convert.ToInt32(txtCantidadInventario.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("La cantidad de inventario debe ser un numero entero");
                             txtCantidadInventario.Focus();
                             return;
                         }
@@ -263,6 +455,17 @@ namespace VentaVideojuegos.Layers.UI
                             return;
                         }
 
+                        try
+                        {
+                            int num = Convert.ToInt32(txtDescuento.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("El descuento debe ser un numero entero");
+                            txtDescuento.Focus();
+                            return;
+                        }
+
                         if (String.IsNullOrEmpty(txtPrecioColones.Text))
                         {
                             MessageBox.Show("Debe digitar el precio en colones del producto");
@@ -270,10 +473,21 @@ namespace VentaVideojuegos.Layers.UI
                             return;
                         }
 
-                        if (String.IsNullOrEmpty(txtNombre.Text))
+                        try
                         {
-                            MessageBox.Show("Debe digitar el nombre del videojuego");
-                            txtNombre.Focus();
+                            int num = Convert.ToInt32(txtPrecioColones.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("El precio en colones debe ser un numero entero");
+                            txtPrecioColones.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtDescripcion.Text))
+                        {
+                            MessageBox.Show("Debe digitar la descripcion del producto");
+                            txtDescripcion.Focus();
                             return;
                         }
 
@@ -305,6 +519,7 @@ namespace VentaVideojuegos.Layers.UI
                             return;
                         }
 
+                        //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
                         videojuego = new Videojuego();
 
                         videojuego.ID = Convert.ToInt32(txtID.Text);
@@ -333,13 +548,13 @@ namespace VentaVideojuegos.Layers.UI
 
                         try
                         {
-                            _BLLVideojuego.SaveVideojuego(videojuego);
+                            _BLLVideojuego.UpdateVideojuego(videojuego);
 
                             this.CargarDatos();
                         }
                         catch (SqlException ex)
                         {
-                            string message = "Ocurrio un error en la base de datos al agregar el nuevo producto " + ex.Message;
+                            string message = "Ocurrio un error en la base de datos al editar el producto " + ex.Message;
 
                             _MyLogControlEventos.Error(message.ToString());
 
@@ -348,138 +563,82 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (Exception ex)
                         {
-                            string message = "Ocurrio un error en el programa al agregar el nuevo " + ex.Message;
+                            string message = "Ocurrio un error en el programa al editar el producto " + ex.Message;
 
                             _MyLogControlEventos.Error(message.ToString());
 
                             MessageBox.Show(message);
                             return;
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar el producto que desea editar");
+                        return;
+                    }
 
-                        break;
+                    break;
 
-                    case EstadoMantenimiento.Editar:
+                case EstadoMantenimiento.Borrar:
 
-                        if (this.dgvDatos.SelectedRows.Count > 0)
+                    string mensaje = "Esta seguro que desea eliminar este videojuego, esta accion es irreversible";
+                    string caption = "Advertencia";
+
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                    DialogResult result;
+
+                    result = MessageBox.Show(mensaje, caption, buttons);
+
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        try
                         {
+                            //_BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
 
-                            ValidarCampos();
+                            _BLLVideojuego.BorradoLogico(Convert.ToInt32(txtID.Text));
 
-                            //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
-                            videojuego = new Videojuego();
-
-                            videojuego.ID = Convert.ToInt32(txtID.Text);
-                            videojuego.DESCRIPCION = txtDescripcion.Text;
-                            videojuego.CANTIDAD_INVENTARIO = Convert.ToInt32(txtCantidadInventario.Text);
-                            videojuego.DESCUENTO = Convert.ToInt32(txtDescuento.Text);
-                            videojuego.PRECIO_COLONES = Convert.ToDouble(txtPrecioColones.Text);
-                            videojuego.PRECIO_DOLARES = Convert.ToDouble(txtPrecioDolares.Text);
-                            videojuego.Imagen = (byte[])this.pbImagen.Tag;
-                            videojuego.NOMBRE = txtNombre.Text;
-                            videojuego.FECHA_SALIDA = Convert.ToDateTime(txtFechaSalida.Text);
-                            videojuego.NOTA = Convert.ToDouble(txtNota.Text);
-                            videojuego.ID_CATEGORIA = 1;
-
-                            if (cmbEstado.SelectedItem.Equals(Estado.Activo))
-                            {
-                                videojuego.ESTADO = 1;
-                            }
-                            else
-                            {
-                                if (cmbEstado.SelectedItem.Equals(Estado.Inactivo))
-                                {
-                                    videojuego.ESTADO = 0;
-                                }
-                            }
-
-                            try
-                            {
-                                _BLLVideojuego.UpdateVideojuego(videojuego);
-
-                                this.CargarDatos();
-                            }
-                            catch (SqlException ex)
-                            {
-                                string message = "Ocurrio un error en la base de datos al editar el producto " + ex.Message;
-
-                                _MyLogControlEventos.Error(message.ToString());
-
-                                MessageBox.Show(message);
-                                return;
-                            }
-                            catch (Exception ex)
-                            {
-                                string message = "Ocurrio un error en el programa al editar el producto " + ex.Message;
-
-                                _MyLogControlEventos.Error(message.ToString());
-
-                                MessageBox.Show(message);
-                                return;
-                            }
+                            this.CargarDatos();
                         }
-                        else
+                        catch (SqlException ex)
                         {
-                            MessageBox.Show("Debe seleccionar el producto que desea editar");
+                            string message = "Ocurrio un error en la base de datos al borrar el producto " + ex.Message;
+
+                            _MyLogControlEventos.Error(message.ToString());
+
+                            MessageBox.Show(message);
                             return;
                         }
-
-                        break;
-
-                    case EstadoMantenimiento.Borrar:
-
-                        string mensaje = "Esta seguro que desea eliminar este videojuego, esta accion es irreversible";
-                        string caption = "Advertencia";
-
-                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-                        DialogResult result;
-
-                        result = MessageBox.Show(mensaje, caption, buttons);
-
-                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        catch (Exception ex)
                         {
-                            try
-                            {
-                                //_BLLProducto.DeleteProducto(Convert.ToDouble(txtID.Text));
+                            string message = "Ocurrio un error en el programa al borrar el producto " + ex.Message;
 
-                                _BLLVideojuego.BorradoLogico(Convert.ToInt32(txtID.Text));
+                            _MyLogControlEventos.Error(message.ToString());
 
-                                this.CargarDatos();
-                            }
-                            catch (SqlException ex)
-                            {
-                                string message = "Ocurrio un error en la base de datos al borrar el producto " + ex.Message;
-
-                                _MyLogControlEventos.Error(message.ToString());
-
-                                MessageBox.Show(message);
-                                return;
-                            }
-                            catch (Exception ex)
-                            {
-                                string message = "Ocurrio un error en el programa al borrar el producto " + ex.Message;
-
-                                _MyLogControlEventos.Error(message.ToString());
-
-                                MessageBox.Show(message);
-                                return;
-                            }
+                            MessageBox.Show(message);
+                            return;
                         }
+                    }
 
-                        break;
-                }
+                    break;
+            }
 
-                this.CambiarEstado(EstadoMantenimiento.Ninguno);
-            }
-            else
-            {
-                MessageBox.Show("El juego que desea agregar no fue encontrado");
-                return;
-            }
+            this.CambiarEstado(EstadoMantenimiento.Ninguno);
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int num = Convert.ToInt32(txtPrecioColones.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("El precio en colones debe ser un numero entero");
+                txtPrecioColones.Focus();
+                return;
+            }
+
             ServiceBCCR serviceBCCR = new ServiceBCCR();
 
             List<Dolar> lista = new List<Dolar>();
