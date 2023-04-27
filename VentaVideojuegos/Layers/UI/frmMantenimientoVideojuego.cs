@@ -235,7 +235,75 @@ namespace VentaVideojuegos.Layers.UI
                 {
                     case EstadoMantenimiento.Nuevo:
 
-                        ValidarCampos();
+                        if (String.IsNullOrEmpty(txtID.Text))
+                        {
+                            MessageBox.Show("Debe digitar el ID del producto");
+                            txtID.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtDescripcion.Text))
+                        {
+                            MessageBox.Show("Debe digitar la descripcion del producto");
+                            txtDescripcion.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtCantidadInventario.Text))
+                        {
+                            MessageBox.Show("Debe digitar la cantidad de inventario del producto");
+                            txtCantidadInventario.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtDescuento.Text))
+                        {
+                            MessageBox.Show("Debe digitar el descuento del producto");
+                            txtDescuento.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtPrecioColones.Text))
+                        {
+                            MessageBox.Show("Debe digitar el precio en colones del producto");
+                            txtPrecioColones.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtNombre.Text))
+                        {
+                            MessageBox.Show("Debe digitar el nombre del videojuego");
+                            txtNombre.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtFechaSalida.Text))
+                        {
+                            MessageBox.Show("Debe digitar la fecha de salida del producto");
+                            txtFechaSalida.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtNota.Text))
+                        {
+                            MessageBox.Show("Debe digitar la nota del producto");
+                            txtNota.Focus();
+                            return;
+                        }
+
+                        if (cmbEstado.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Debe seleccionar el estado del producto");
+                            cmbEstado.Focus();
+                            return;
+                        }
+
+                        if (pbImagen.Tag == null)
+                        {
+                            MessageBox.Show("Debe seleccionar una imagen");
+                            pbImagen.Focus();
+                            return;
+                        }
 
                         videojuego = new Videojuego();
 

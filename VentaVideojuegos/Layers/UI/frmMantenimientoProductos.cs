@@ -221,6 +221,17 @@ namespace VentaVideojuegos.Layers.UI
                         return;
                     }
 
+                    try
+                    {
+                        int num= Convert.ToInt32(txtID.Text);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        txtID.Focus();
+                        return;
+                    }
+
                     if (String.IsNullOrEmpty(txtDescripcion.Text))
                     {
                         MessageBox.Show("Debe digitar la descripcion del producto");
@@ -235,9 +246,31 @@ namespace VentaVideojuegos.Layers.UI
                         return;
                     }
 
+                    try
+                    {
+                        int num = Convert.ToInt32(txtCantidadInventario.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("La cantidad de inventario debe ser un numero entero");
+                        txtCantidadInventario.Focus();
+                        return;
+                    }
+
                     if (String.IsNullOrEmpty(txtDescuento.Text))
                     {
                         MessageBox.Show("Debe digitar el descuento del producto");
+                        txtDescuento.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtDescuento.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El descuento debe ser un numero entero");
                         txtDescuento.Focus();
                         return;
                     }
@@ -249,10 +282,21 @@ namespace VentaVideojuegos.Layers.UI
                         return;
                     }
 
+                    try
+                    {
+                        int num = Convert.ToInt32(txtPrecioColones.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El precio en colones debe ser un numero entero");
+                        txtPrecioColones.Focus();
+                        return;
+                    }
+
                     if (cmbCategoria.SelectedIndex == -1)
                     {
                         MessageBox.Show("Debe seleccionar la categoria del producto");
-                        cmbEstado.Focus();
+                        cmbCategoria.Focus();
                         return;
                     }
 
@@ -365,6 +409,17 @@ namespace VentaVideojuegos.Layers.UI
                             return;
                         }
 
+                        try
+                        {
+                            int num = Convert.ToInt32(txtID.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("El id debe estar compuesto de numero enteros");
+                            txtID.Focus();
+                            return;
+                        }
+
                         if (String.IsNullOrEmpty(txtDescripcion.Text))
                         {
                             MessageBox.Show("Debe digitar la descripcion del producto");
@@ -379,9 +434,31 @@ namespace VentaVideojuegos.Layers.UI
                             return;
                         }
 
+                        try
+                        {
+                            int num = Convert.ToInt32(txtCantidadInventario.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("La cantidad de inventario debe ser un numero entero");
+                            txtCantidadInventario.Focus();
+                            return;
+                        }
+
                         if (String.IsNullOrEmpty(txtDescuento.Text))
                         {
                             MessageBox.Show("Debe digitar el descuento del producto");
+                            txtDescuento.Focus();
+                            return;
+                        }
+
+                        try
+                        {
+                            int num = Convert.ToInt32(txtDescuento.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("El descuento debe ser un numero entero");
                             txtDescuento.Focus();
                             return;
                         }
@@ -393,10 +470,21 @@ namespace VentaVideojuegos.Layers.UI
                             return;
                         }
 
+                        try
+                        {
+                            int num = Convert.ToInt32(txtPrecioColones.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("El precio en colones debe ser un numero entero");
+                            txtPrecioColones.Focus();
+                            return;
+                        }
+
                         if (cmbCategoria.SelectedIndex == -1)
                         {
                             MessageBox.Show("Debe seleccionar la categoria del producto");
-                            cmbEstado.Focus();
+                            cmbCategoria.Focus();
                             return;
                         }
 
@@ -531,6 +619,17 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int num = Convert.ToInt32(txtPrecioColones.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("El precio en colones debe ser un numero entero");
+                txtPrecioColones.Focus();
+                return;
+            }
+
             ServiceBCCR serviceBCCR = new ServiceBCCR();
 
             List<Dolar> lista = new List<Dolar>();

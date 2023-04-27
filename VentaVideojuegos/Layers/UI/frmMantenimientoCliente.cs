@@ -268,6 +268,17 @@ namespace VentaVideojuegos.Layers.UI
                         return;
                     }
 
+                    try
+                    {
+                        int num = Convert.ToInt32(txtIdentificacion.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        txtIdentificacion.Focus();
+                        return;
+                    }
+
                     if (String.IsNullOrEmpty(txtNombre.Text))
                     {
                         MessageBox.Show("Debe digitar el nombre del cliente");
