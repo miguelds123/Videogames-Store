@@ -85,6 +85,17 @@ namespace VentaVideojuegos.Layers.UI
                 return;
             }
 
+            try
+            {
+                int num = Convert.ToInt32(txtIDCliente.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("El id debe estar compuesto de numero enteros");
+                txtIDCliente.Focus();
+                return;
+            }
+
             BLLCliente _BLLCliente = new BLLCliente();
 
             List<Cliente> lista = _BLLCliente.GetAllCliente();
@@ -131,6 +142,28 @@ namespace VentaVideojuegos.Layers.UI
                     return;
                 }
 
+                try
+                {
+                    int num = Convert.ToInt32(txtIDProducto.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("El id debe estar compuesto de numero enteros");
+                    txtIDProducto.Focus();
+                    return;
+                }
+
+                try
+                {
+                    int num = Convert.ToInt32(txtCantidad.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("La cantidad debe estar compuesta de numeros enteros");
+                    txtCantidad.Focus();
+                    return;
+                }
+
                 BLLProducto _BLLProducto = new BLLProducto();
 
                 List<Producto> lista = _BLLProducto.GetAllProducto();
@@ -171,6 +204,28 @@ namespace VentaVideojuegos.Layers.UI
                     if (String.IsNullOrEmpty(txtCantidad.Text))
                     {
                         MessageBox.Show("Debe digitar la cantidad de videojuegos que desea comprar");
+                        txtCantidad.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtIDProducto.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        txtIDProducto.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtCantidad.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("La cantidad debe estar compuesta de numeros enteros");
                         txtCantidad.Focus();
                         return;
                     }

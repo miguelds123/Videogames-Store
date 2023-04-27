@@ -414,5 +414,10 @@ namespace VentaVideojuegos
                 MessageBox.Show(message);
             }
         }
+
+        private void mantenimientosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
