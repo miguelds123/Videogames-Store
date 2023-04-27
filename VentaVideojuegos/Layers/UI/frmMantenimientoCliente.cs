@@ -523,7 +523,7 @@ namespace VentaVideojuegos.Layers.UI
 
                 case EstadoMantenimiento.Borrar:
 
-                    string mensaje = "Esta seguro que desea desabilitar este cliente";
+                    string mensaje = "Esta seguro que desea deshabilitar este cliente";
                     string caption = "Advertencia";
 
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;

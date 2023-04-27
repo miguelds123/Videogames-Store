@@ -214,7 +214,61 @@ namespace VentaVideojuegos.Layers.UI
             {
                 case EstadoMantenimiento.Nuevo:
 
-                    ValidarCampos();
+                    if (String.IsNullOrEmpty(txtID.Text))
+                    {
+                        MessageBox.Show("Debe digitar el ID del producto");
+                        txtID.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtDescripcion.Text))
+                    {
+                        MessageBox.Show("Debe digitar la descripcion del producto");
+                        txtDescripcion.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtCantidadInventario.Text))
+                    {
+                        MessageBox.Show("Debe digitar la cantidad de inventario del producto");
+                        txtCantidadInventario.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtDescuento.Text))
+                    {
+                        MessageBox.Show("Debe digitar el descuento del producto");
+                        txtDescuento.Focus();
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(txtPrecioColones.Text))
+                    {
+                        MessageBox.Show("Debe digitar el precio en colones del producto");
+                        txtPrecioColones.Focus();
+                        return;
+                    }
+
+                    if (cmbCategoria.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Debe seleccionar la categoria del producto");
+                        cmbEstado.Focus();
+                        return;
+                    }
+
+                    if (cmbEstado.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Debe seleccionar el estado del producto");
+                        cmbEstado.Focus();
+                        return;
+                    }
+
+                    if (pbImagen.Tag== null)
+                    {
+                        MessageBox.Show("Debe seleccionar una imagen");
+                        pbImagen.Focus();
+                        return;
+                    }
 
                     producto = new Producto();
 
@@ -252,9 +306,31 @@ namespace VentaVideojuegos.Layers.UI
 
                     try
                     {
-                        _BLLProducto.SaveProducto(producto);
 
-                        this.CargarDatos();
+                        List<Producto> listaProductos = _BLLProducto.GetAllProducto();
+
+                        bool estado= false;
+
+                        foreach(Producto pro in listaProductos)
+                        {
+                            if (pro.ID== producto.ID)
+                            {
+                                estado = true;
+                            }
+                        }
+
+                        if (estado == false)
+                        {
+                            _BLLProducto.SaveProducto(producto);
+
+                            this.CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El id que intento agregar ya a sido registrado anteriormente, por favor digite uno que no se encuentre registrado");
+                            txtID.Focus();
+                            return;
+                        }
                     }
                     catch (SqlException ex)
                     {
@@ -282,7 +358,61 @@ namespace VentaVideojuegos.Layers.UI
                     if (this.dgvDatos.SelectedRows.Count > 0)
                     {
 
-                        ValidarCampos();
+                        if (String.IsNullOrEmpty(txtID.Text))
+                        {
+                            MessageBox.Show("Debe digitar el ID del producto");
+                            txtID.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtDescripcion.Text))
+                        {
+                            MessageBox.Show("Debe digitar la descripcion del producto");
+                            txtDescripcion.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtCantidadInventario.Text))
+                        {
+                            MessageBox.Show("Debe digitar la cantidad de inventario del producto");
+                            txtCantidadInventario.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtDescuento.Text))
+                        {
+                            MessageBox.Show("Debe digitar el descuento del producto");
+                            txtDescuento.Focus();
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(txtPrecioColones.Text))
+                        {
+                            MessageBox.Show("Debe digitar el precio en colones del producto");
+                            txtPrecioColones.Focus();
+                            return;
+                        }
+
+                        if (cmbCategoria.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Debe seleccionar la categoria del producto");
+                            cmbEstado.Focus();
+                            return;
+                        }
+
+                        if (cmbEstado.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Debe seleccionar el estado del producto");
+                            cmbEstado.Focus();
+                            return;
+                        }
+
+                        if (pbImagen.Tag == null)
+                        {
+                            MessageBox.Show("Debe seleccionar una imagen");
+                            pbImagen.Focus();
+                            return;
+                        }
 
                         //telefono = this.dgvDatos.SelectedRows[0].DataBoundItem as Telefono;
                         producto = new Producto();
@@ -354,7 +484,7 @@ namespace VentaVideojuegos.Layers.UI
 
                 case EstadoMantenimiento.Borrar:
 
-                    string mensaje = "Esta seguro que desea eliminar este producto, esta accion es irreversible";
+                    string mensaje = "Esta seguro que desea deshabilitar este producto";
                     string caption = "Advertencia";
 
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
