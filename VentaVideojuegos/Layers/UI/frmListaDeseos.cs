@@ -559,6 +559,24 @@ namespace VentaVideojuegos.Layers.UI
         {
             if (rdbProducto.Checked)
             {
+                if (String.IsNullOrEmpty(txtIdProducto.Text))
+                {
+                    MessageBox.Show("Debe digitar el id del producto");
+                    txtIdProducto.Focus();
+                    return;
+                }
+
+                try
+                {
+                    int num = Convert.ToInt32(txtIdProducto.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("El id debe estar compuesto de numero enteros");
+                    txtIdProducto.Focus();
+                    return;
+                }
+
                 BLLProducto _BLLProducto = new BLLProducto();
 
                 List<Producto> lista = new List<Producto>();
@@ -590,6 +608,24 @@ namespace VentaVideojuegos.Layers.UI
             {
                 if (rdbVideojuego.Checked)
                 {
+                    if (String.IsNullOrEmpty(txtIdProducto.Text))
+                    {
+                        MessageBox.Show("Debe digitar el id del producto");
+                        txtIdProducto.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtIdProducto.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        txtIdProducto.Focus();
+                        return;
+                    }
+
                     BLLVideojuego _BLLVideojuego= new BLLVideojuego();
 
                     List<Videojuego> lista = new List<Videojuego>();
@@ -659,6 +695,24 @@ namespace VentaVideojuegos.Layers.UI
         {
             if (rdbProducto.Checked)
             {
+                if (String.IsNullOrEmpty(txtIdCliente.Text))
+                {
+                    MessageBox.Show("Debe digitar el id del cliente");
+                    txtIdCliente.Focus();
+                    return;
+                }
+
+                try
+                {
+                    int num = Convert.ToInt32(txtIdCliente.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("El id debe estar compuesto de numero enteros");
+                    txtIdCliente.Focus();
+                    return;
+                }
+
                 BLLCliente _BLLCliente = new BLLCliente();
 
                 List<Cliente> lista = new List<Cliente>();
@@ -702,6 +756,24 @@ namespace VentaVideojuegos.Layers.UI
             {
                 if (rdbVideojuego.Checked)
                 {
+                    if (String.IsNullOrEmpty(txtIdCliente.Text))
+                    {
+                        MessageBox.Show("Debe digitar el id del cliente");
+                        txtIdCliente.Focus();
+                        return;
+                    }
+
+                    try
+                    {
+                        int num = Convert.ToInt32(txtIdCliente.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        txtIdCliente.Focus();
+                        return;
+                    }
+
                     BLLCliente _BLLCliente = new BLLCliente();
 
                     List<Cliente> lista = new List<Cliente>();
