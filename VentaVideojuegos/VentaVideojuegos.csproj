@@ -142,7 +142,7 @@
     <Compile Include="Layers\Entities\DTO\OrdenCompraDTO.cs" />
     <Compile Include="Layers\Entities\DTO\ProductoDTO.cs" />
     <Compile Include="Layers\Entities\DTO\ReservacionDTO.cs" />
-    <Compile Include="Layers\Entities\Encriptado.cs" />
+    <Compile Include="Layers\Procesos\Encriptado.cs" />
     <Compile Include="Layers\Entities\ListaDeseos.cs" />
     <Compile Include="Layers\Entities\OrdenCompra.cs" />
     <Compile Include="Layers\Entities\Producto.cs" />
@@ -161,58 +161,58 @@
     <Compile Include="Layers\Servicios\ServiceRAWG\ClienteRAWG.cs" />
     <Compile Include="Layers\Servicios\ServiceRAWG\ManejadorRAWG.cs" />
     <Compile Include="Layers\Servicios\ServiceRAWG\RAWGJuego.cs" />
-    <Compile Include="Layers\UI\frmComprar.cs">
+    <Compile Include="Layers\UI\Procesos\frmComprar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmComprar.Designer.cs">
+    <Compile Include="Layers\UI\Procesos\frmComprar.Designer.cs">
       <DependentUpon>frmComprar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmListaDeseos.cs">
+    <Compile Include="Layers\UI\Procesos\frmListaDeseos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmListaDeseos.Designer.cs">
+    <Compile Include="Layers\UI\Procesos\frmListaDeseos.Designer.cs">
       <DependentUpon>frmListaDeseos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmLogin.cs">
+    <Compile Include="Layers\UI\Procesos\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmLogin.Designer.cs">
+    <Compile Include="Layers\UI\Procesos\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoCliente.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoCliente.Designer.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoCliente.Designer.cs">
       <DependentUpon>frmMantenimientoCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoCorreo.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoCorreo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoCorreo.Designer.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoCorreo.Designer.cs">
       <DependentUpon>frmMantenimientoCorreo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoProductos.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoProductos.Designer.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoProductos.Designer.cs">
       <DependentUpon>frmMantenimientoProductos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoTelefono.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoTelefono.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoTelefono.Designer.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoTelefono.Designer.cs">
       <DependentUpon>frmMantenimientoTelefono.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoUsuario.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoUsuario.Designer.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoUsuario.Designer.cs">
       <DependentUpon>frmMantenimientoUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoVideojuego.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoVideojuego.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmMantenimientoVideojuego.Designer.cs">
+    <Compile Include="Layers\UI\Mantenimientos\frmMantenimientoVideojuego.Designer.cs">
       <DependentUpon>frmMantenimientoVideojuego.cs</DependentUpon>
     </Compile>
     <Compile Include="Layers\UI\frmPrincipal.cs">
@@ -221,10 +221,10 @@
     <Compile Include="Layers\UI\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layers\UI\frmReservacion.cs">
+    <Compile Include="Layers\UI\Procesos\frmReservacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Layers\UI\frmReservacion.Designer.cs">
+    <Compile Include="Layers\UI\Procesos\frmReservacion.Designer.cs">
       <DependentUpon>frmReservacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Layers\UI\Reportes\DataSetReporteCantidadProductosVendidos.Designer.cs">
@@ -368,37 +368,37 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Util\Utilitarios.cs" />
-    <EmbeddedResource Include="Layers\UI\frmComprar.resx">
+    <EmbeddedResource Include="Layers\UI\Procesos\frmComprar.resx">
       <DependentUpon>frmComprar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmListaDeseos.resx">
+    <EmbeddedResource Include="Layers\UI\Procesos\frmListaDeseos.resx">
       <DependentUpon>frmListaDeseos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmLogin.resx">
+    <EmbeddedResource Include="Layers\UI\Procesos\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmMantenimientoCliente.resx">
+    <EmbeddedResource Include="Layers\UI\Mantenimientos\frmMantenimientoCliente.resx">
       <DependentUpon>frmMantenimientoCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmMantenimientoCorreo.resx">
+    <EmbeddedResource Include="Layers\UI\Mantenimientos\frmMantenimientoCorreo.resx">
       <DependentUpon>frmMantenimientoCorreo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmMantenimientoProductos.resx">
+    <EmbeddedResource Include="Layers\UI\Mantenimientos\frmMantenimientoProductos.resx">
       <DependentUpon>frmMantenimientoProductos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmMantenimientoTelefono.resx">
+    <EmbeddedResource Include="Layers\UI\Mantenimientos\frmMantenimientoTelefono.resx">
       <DependentUpon>frmMantenimientoTelefono.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmMantenimientoUsuario.resx">
+    <EmbeddedResource Include="Layers\UI\Mantenimientos\frmMantenimientoUsuario.resx">
       <DependentUpon>frmMantenimientoUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmMantenimientoVideojuego.resx">
+    <EmbeddedResource Include="Layers\UI\Mantenimientos\frmMantenimientoVideojuego.resx">
       <DependentUpon>frmMantenimientoVideojuego.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layers\UI\frmReservacion.resx">
+    <EmbeddedResource Include="Layers\UI\Procesos\frmReservacion.resx">
       <DependentUpon>frmReservacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Layers\UI\Reportes\frmFiltroReporteCantidadProductosVendidos.resx">
