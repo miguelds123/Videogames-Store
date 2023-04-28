@@ -189,9 +189,29 @@ namespace VentaVideojuegos.Layers.UI
 
                     try
                     {
-                        _BLLCorreo.SaveCorreo(correo);
+                        List<Correo> listaCorreo = _BLLCorreo.GetAllCorreo();
 
-                        this.CargarDatos();
+                        bool estado = false;
+
+                        foreach(Correo correo1 in listaCorreo)
+                        {
+                            if (correo.IdCliente == correo1.IdCliente && correo.CorreoElectronico.Equals(correo1.CorreoElectronico))
+                            {
+                                estado= true;
+                            }
+                        }
+
+                        if (!estado)
+                        {
+                            _BLLCorreo.SaveCorreo(correo);
+
+                            this.CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El correo que desea agregar ya existe");
+                            return;
+                        }
                     }
                     catch (SqlException ex)
                     {
@@ -253,9 +273,29 @@ namespace VentaVideojuegos.Layers.UI
 
                         try
                         {
-                            _BLLCorreo.UpdateCorreo(correo, correoViejo.CorreoElectronico, correoViejo.IdCliente.ToString());
+                            List<Correo> listaCorreo = _BLLCorreo.GetAllCorreo();
 
-                            this.CargarDatos();
+                            bool estado = false;
+
+                            foreach (Correo correo1 in listaCorreo)
+                            {
+                                if (correo.IdCliente == correo1.IdCliente && correo.CorreoElectronico.Equals(correo1.CorreoElectronico))
+                                {
+                                    estado = true;
+                                }
+                            }
+
+                            if (!estado)
+                            {
+                                _BLLCorreo.UpdateCorreo(correo, correoViejo.CorreoElectronico, correoViejo.IdCliente.ToString());
+
+                                this.CargarDatos();
+                            }
+                            else
+                            {
+                                MessageBox.Show("El correo que intenta agregar ya existe");
+                                return;
+                            }
                         }
                         catch (SqlException ex)
                         {

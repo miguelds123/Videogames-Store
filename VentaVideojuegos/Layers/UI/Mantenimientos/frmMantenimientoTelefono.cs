@@ -189,9 +189,30 @@ namespace VentaVideojuegos.Layers.UI
 
                     try
                     {
-                        _BLLTelefono.SaveTelefono(telefono);
+                        List<Telefono> listaTelefono = _BLLTelefono.GetAllTelefono();
 
-                        this.CargarDatos();
+                        bool estado= false;
+
+                        foreach(Telefono telefono1 in listaTelefono)
+                        {
+                            if (telefono1.IdCliente == telefono.IdCliente && telefono1.Numero.Equals(telefono.Numero))
+                            {
+                                estado= true;
+                            }
+                        }
+
+                        if (!estado)
+                        {
+                            _BLLTelefono.SaveTelefono(telefono);
+
+                            this.CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El telefono que desea agregar ya existe");
+                            return;
+                        }
+                        
                     }
                     catch (SqlException ex)
                     {
@@ -253,9 +274,29 @@ namespace VentaVideojuegos.Layers.UI
 
                         try
                         {
-                            _BLLTelefono.UpdateTelefono(telefono, telefonoViejo.Numero, telefonoViejo.IdCliente.ToString());
+                            List<Telefono> listaTelefono = _BLLTelefono.GetAllTelefono();
 
-                            this.CargarDatos();
+                            bool estado = false;
+
+                            foreach (Telefono telefono1 in listaTelefono)
+                            {
+                                if (telefono1.IdCliente == telefono.IdCliente && telefono1.Numero.Equals(telefono.Numero))
+                                {
+                                    estado = true;
+                                }
+                            }
+
+                            if (!estado)
+                            {
+                                _BLLTelefono.UpdateTelefono(telefono, telefonoViejo.Numero, telefonoViejo.IdCliente.ToString());
+
+                                this.CargarDatos();
+                            }
+                            else
+                            {
+                                MessageBox.Show("El telefono que desea agregar ya existe");
+                                return;
+                            }
                         }
                         catch (SqlException ex)
                         {

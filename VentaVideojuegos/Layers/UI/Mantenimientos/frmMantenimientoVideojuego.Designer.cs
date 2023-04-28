@@ -107,6 +107,7 @@
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(91, 52);
             this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click_1);
             // 
             // btnSalir
             // 

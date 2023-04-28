@@ -227,9 +227,29 @@ namespace VentaVideojuegos.Layers.UI
 
                     try
                     {
-                        _BLLLogin.SaveUsuario(usuario);
+                        List<Usuario> listaUsuarios = _BLLLogin.GetAllUsuario();
 
-                        this.CargarDatos();
+                        bool estado = false;
+
+                        foreach(Usuario usario in listaUsuarios)
+                        {
+                            if (usuario.Login.Equals(usario.Login))
+                            {
+                                estado= true;
+                            }
+                        }
+
+                        if (!estado)
+                        {
+                            _BLLLogin.SaveUsuario(usuario);
+
+                            this.CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El usuario que desea agregar ya existe");
+                            return;
+                        }
                     }
                     catch (SqlException ex)
                     {

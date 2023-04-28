@@ -144,7 +144,7 @@ namespace VentaVideojuegos.Layers.UI
 
                     this.btnAceptar.Enabled = true;
                     this.btnCancelar.Enabled = true;
-                    txtID.Focus();
+                    txtID.Enabled = false;
                     estadoFrame = EstadoMantenimiento.Editar;
                     break;
 
@@ -812,6 +812,35 @@ namespace VentaVideojuegos.Layers.UI
 
                 MessageBox.Show(message);
                 return;
+            }
+        }
+
+        private void btnBorrar_Click_1(object sender, EventArgs e)
+        {
+            if (this.dgvDatos.SelectedRows.Count > 0)
+            {
+                this.CambiarEstado(EstadoMantenimiento.Borrar);
+
+                Videojuego videojuego = this.dgvDatos.SelectedRows[0].DataBoundItem as Videojuego;
+
+                txtID.Text = videojuego.ID.ToString();
+                txtNombre.Text = videojuego.NOMBRE.ToString();
+                txtCantidadInventario.Text = videojuego.CANTIDAD_INVENTARIO.ToString();
+                txtDescuento.Text = videojuego.DESCUENTO.ToString();
+                txtPrecioColones.Text = videojuego.PRECIO_COLONES.ToString();
+                txtPrecioDolares.Text = videojuego.PRECIO_DOLARES.ToString();
+                txtDescripcion.Text = videojuego.DESCRIPCION.ToString();
+                txtFechaSalida.Text = videojuego.FECHA_SALIDA.ToString();
+                txtNota.Text = videojuego.NOTA.ToString();
+
+                this.btnEditar.Enabled = false;
+                this.btnBorrar.Enabled = false;
+                this.btnNuevo.Enabled = false;
+                this.dgvDatos.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar el producto que desea eliminar");
             }
         }
     }
