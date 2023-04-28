@@ -645,7 +645,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!SUBTOTAL.Value, "DataSetReporteFacturaVideojuego")</Value>
+                <Value>=First(Fields!SUBTOTAL.Value, "DataSetReporteFacturaVideojuego")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -705,7 +705,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!TOTAL1.Value, "DataSetReporteFacturaVideojuego")</Value>
+                <Value>=First(Fields!TOTAL1.Value, "DataSetReporteFacturaVideojuego")</Value>
                 <Style />
               </TextRun>
             </TextRuns>

@@ -115,5 +115,5 @@ C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra 
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.Layers.UI.Reportes.frmReporteCantidaVideojuegosVendidos.resources
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\log4net.dll
 C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\log4net.xml
-C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\bin\Debug\EnvDTE.xml
-C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\VentaVideojuegos.csproj.SuggestedBindingRedirects.cache
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\RdlCompile.cache
+C:\Users\INTELEC PC\OneDrive - Universidad Técnica Nacional\Universidad\Progra III\Proyecto\VentaVideojuegos\VentaVideojuegos\obj\Debug\RdlCompile.compiled
