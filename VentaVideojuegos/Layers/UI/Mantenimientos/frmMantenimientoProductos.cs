@@ -227,7 +227,9 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch(Exception ex)
                     {
-                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        string message = "El id debe estar compuesto de numero enteros";
+                        _MyLogControlEventos.Error(message.ToString());
+                        MessageBox.Show(message);
                         txtID.Focus();
                         return;
                     }
@@ -252,7 +254,9 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("La cantidad de inventario debe ser un numero entero");
+                        string message = "La cantidad de inventario debe ser un numero entero";
+                        _MyLogControlEventos.Error(message.ToString());
+                        MessageBox.Show(message);
                         txtCantidadInventario.Focus();
                         return;
                     }
@@ -270,7 +274,9 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("El descuento debe ser un numero entero");
+                        string message = "El descuento debe ser un numero entero";
+                        _MyLogControlEventos.Error(message.ToString());
+                        MessageBox.Show(message);
                         txtDescuento.Focus();
                         return;
                     }
@@ -288,7 +294,9 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("El precio en colones debe ser un numero entero");
+                        string message = "El precio en colones debe ser un numero entero";
+                        _MyLogControlEventos.Error(message.ToString());
+                        MessageBox.Show(message);
                         txtPrecioColones.Focus();
                         return;
                     }
@@ -415,7 +423,9 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("El id debe estar compuesto de numero enteros");
+                            string message = "El id debe estar compuesto de numero enteros";
+                            _MyLogControlEventos.Error(message.ToString());
+                            MessageBox.Show(message);
                             txtID.Focus();
                             return;
                         }
@@ -440,7 +450,9 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("La cantidad de inventario debe ser un numero entero");
+                            string message =("La cantidad de inventario debe ser un numero entero");
+                            _MyLogControlEventos.Error(message.ToString());
+                            MessageBox.Show(message);
                             txtCantidadInventario.Focus();
                             return;
                         }
@@ -458,7 +470,9 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("El descuento debe ser un numero entero");
+                            string message = ("El descuento debe ser un numero entero");
+                            _MyLogControlEventos.Error(message.ToString());
+                            MessageBox.Show(message);
                             txtDescuento.Focus();
                             return;
                         }
@@ -476,7 +490,9 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("El precio en colones debe ser un numero entero");
+                            string message = ("El precio en colones debe ser un numero entero");
+                            _MyLogControlEventos.Error(message.ToString());
+                            MessageBox.Show(message);
                             txtPrecioColones.Focus();
                             return;
                         }

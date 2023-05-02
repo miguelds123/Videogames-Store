@@ -45,7 +45,9 @@ namespace VentaVideojuegos.Layers.UI
                 }
                 else
                 {
-                    MessageBox.Show("Su usuario y su coontraseña son incorrectos. Por favor intentelo de nuevo");
+                    string message = ("Su usuario y su coontraseña son incorrectos. Por favor intentelo de nuevo");
+                    _MyLogControlEventos.Error(message.ToString());
+                    MessageBox.Show(message);
                     txtUsuario.Clear();
                     txtPassword.Clear();
                     return;

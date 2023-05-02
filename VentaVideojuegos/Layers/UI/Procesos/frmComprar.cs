@@ -91,7 +91,9 @@ namespace VentaVideojuegos.Layers.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("El id debe estar compuesto de numero enteros");
+                string message = ("El id debe estar compuesto de numero enteros");
+                _MyLogControlEventos.Error(message.ToString());
+                MessageBox.Show(message);
                 txtIDCliente.Focus();
                 return;
             }
@@ -148,7 +150,9 @@ namespace VentaVideojuegos.Layers.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("El id debe estar compuesto de numero enteros");
+                    string message = ("El id debe estar compuesto de numero enteros");
+                    _MyLogControlEventos.Error(message.ToString());
+                    MessageBox.Show(message);
                     txtIDProducto.Focus();
                     return;
                 }
@@ -159,7 +163,9 @@ namespace VentaVideojuegos.Layers.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("La cantidad debe estar compuesta de numeros enteros");
+                    string message = ("La cantidad debe estar compuesta de numeros enteros");
+                    _MyLogControlEventos.Error(message.ToString());
+                    MessageBox.Show(message);
                     txtCantidad.Focus();
                     return;
                 }
@@ -214,7 +220,9 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        string message = ("El id debe estar compuesto de numero enteros");
+                        _MyLogControlEventos.Error(message.ToString());
+                        MessageBox.Show(message);
                         txtIDProducto.Focus();
                         return;
                     }
@@ -225,7 +233,9 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("La cantidad debe estar compuesta de numeros enteros");
+                        string message = ("La cantidad debe estar compuesta de numeros enteros");
+                        _MyLogControlEventos.Error(message.ToString());
+                        MessageBox.Show(message);
                         txtCantidad.Focus();
                         return;
                     }

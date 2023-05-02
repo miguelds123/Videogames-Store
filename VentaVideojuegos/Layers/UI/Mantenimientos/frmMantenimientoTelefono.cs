@@ -170,7 +170,9 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        string message = ("El id debe estar compuesto de numero enteros");
+                        _MyLogControlEventos.Error(message.ToString());
+                        MessageBox.Show(message);
                         txtIdCliente.Focus();
                         return;
                     }
@@ -253,7 +255,9 @@ namespace VentaVideojuegos.Layers.UI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("El id debe estar compuesto de numero enteros");
+                            string message = ("El id debe estar compuesto de numero enteros");
+                            _MyLogControlEventos.Error(message.ToString());
+                            MessageBox.Show(message);
                             txtIdCliente.Focus();
                             return;
                         }

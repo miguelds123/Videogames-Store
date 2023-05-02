@@ -274,7 +274,11 @@ namespace VentaVideojuegos.Layers.UI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("El id debe estar compuesto de numero enteros");
+                        string message = "El id debe estar compuesto de numero enteros";
+
+                        _MyLogControlEventos.Error(message.ToString());
+
+                        MessageBox.Show(message);
                         txtIdentificacion.Focus();
                         return;
                     }
@@ -654,24 +658,33 @@ namespace VentaVideojuegos.Layers.UI
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            cmbCanton.Enabled = true;
-
-            cmbCanton.Items.Clear();
-
-            List<Canton> listaTodosCantones = new List<Canton>();
-
-            BLLCanton _BLLCanton= new BLLCanton();
-
-            listaTodosCantones = _BLLCanton.GetAllCanton();
-
-            Provincia provincia= cmbProvincia.SelectedItem as Provincia;
-
-            foreach(Canton canton in listaTodosCantones)
+            if (cmbProvincia.SelectedIndex != -1)
             {
-                if (canton.IdProvincia == provincia.Id)
+                cmbCanton.Enabled = true;
+
+                cmbCanton.Items.Clear();
+
+                List<Canton> listaTodosCantones = new List<Canton>();
+
+                BLLCanton _BLLCanton = new BLLCanton();
+
+                listaTodosCantones = _BLLCanton.GetAllCanton();
+
+                Provincia provincia = cmbProvincia.SelectedItem as Provincia;
+
+                foreach (Canton canton in listaTodosCantones)
                 {
-                    cmbCanton.Items.Add(canton);
+                    if (canton.IdProvincia == provincia.Id)
+                    {
+                        cmbCanton.Items.Add(canton);
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar la provincia");
+                cmbProvincia.Focus();
+                return;
             }
         }
 
