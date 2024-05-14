@@ -1,7 +1,0 @@
-
-
--- Stored Procedures Canton
-
-CREATE PROCEDURE PA_SELECT_CANTON_All
- AS 
- 	Select ID ,ID_PROVINCIA ,DESCRIPCION  from CANTON
